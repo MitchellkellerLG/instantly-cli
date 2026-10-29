@@ -6,7 +6,7 @@ export const customPromptTemplatesGetCommand: CommandDefinition = {
   name: 'custom_prompt_templates_get',
   group: 'custom-prompt-templates',
   subcommand: 'get',
-  description: 'Get a custom prompt template by ID.',
+  description: '[Undocumented API] Get a custom prompt template by ID.',
   examples: ['instantly custom-prompt-templates get <template-id>'],
 
   inputSchema: z.object({ id: z.string().describe('Custom prompt template ID') }),

@@ -20,7 +20,7 @@ export function isMutatingCommand(cmdDef: CommandDefinition): boolean {
   if (cmdDef.mutating === false) return false;
   const method = cmdDef.endpoint.method;
   if (method === 'GET') return false;
-  if (method === 'PATCH' || method === 'DELETE') return true;
+  if (method === 'PUT' || method === 'PATCH' || method === 'DELETE') return true;
   if (method === 'POST' && READ_ONLY_POST_COMMANDS.has(cmdDef.name)) return false;
   return method === 'POST';
 }

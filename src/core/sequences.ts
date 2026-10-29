@@ -96,6 +96,7 @@ export function validateAndNormalizeSequences(
   }
 
   const multi = sequence.steps.length >= 2;
+  const stepCount = sequence.steps.length;
   const steps = sequence.steps.map((rawStep, index) => {
     const step = asRecord(rawStep, `step[${index}]`);
     const label = `step[${index}].delay`;
@@ -108,7 +109,7 @@ export function validateAndNormalizeSequences(
     }
 
     const delay = parseDelay(step.delay, label);
-    const isLast = index === sequence.steps.length - 1;
+    const isLast = index === stepCount - 1;
     if (multi && !isLast && delay === 0) {
       throw new ValidationError(
         `${label} is 0. delay on step N waits before step N+1; ` +
@@ -187,5 +188,5 @@ export function withSequenceTimeline<T>(
       sequence_timeline: SequenceTimeline;
     };
   }
-  return { result, sequence_timeline } as T & { sequence_timeline: SequenceTimeline };
+  return { result, sequence_timeline } as unknown as T & { sequence_timeline: SequenceTimeline };
 }

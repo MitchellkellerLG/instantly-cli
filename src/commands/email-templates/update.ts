@@ -6,7 +6,7 @@ export const emailTemplatesUpdateCommand: CommandDefinition = {
   name: 'email_templates_update',
   group: 'email-templates',
   subcommand: 'update',
-  description: 'Update an email template.',
+  description: '[Undocumented API] Update an email template.',
   examples: ['instantly email-templates update <template-id> --name "Updated Template" --subject "New Subject"'],
 
   inputSchema: z.object({

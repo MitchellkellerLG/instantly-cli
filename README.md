@@ -2,13 +2,92 @@
 
 **Instantly.ai in your terminal.** Run cold email campaigns, manage leads, monitor deliverability, and automate every outbound motion — from a single command line.
 
-156 commands across 31 API groups. Full coverage of the [Instantly.ai](https://instantly.ai) V2 API. Built for humans, scripts, CI/CD pipelines, and AI agents.
+274 command definitions shared by the CLI and MCP, covering all 255 operations in the pinned [Instantly.ai public V2 API spec](https://api.instantly.ai/openapi/api_v2.json), plus retained upstream commands. Built for humans, scripts, CI/CD pipelines, and AI agents.
 
 ```bash
 npm install -g instantly-cli
 ```
 
 ---
+
+## API coverage and maintenance
+
+This fork extends [Brandon Charleson's original CLI](https://github.com/bcharleson/instantly-cli) with 103 generated command definitions. One definition drives both the CLI and MCP. Coverage counts unique HTTP method and path pairs, normalizing parameter names and trailing slashes. Coverage proves endpoint availability against the spec, not live service behavior or complete parameter coverage in legacy commands. Tests use mocked HTTP only, with no real API keys.
+
+| Public API path group | Upstream covered | This fork covered / spec |
+|---|---:|---:|
+| account-campaign-mappings | 1 | 1 / 1 |
+| accounts | 14 | 16 / 16 |
+| agent-items | 0 | 2 / 2 |
+| api-keys | 3 | 3 / 3 |
+| audit-logs | 1 | 1 / 1 |
+| background-jobs | 2 | 2 / 2 |
+| block-lists-entries | 5 | 9 / 9 |
+| campaigns | 15 | 19 / 19 |
+| crm-actions | 2 | 2 / 2 |
+| custom-tag-mappings | 1 | 1 / 1 |
+| custom-tags | 6 | 6 / 6 |
+| dfy-email-account-orders | 7 | 7 / 7 |
+| domains | 0 | 3 / 3 |
+| emails | 8 | 9 / 9 |
+| inbox-placement-analytics | 5 | 5 / 5 |
+| inbox-placement-reports | 2 | 2 / 2 |
+| inbox-placement-tests | 6 | 6 / 6 |
+| lead-labels | 6 | 6 / 6 |
+| lead-lists | 6 | 6 / 6 |
+| leads | 12 | 13 / 13 |
+| oauth | 0 | 3 / 3 |
+| supersearch-enrichment | 10 | 27 / 27 |
+| subsequences | 8 | 11 / 11 |
+| email-verification | 2 | 2 / 2 |
+| webhook-events | 4 | 4 / 4 |
+| webhooks | 8 | 8 / 8 |
+| workspace-billing | 2 | 2 / 2 |
+| workspace-group-members | 5 | 5 / 5 |
+| workspace-members | 5 | 5 / 5 |
+| workspaces | 6 | 8 / 8 |
+| ai-agents | 0 | 61 / 61 |
+| **Total** | **152** | **255 / 255** |
+
+The 15 off-spec operations in `custom-prompt-templates`, `sales-flow`, and `email-templates` remain available and show `[Undocumented API]` in CLI help and MCP descriptions. Their availability is not guaranteed by the public spec.
+
+### Generated commands
+
+New command names use the spec's operation ID in kebab case. Discover options with `instantly <group> --help` and `instantly <group> <command> --help`. New groups include `ai-agents`, `agent-items`, `company-lists`, `saved-searches`, and `domains`. New OAuth operations share the existing `oauth` group.
+
+Generated commands accept request bodies through `--body '<json>'`. MCP callers can pass a native JSON object in `body`. Path and query parameters have individual flags; numbers, booleans, and arrays accept JSON values. JSON schemas validate nested bodies before HTTP. Server defaults are preserved rather than inserted locally.
+
+```bash
+instantly saved-searches list-saved-searches --limit 20
+instantly ai-agents list-lead-finder-agents --help
+instantly --profile client-a --workspace '<bound-workspace-uuid>' \
+  domains update-domain-forwarding --domain example.com \
+  --body '{"forwarding_domain":"destination.com","forwarding_mode":"redirect"}'
+```
+
+The existing agency guard applies to every generated command. Reads under a profile verify the live workspace. Every new non-GET operation, including PUT and POST previews, requires the bound workspace UUID under a profile. For MCP, pass `profile` and matching `workspace_id` for mutations. Account destination IDs in a body do not replace this source-workspace confirmation.
+
+### Updating the spec
+
+```bash
+# Fetch the public documentation only. No API key is needed.
+curl --fail --location https://api.instantly.ai/openapi/api_v2.json -o spec/api_v2.json
+npm run spec:generate
+npm run spec:generated-check
+npm run spec:check
+npm run typecheck
+npm test -- --maxWorkers=2 --minWorkers=1
+npm run build
+npm run smoke:coverage
+```
+
+Review generated changes before committing. The generator resolves local references, rejects unsupported request content and parameter locations, and generates only operations absent from hand-written definitions. It uses the existing command registry and fails on name collisions. Generated request schemas retain the API's original validation rules; AJV enforces conditions and exclusive unions that MCP's Zod schema view cannot fully express. Unsupported external or recursive request references fail generation rather than silently widening validation.
+
+`npm run spec:check` checks the pinned spec offline. `npm run spec:check -- --live` fetches the public spec and fails on uncovered operations. CI runs both checks on pull requests, default-branch pushes, weekly, and manually. A failed live check requires a reviewed spec refresh and regeneration. No CI step calls authenticated Instantly endpoints.
+
+### Credits and license
+
+Original implementation and project history: [Brandon Charleson](https://github.com/bcharleson/instantly-cli). API coverage extension and maintenance: [Mitchell Keller](https://github.com/MitchellkellerLG). The upstream package declared MIT; this fork includes an MIT license with both copyright notices. The package and binary names remain unchanged. The existing npm install commands refer to the upstream package; this fork has not been published to npm.
 
 ## What is Instantly?
 
@@ -23,7 +102,7 @@ npm install -g instantly-cli
 
 ## What This CLI Enables
 
-The Instantly CLI gives you programmatic access to the entire platform. Every action you can take in the Instantly dashboard, you can do from your terminal:
+The Instantly CLI provides access to the public API. Some dashboard features have no public API endpoint.
 
 **Campaign operations** — create campaigns, add leads, launch sequences, pause/resume, duplicate, and monitor sending status without opening a browser.
 
@@ -58,7 +137,7 @@ npx instantly-cli campaigns list
 ### From source
 
 ```bash
-git clone https://github.com/bcharleson/instantly-cli.git
+git clone https://github.com/MitchellkellerLG/instantly-cli.git
 cd instantly-cli
 npm install && npm run build
 npm link
@@ -625,7 +704,7 @@ instantly oauth status <session-id>                   # Check connection status
 
 ## MCP Server
 
-The CLI doubles as an [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server, giving AI assistants direct access to all 156 Instantly tools as native function calls.
+The CLI doubles as an [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server, giving AI assistants direct access to all 276 Instantly tools as native function calls.
 
 ```bash
 instantly mcp
@@ -676,41 +755,47 @@ Every MCP tool description says pass `profile` for agency. Mutating tools requir
 }
 ```
 
-This registers 156 tools across 31 groups:
+This registers 274 command tools across 37 groups, plus `status` and `health`:
 
 | Group | Tools | Examples |
 |-------|-------|---------|
-| Campaigns | 11 | `campaigns_list`, `campaigns_activate`, `campaigns_duplicate` |
-| Leads | 12 | `leads_list`, `leads_create`, `leads_bulk_add`, `leads_merge` |
-| Accounts | 12 | `accounts_list`, `accounts_warmup_enable`, `accounts_pause` |
-| Email | 8 | `email_list`, `email_reply`, `email_forward`, `email_update` |
-| Analytics | 6 | `analytics_campaign`, `analytics_warmup`, `analytics_daily_campaign` |
-| Webhooks | 8 | `webhooks_list`, `webhooks_create`, `webhooks_update` |
-| Webhook Events | 4 | `webhook_events_list`, `webhook_events_summary` |
-| Lead Lists | 6 | `lead_lists_list`, `lead_lists_create`, `lead_lists_verification_stats` |
-| Enrichment | 10 | `enrichment_enrich`, `enrichment_ai`, `enrichment_preview` |
-| Blocklist | 5 | `blocklist_list`, `blocklist_create`, `blocklist_update` |
-| Custom Tags | 6 | `custom_tags_list`, `custom_tags_create`, `custom_tags_toggle` |
-| Custom Tag Mappings | 1 | `custom_tag_mappings_list` |
-| Lead Labels | 6 | `lead_labels_list`, `lead_labels_create`, `lead_labels_test_ai` |
-| Workspace | 6 | `workspace_get`, `workspace_update`, `workspace_whitelabel_create` |
-| Workspace Members | 5 | `workspace_members_list`, `workspace_members_create` |
-| Workspace Group Members | 5 | `workspace_group_members_list`, `workspace_group_members_create` |
-| Workspace Billing | 2 | `workspace_billing_plan_details`, `workspace_billing_subscription_details` |
-| Subsequences | 8 | `subsequences_list`, `subsequences_create`, `subsequences_pause` |
-| Background Jobs | 2 | `background_jobs_list`, `background_jobs_get` |
-| Email Verification | 2 | `email_verification_verify`, `email_verification_status` |
-| Account Mappings | 1 | `account_mappings_get` |
-| Audit Logs | 1 | `audit_logs_list` |
-| API Keys | 3 | `api_keys_create`, `api_keys_list`, `api_keys_delete` |
-| Inbox Placement | 6 | `inbox_placement_list`, `inbox_placement_create` |
-| Inbox Placement Analytics | 5 | `inbox_placement_analytics_list`, `inbox_placement_analytics_insights` |
-| Inbox Placement Reports | 2 | `inbox_placement_reports_list`, `inbox_placement_reports_get` |
-| CRM Actions | 2 | `crm_actions_list_phone_numbers`, `crm_actions_delete_phone_number` |
-| DFY Orders | 7 | `dfy_orders_list`, `dfy_orders_create`, `dfy_orders_cancel` |
-| Custom Prompt Templates | 5 | `custom_prompt_templates_list`, `custom_prompt_templates_create` |
-| Sales Flow | 5 | `sales_flow_list`, `sales_flow_create`, `sales_flow_delete` |
-| Email Templates | 5 | `email_templates_list`, `email_templates_create` |
+| accounts | 14 | `accounts_pause_accounts`, `accounts_move_accounts` |
+| agent-items | 2 | `agent_items_list_agent_items`, `agent_items_bulk_delete_agent_items` |
+| blocklist | 9 | `blocklist_deleteall_block_list_entry`, `blocklist_createbluk_block_list_entry` |
+| campaigns | 17 | `campaigns_share_campaign`, `campaigns_create_from_export` |
+| domains | 3 | `domains_get_domain_forwarding`, `domains_update_domain_forwarding` |
+| email | 9 | `email_send_test_email`, `email_list` |
+| leads | 14 | `leads_update_lead_interest_status`, `leads_list` |
+| oauth | 3 | `oauth_init_google_oauth`, `oauth_init_microsoft_oauth` |
+| enrichment | 13 | `enrichment_signal_keywords_facet`, `enrichment_get_integration_providers` |
+| subsequences | 11 | `subsequences_get_subsequence_analytics`, `subsequences_get_campaign_subsequence` |
+| workspace | 9 | `workspace_schedule_current_workspace_removal`, `workspace_cancel_current_workspace_removal` |
+| ai-agents | 61 | `ai_agents_create_sales_agent`, `ai_agents_list_sales_agents` |
+| company-lists | 9 | `company_lists_list_company_list_recipes`, `company_lists_list_company_list_sources` |
+| saved-searches | 5 | `saved_searches_list_saved_searches`, `saved_searches_create_saved_search` |
+| analytics | 6 | `analytics_campaign`, `analytics_campaign_overview` |
+| webhooks | 8 | `webhooks_list`, `webhooks_get` |
+| lead-lists | 6 | `lead_lists_list`, `lead_lists_get` |
+| custom-tags | 6 | `custom_tags_list`, `custom_tags_get` |
+| lead-labels | 6 | `lead_labels_list`, `lead_labels_get` |
+| background-jobs | 2 | `background_jobs_list`, `background_jobs_get` |
+| email-verification | 2 | `email_verification_verify`, `email_verification_status` |
+| account-mappings | 1 | `account_mappings_get` |
+| audit-logs | 1 | `audit_logs_list` |
+| workspace-members | 5 | `workspace_members_list`, `workspace_members_get` |
+| api-keys | 3 | `api_keys_create`, `api_keys_list` |
+| inbox-placement | 6 | `inbox_placement_list`, `inbox_placement_get` |
+| webhook-events | 4 | `webhook_events_list`, `webhook_events_get` |
+| workspace-group-members | 5 | `workspace_group_members_list`, `workspace_group_members_get` |
+| custom-tag-mappings | 1 | `custom_tag_mappings_list` |
+| workspace-billing | 2 | `workspace_billing_plan-details`, `workspace_billing_subscription-details` |
+| crm-actions | 2 | `crm_actions_list-phone-numbers`, `crm_actions_delete-phone-number` |
+| dfy-orders | 7 | `dfy_orders_create`, `dfy_orders_list` |
+| inbox-placement-analytics | 5 | `inbox_placement_analytics_list`, `inbox_placement_analytics_get` |
+| inbox-placement-reports | 2 | `inbox_placement_reports_list`, `inbox_placement_reports_get` |
+| custom-prompt-templates | 5 | `custom_prompt_templates_create`, `custom_prompt_templates_list` |
+| sales-flow | 5 | `sales_flow_create`, `sales_flow_list` |
+| email-templates | 5 | `email_templates_create`, `email_templates_list` |
 
 ---
 
@@ -836,7 +921,7 @@ Adding a new API endpoint = creating one file. The command is automatically avai
 ## Development
 
 ```bash
-git clone https://github.com/bcharleson/instantly-cli.git
+git clone https://github.com/MitchellkellerLG/instantly-cli.git
 cd instantly-cli
 npm install
 

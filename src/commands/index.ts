@@ -1,3 +1,4 @@
+import { generatedCommands } from './generated/index.js';
 import { Command } from 'commander';
 import type { CommandDefinition, GlobalOptions } from '../core/types.js';
 import { createCommandContext } from '../core/command-context.js';
@@ -249,6 +250,7 @@ import { registerMcpCommand } from './mcp/index.js';
 
 /** All command definitions — the single source of truth for CLI + MCP */
 export const allCommands: CommandDefinition[] = [
+  ...generatedCommands,
   // Campaigns
   campaignsListCommand,
   campaignsGetCommand,
@@ -473,7 +475,7 @@ export function registerAllCommands(program: Command): void {
   }
 
   for (const [groupName, commands] of groups) {
-    const groupCmd = program
+    const groupCmd = program.commands.find(c => c.name() === groupName) ?? program
       .command(groupName)
       .description(`Manage ${groupName}`);
 

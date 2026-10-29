@@ -6,7 +6,7 @@ export const salesFlowListCommand: CommandDefinition = {
   name: 'sales_flow_list',
   group: 'sales-flow',
   subcommand: 'list',
-  description: 'List sales flows.',
+  description: '[Undocumented API] List sales flows.',
   examples: ['instantly sales-flow list', 'instantly sales-flow list --limit 20'],
 
   inputSchema: z.object({
