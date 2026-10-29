@@ -704,7 +704,7 @@ instantly oauth status <session-id>                   # Check connection status
 
 ## MCP Server
 
-The CLI doubles as an [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server, giving AI assistants direct access to all 276 Instantly tools as native function calls.
+The CLI doubles as an [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server, giving AI assistants direct access to all 274 Instantly command tools as native function calls.
 
 ```bash
 instantly mcp
