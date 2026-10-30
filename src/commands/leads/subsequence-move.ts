@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { stringArray } from '../../core/schemas.js';
 import type { CommandDefinition } from '../../core/types.js';
 import { executeCommand } from '../../core/handler.js';
 
@@ -12,7 +13,7 @@ export const leadsSubsequenceMoveCommand: CommandDefinition = {
   ],
 
   inputSchema: z.object({
-    lead_ids: z.array(z.string()).describe('Array of lead IDs to move'),
+    lead_ids: stringArray.describe('Array of lead IDs to move'),
     subsequence_id: z.string().describe('Target subsequence ID'),
   }),
 

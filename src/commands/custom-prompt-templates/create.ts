@@ -6,7 +6,7 @@ export const customPromptTemplatesCreateCommand: CommandDefinition = {
   name: 'custom_prompt_templates_create',
   group: 'custom-prompt-templates',
   subcommand: 'create',
-  description: 'Create a new custom prompt template.',
+  description: '[Undocumented API] Create a new custom prompt template.',
   examples: ['instantly custom-prompt-templates create --name "My Template" --prompt "Generate text using {{property_1}}" --category 1 --is-public false'],
 
   inputSchema: z.object({

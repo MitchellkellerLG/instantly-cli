@@ -6,7 +6,7 @@ export const emailTemplatesCreateCommand: CommandDefinition = {
   name: 'email_templates_create',
   group: 'email-templates',
   subcommand: 'create',
-  description: 'Create a new email template.',
+  description: '[Undocumented API] Create a new email template.',
   examples: ['instantly email-templates create --name "Welcome Email" --body "<p>Hello!</p>" --subject "Welcome"'],
 
   inputSchema: z.object({

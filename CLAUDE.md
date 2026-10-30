@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This is the official CLI and MCP server for the [Instantly.ai](https://instantly.ai) cold email platform. It wraps the Instantly V2 API (156 commands across 31 groups) into both a terminal CLI and an MCP server for AI assistants.
+This is a community CLI and MCP server for the [Instantly.ai](https://instantly.ai) cold email platform. It wraps the Instantly V2 API (274 command definitions across 37 groups) into both a terminal CLI and an MCP server for AI assistants.
 
 **Dual interface, single codebase:** Every API endpoint is defined once as a `CommandDefinition` object that powers both the CLI subcommand and the MCP tool.
 

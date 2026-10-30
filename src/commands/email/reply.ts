@@ -22,6 +22,8 @@ export const emailReplyCommand: CommandDefinition = {
     body_html: z.string().optional().describe('HTML email body'),
     cc_address_email_list: z.string().optional().describe('Comma-separated CC addresses'),
     bcc_address_email_list: z.string().optional().describe('Comma-separated BCC addresses'),
+    reminder_ts: z.iso.datetime({ offset: true }).optional().describe('Unibox reminder ISO datetime'),
+    assigned_to: z.uuid().optional().describe('User UUID to assign the lead to'),
     skip_validation: z.boolean().optional().describe('Skip recipient validation (not recommended)'),
   }),
 
@@ -35,6 +37,8 @@ export const emailReplyCommand: CommandDefinition = {
       { field: 'body_html', flags: '--body-html <html>', description: 'HTML body' },
       { field: 'cc_address_email_list', flags: '--cc <emails>', description: 'CC addresses' },
       { field: 'bcc_address_email_list', flags: '--bcc <emails>', description: 'BCC addresses' },
+      { field: 'reminder_ts', flags: '--reminder-ts <iso>', description: 'Unibox reminder ISO datetime' },
+      { field: 'assigned_to', flags: '--assigned-to <uuid>', description: 'User UUID to assign the lead to' },
       { field: 'skip_validation', flags: '--skip-validation', description: 'Skip recipient validation' },
     ],
   },
@@ -49,6 +53,8 @@ export const emailReplyCommand: CommandDefinition = {
     body_html: 'body',
     cc_address_email_list: 'body',
     bcc_address_email_list: 'body',
+    reminder_ts: 'body',
+    assigned_to: 'body',
   },
 
   handler: async (input, client) => {

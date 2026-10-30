@@ -6,7 +6,7 @@ export const emailTemplatesDeleteCommand: CommandDefinition = {
   name: 'email_templates_delete',
   group: 'email-templates',
   subcommand: 'delete',
-  description: 'Delete an email template by ID.',
+  description: '[Undocumented API] Delete an email template by ID.',
   examples: ['instantly email-templates delete <template-id>'],
 
   inputSchema: z.object({ id: z.string().describe('Email template ID to delete') }),

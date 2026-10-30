@@ -39,17 +39,20 @@ export class InstantlyClient implements IInstantlyClient {
   }
 
   async request<T>(options: {
-    method: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+    method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
     path: string;
-    query?: Record<string, string | number | boolean | undefined>;
+    query?: Record<string, string | number | boolean | (string | number | boolean)[] | undefined>;
     body?: unknown;
+    responseType?: 'text';
   }): Promise<T> {
     const url = new URL(this.baseUrl + options.path);
 
     if (options.query) {
       for (const [key, value] of Object.entries(options.query)) {
         if (value !== undefined && value !== null && value !== '') {
-          url.searchParams.set(key, String(value));
+          if (Array.isArray(value)) {
+            for (const item of value) url.searchParams.append(key, String(item));
+          } else url.searchParams.set(key, String(value));
         }
       }
     }
@@ -84,7 +87,7 @@ export class InstantlyClient implements IInstantlyClient {
         if (response.ok) {
           const text = await response.text();
           if (!text) return undefined as T;
-          return JSON.parse(text) as T;
+          return (options.responseType === 'text' ? text : JSON.parse(text)) as T;
         }
 
         const errorBody = await response.text().catch(() => '');

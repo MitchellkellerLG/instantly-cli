@@ -6,7 +6,7 @@ export const salesFlowDeleteCommand: CommandDefinition = {
   name: 'sales_flow_delete',
   group: 'sales-flow',
   subcommand: 'delete',
-  description: 'Delete a sales flow by ID.',
+  description: '[Undocumented API] Delete a sales flow by ID.',
   examples: ['instantly sales-flow delete <flow-id>'],
 
   inputSchema: z.object({ id: z.string().describe('Sales flow ID to delete') }),

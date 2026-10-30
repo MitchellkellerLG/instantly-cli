@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { stringArray } from '../../core/schemas.js';
 import type { CommandDefinition } from '../../core/types.js';
 import { executeCommand } from '../../core/handler.js';
 
@@ -12,7 +13,7 @@ export const accountsWarmupDisableCommand: CommandDefinition = {
   ],
 
   inputSchema: z.object({
-    account_ids: z.array(z.string()).describe('Account IDs to disable warmup for'),
+    account_ids: stringArray.describe('Account IDs to disable warmup for'),
   }),
 
   cliMappings: {

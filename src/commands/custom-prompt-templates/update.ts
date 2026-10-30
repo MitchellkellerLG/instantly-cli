@@ -6,7 +6,7 @@ export const customPromptTemplatesUpdateCommand: CommandDefinition = {
   name: 'custom_prompt_templates_update',
   group: 'custom-prompt-templates',
   subcommand: 'update',
-  description: 'Update a custom prompt template.',
+  description: '[Undocumented API] Update a custom prompt template.',
   examples: ['instantly custom-prompt-templates update <template-id> --name "Updated Name"'],
 
   inputSchema: z.object({

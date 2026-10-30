@@ -24,7 +24,7 @@ export const enrichmentAiCommand: CommandDefinition = {
     skip_leads_without_email: z.coerce.boolean().optional().describe('Skip leads without an email'),
     limit: z.coerce.number().optional().describe('Maximum number of leads to enrich'),
     prompt: z.string().optional().describe('Custom prompt to guide the AI enrichment'),
-    template_id: z.coerce.number().optional().describe('ID of a predefined AI prompt template'),
+    template_id: z.string().optional().describe('ID of a predefined AI prompt template'),
   }),
 
   cliMappings: {

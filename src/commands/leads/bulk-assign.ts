@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { stringArray } from '../../core/schemas.js';
 import type { CommandDefinition } from '../../core/types.js';
 import { executeCommand } from '../../core/handler.js';
 
@@ -14,7 +15,7 @@ export const leadsBulkAssignCommand: CommandDefinition = {
   ],
 
   inputSchema: z.object({
-    organization_user_ids: z.array(z.string()).describe('Array of user IDs to assign leads to'),
+    organization_user_ids: stringArray.describe('Array of user IDs to assign leads to'),
     campaign: z.string().optional().describe('Campaign ID to filter leads'),
     list_id: z.string().optional().describe('List ID to filter leads'),
     search: z.string().optional().describe('Search query to filter leads'),
