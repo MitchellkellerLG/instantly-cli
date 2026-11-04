@@ -19,7 +19,7 @@ export const subsequences_get_campaign_subsequence = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-79a7-7b38-b46d-9e0da847f2a5"
+        "example": "01a1a7f0-2d2a-7d68-9c75-ee3d437e2a5a"
       },
       "description": "The ID of the requested item"
     }

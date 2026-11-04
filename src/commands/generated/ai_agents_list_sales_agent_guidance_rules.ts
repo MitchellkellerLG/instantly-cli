@@ -19,7 +19,7 @@ export const ai_agents_list_sales_agent_guidance_rules = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ee9-774e-b1fd-55ab8d42667f"
+        "example": "01a1a7f0-1d21-7b3d-b5dc-0dd9866185fe"
       },
       "description": "AI Sales Agent ID"
     }

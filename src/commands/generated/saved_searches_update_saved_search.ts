@@ -19,7 +19,7 @@ export const saved_searches_update_saved_search = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-6582-72d0-81dd-79c45db816ca"
+        "example": "01a1a7f0-21e6-7094-b944-4f2087ded5ef"
       },
       "description": "Saved search ID"
     }
@@ -36,7 +36,6 @@ export const saved_searches_update_saved_search = createSpecCommand({
       },
       "search_filters": {
         "type": "object",
-        "description": "Search filters to find leads.",
         "properties": {
           "company_list_id": {
             "type": "string",
@@ -48,7 +47,6 @@ export const saved_searches_update_saved_search = createSpecCommand({
             "oneOf": [
               {
                 "type": "array",
-                "description": "Legacy format: Array of locations to include in the search. For new integrations, use the object format with include/exclude properties.",
                 "items": {
                   "oneOf": [
                     {
@@ -104,6 +102,7 @@ export const saved_searches_update_saved_search = createSpecCommand({
                           "example": "United States"
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "required": [
@@ -120,15 +119,14 @@ export const saved_searches_update_saved_search = createSpecCommand({
                             "country"
                           ]
                         }
-                      ],
-                      "additionalProperties": false
+                      ]
                     }
                   ]
-                }
+                },
+                "description": "Legacy format: Array of locations to include in the search. For new integrations, use the object format with include/exclude properties."
               },
               {
                 "type": "object",
-                "description": "Locations to include or exclude in the search",
                 "properties": {
                   "include": {
                     "type": "array",
@@ -187,6 +185,7 @@ export const saved_searches_update_saved_search = createSpecCommand({
                               "example": "United States"
                             }
                           },
+                          "additionalProperties": false,
                           "anyOf": [
                             {
                               "required": [
@@ -203,8 +202,7 @@ export const saved_searches_update_saved_search = createSpecCommand({
                                 "country"
                               ]
                             }
-                          ],
-                          "additionalProperties": false
+                          ]
                         }
                       ]
                     },
@@ -267,6 +265,7 @@ export const saved_searches_update_saved_search = createSpecCommand({
                               "example": "United States"
                             }
                           },
+                          "additionalProperties": false,
                           "anyOf": [
                             {
                               "required": [
@@ -283,14 +282,14 @@ export const saved_searches_update_saved_search = createSpecCommand({
                                 "country"
                               ]
                             }
-                          ],
-                          "additionalProperties": false
+                          ]
                         }
                       ]
                     },
                     "description": "Locations to exclude from the search"
                   }
-                }
+                },
+                "description": "Locations to include or exclude in the search"
               }
             ]
           },
@@ -374,7 +373,6 @@ export const saved_searches_update_saved_search = createSpecCommand({
           },
           "employeeCount": {
             "type": "array",
-            "description": "Employee count filters.",
             "items": {
               "oneOf": [
                 {
@@ -407,7 +405,6 @@ export const saved_searches_update_saved_search = createSpecCommand({
                 },
                 {
                   "type": "object",
-                  "description": "Employee count greater-than-or-equal range",
                   "properties": {
                     "op": {
                       "type": "string",
@@ -440,11 +437,11 @@ export const saved_searches_update_saved_search = createSpecCommand({
                     "op",
                     "min"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "description": "Employee count greater-than-or-equal range"
                 },
                 {
                   "type": "object",
-                  "description": "Employee count less-than-or-equal range",
                   "properties": {
                     "op": {
                       "type": "string",
@@ -477,11 +474,11 @@ export const saved_searches_update_saved_search = createSpecCommand({
                     "op",
                     "max"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "description": "Employee count less-than-or-equal range"
                 },
                 {
                   "type": "object",
-                  "description": "Custom employee count bounded range",
                   "properties": {
                     "op": {
                       "type": "string",
@@ -520,6 +517,8 @@ export const saved_searches_update_saved_search = createSpecCommand({
                   "required": [
                     "op"
                   ],
+                  "additionalProperties": false,
+                  "description": "Custom employee count bounded range",
                   "anyOf": [
                     {
                       "required": [
@@ -541,12 +540,10 @@ export const saved_searches_update_saved_search = createSpecCommand({
                         }
                       }
                     }
-                  ],
-                  "additionalProperties": false
+                  ]
                 },
                 {
                   "type": "object",
-                  "description": "Preset employee count bounded range",
                   "properties": {
                     "op": {
                       "type": "string",
@@ -585,6 +582,8 @@ export const saved_searches_update_saved_search = createSpecCommand({
                   "required": [
                     "op"
                   ],
+                  "additionalProperties": false,
+                  "description": "Preset employee count bounded range",
                   "anyOf": [
                     {
                       "required": [
@@ -606,11 +605,11 @@ export const saved_searches_update_saved_search = createSpecCommand({
                         }
                       }
                     }
-                  ],
-                  "additionalProperties": false
+                  ]
                 }
               ]
-            }
+            },
+            "description": "Employee count filters."
           },
           "revenue": {
             "type": "array",
@@ -718,11 +717,11 @@ export const saved_searches_update_saved_search = createSpecCommand({
           },
           "jobListingFilter": {
             "type": "array",
-            "deprecated": true,
             "items": {
               "type": "string",
               "example": "Software Engineer"
             },
+            "deprecated": true,
             "description": "Deprecated compatibility key for Job Listing filters. Use `jobListing` instead. If both keys are present, `jobListing` takes precedence."
           },
           "title": {
@@ -795,7 +794,6 @@ export const saved_searches_update_saved_search = createSpecCommand({
           },
           "businessType": {
             "type": "object",
-            "description": "Business type of the lead company. Any-of on each side: `include` returns only companies labelled with one of the types, `exclude` drops them and keeps companies with no label.",
             "properties": {
               "include": {
                 "type": "array",
@@ -845,11 +843,11 @@ export const saved_searches_update_saved_search = createSpecCommand({
                 },
                 "description": "Business types of the lead company to exclude from the search"
               }
-            }
+            },
+            "description": "Business type of the lead company. Any-of on each side: `include` returns only companies labelled with one of the types, `exclude` drops them and keeps companies with no label."
           },
           "customerType": {
             "type": "object",
-            "description": "Who the lead company sells to. Any-of on each side: `include` returns only companies labelled with one of the values, `exclude` drops them and keeps companies with no label. A company selling to both holds both values, so \"B2B only\" is include b2b with exclude b2c.",
             "properties": {
               "include": {
                 "type": "array",
@@ -883,7 +881,8 @@ export const saved_searches_update_saved_search = createSpecCommand({
                 },
                 "description": "Customer types of the lead company to exclude from the search"
               }
-            }
+            },
+            "description": "Who the lead company sells to. Any-of on each side: `include` returns only companies labelled with one of the values, `exclude` drops them and keeps companies with no label. A company selling to both holds both values, so \"B2B only\" is include b2b with exclude b2c."
           },
           "look_alike": {
             "type": "string",
@@ -1755,9 +1754,6 @@ export const saved_searches_update_saved_search = createSpecCommand({
                 },
                 {
                   "type": "object",
-                  "required": [
-                    "key"
-                  ],
                   "properties": {
                     "key": {
                       "type": "string",
@@ -1794,7 +1790,6 @@ export const saved_searches_update_saved_search = createSpecCommand({
                         },
                         {
                           "type": "object",
-                          "description": "Per-field map of keyword tokens. Each property name is a keyword index field; each value is the list of tokens to OR-match within that field. Records must have at least one matching token in EACH selected field - fields act as additional filters. Example: `{ \"objection_type\": [\"security\"], \"buying_stage\": [\"consideration\"] }`.",
                           "additionalProperties": {
                             "type": "array",
                             "items": {
@@ -1805,11 +1800,15 @@ export const saved_searches_update_saved_search = createSpecCommand({
                               ],
                               "example": "security"
                             }
-                          }
+                          },
+                          "description": "Per-field map of keyword tokens. Each property name is a keyword index field; each value is the list of tokens to OR-match within that field. Records must have at least one matching token in EACH selected field - fields act as additional filters. Example: `{ \"objection_type\": [\"security\"], \"buying_stage\": [\"consideration\"] }`."
                         }
                       ]
                     }
                   },
+                  "required": [
+                    "key"
+                  ],
                   "additionalProperties": false
                 }
               ]
@@ -1835,7 +1834,8 @@ export const saved_searches_update_saved_search = createSpecCommand({
             "description": "Whether to filter/display by contact location or company HQ location. Defaults to contact.",
             "example": "contact"
           }
-        }
+        },
+        "description": "Search filters to find leads."
       }
     },
     "additionalProperties": false,

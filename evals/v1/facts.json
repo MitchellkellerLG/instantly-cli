@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "definitions": 287,
+  "legacyTools": 289,
+  "registryHash": "8c519b04b3838b6e6d741bc41b34d9f47435df69910097e5047d19f8c0c76339",
+  "registrySourceHash": "784b3f38d54b42be6720350e086701d2f8a4a16d719102d7dbe751d577a7a56a",
+  "dispatcherSourceHash": "37804d1a0e848a9104722bc9bfb42d11da05e0efe14e36082e189e584dd6bac1",
+  "pinnedSpecSha256": "6c4bb9e065b63d0c85e1a96cbe31ff29c7cf35c640bb51ca125bc9d98cdc1c97",
+  "packageSha256": "675daf277ba0d5e861d5d4d228abd94f09420775f3df149a13011ce6883f0aec",
+  "lockSha256": "03b3c5993fb3d94016ab7bee590b1ca293eff3e983c41ac4f62f2218de763c3a",
+  "corpusSha256": "6c16509336103deeceb2f0d4fcfa7deac267c1bbdfad16aa608bbeced34e28fb",
+  "fixturesSha256": "929c625216b4fd7e67308218b5b59949b7b23c723714d5cca875228abc6846d5",
+  "outcomesSha256": "26a664a701daac01202469c28aca56a3ec5081a16823c88d7094f386357a35a8",
+  "publicDeltaFixturesSha256": "131ff135f1f053e4ea37b7f01b612d575aa14403006d117e4578c342f016f0d5",
+  "coverage": {
+    "total": 268,
+    "covered": 268,
+    "missing": [],
+    "undocumented": [
+      "DELETE /custom-prompt-templates/{}",
+      "DELETE /email-templates/{}",
+      "DELETE /sales-flow/{}",
+      "GET /custom-prompt-templates",
+      "GET /custom-prompt-templates/{}",
+      "GET /email-templates",
+      "GET /email-templates/{}",
+      "GET /sales-flow",
+      "GET /sales-flow/{}",
+      "PATCH /custom-prompt-templates/{}",
+      "PATCH /email-templates/{}",
+      "PATCH /sales-flow/{}",
+      "POST /custom-prompt-templates",
+      "POST /email-templates",
+      "POST /sales-flow"
+    ]
+  }
+}

@@ -19,7 +19,7 @@ export const ai_agents_get_sales_agent_opportunity_summary = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "date-time",
-        "example": "2026-10-29T19:23:51.402Z"
+        "example": "2026-11-04T19:01:33.601Z"
       },
       "description": "Start date filter (ISO 8601). When omitted, results are not bounded by a start date (all-time data up to `end_date`)."
     },
@@ -31,7 +31,7 @@ export const ai_agents_get_sales_agent_opportunity_summary = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "date-time",
-        "example": "2026-10-29T19:23:51.402Z"
+        "example": "2026-11-04T19:01:33.601Z"
       },
       "description": "End date filter (ISO 8601). When omitted, results run up to the present."
     },
@@ -43,7 +43,7 @@ export const ai_agents_get_sales_agent_opportunity_summary = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ee9-774e-b1fd-55ab8d42667f"
+        "example": "01a1a7f0-1d21-7b3d-b5dc-0dd9866185fe"
       },
       "description": "AI Sales Agent ID"
     }

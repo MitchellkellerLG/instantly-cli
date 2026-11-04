@@ -18,7 +18,7 @@ export const ai_agents_list_inbox_manager_activity = createSpecCommand({
       "required": false,
       "schema": {
         "type": "string",
-        "example": "01a1891e-7ca6-71b8-ace7-055bd0a9f535"
+        "example": "01a1a7f0-2f0d-7577-bb38-cc79e5ab4e00"
       },
       "description": "Pagination cursor (ID of the last item from the previous page)"
     },

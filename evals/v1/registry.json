@@ -1,0 +1,4056 @@
+[
+  {
+    "id": "accounts_pause_accounts",
+    "group": "accounts",
+    "subcommand": "pause-accounts",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts/pause"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "accounts_move_accounts",
+    "group": "accounts",
+    "subcommand": "move-accounts",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts/move"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "agent_items_list_agent_items",
+    "group": "agent-items",
+    "subcommand": "list-agent-items",
+    "endpoint": {
+      "method": "GET",
+      "path": "/agent-items"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "type": "query",
+      "status": "query",
+      "ai_agent_type": "query",
+      "search": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "agent_items_bulk_delete_agent_items",
+    "group": "agent-items",
+    "subcommand": "bulk-delete-agent-items",
+    "endpoint": {
+      "method": "POST",
+      "path": "/agent-items/bulk-delete"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "blocklist_deleteall_block_list_entry",
+    "group": "blocklist",
+    "subcommand": "deleteall-block-list-entry",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/block-lists-entries"
+    },
+    "fieldMappings": {
+      "domains_only": "query",
+      "search": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "blocklist_createbluk_block_list_entry",
+    "group": "blocklist",
+    "subcommand": "createbluk-block-list-entry",
+    "endpoint": {
+      "method": "POST",
+      "path": "/block-lists-entries/bulk-create"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "blocklist_deletebulk_block_list_entry",
+    "group": "blocklist",
+    "subcommand": "deletebulk-block-list-entry",
+    "endpoint": {
+      "method": "POST",
+      "path": "/block-lists-entries/bulk-delete"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "blocklist_download_block_list_entry",
+    "group": "blocklist",
+    "subcommand": "download-block-list-entry",
+    "endpoint": {
+      "method": "GET",
+      "path": "/block-lists-entries/download"
+    },
+    "fieldMappings": {
+      "domains_only": "query",
+      "search": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "campaigns_share_campaign",
+    "group": "campaigns",
+    "subcommand": "share-campaign",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns/{id}/share"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "campaigns_create_from_export",
+    "group": "campaigns",
+    "subcommand": "create-from-export",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns/{id}/from-export"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "campaigns_export_campaign",
+    "group": "campaigns",
+    "subcommand": "export-campaign",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns/{id}/export"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "campaigns_add_variables",
+    "group": "campaigns",
+    "subcommand": "add-variables",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns/{id}/variables"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "custom_tags_search_custom_tags_by_resources",
+    "group": "custom-tags",
+    "subcommand": "search-custom-tags-by-resources",
+    "endpoint": {
+      "method": "POST",
+      "path": "/custom-tags/search"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "domains_get_domain_forwarding",
+    "group": "domains",
+    "subcommand": "get-domain-forwarding",
+    "endpoint": {
+      "method": "GET",
+      "path": "/domains/{domain}/forwarding"
+    },
+    "fieldMappings": {
+      "domain": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "domains_update_domain_forwarding",
+    "group": "domains",
+    "subcommand": "update-domain-forwarding",
+    "endpoint": {
+      "method": "PUT",
+      "path": "/domains/{domain}/forwarding"
+    },
+    "fieldMappings": {
+      "domain": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "domains_delete_domain_forwarding",
+    "group": "domains",
+    "subcommand": "delete-domain-forwarding",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/domains/{domain}/forwarding"
+    },
+    "fieldMappings": {
+      "domain": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "email_send_test_email",
+    "group": "email",
+    "subcommand": "send-test-email",
+    "endpoint": {
+      "method": "POST",
+      "path": "/emails/test"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "leads_update_lead_interest_status",
+    "group": "leads",
+    "subcommand": "update-lead-interest-status",
+    "endpoint": {
+      "method": "POST",
+      "path": "/leads/update-interest-status"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "oauth_init_google_oauth",
+    "group": "oauth",
+    "subcommand": "init-google-oauth",
+    "endpoint": {
+      "method": "POST",
+      "path": "/oauth/google/init"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "oauth_init_microsoft_oauth",
+    "group": "oauth",
+    "subcommand": "init-microsoft-oauth",
+    "endpoint": {
+      "method": "POST",
+      "path": "/oauth/microsoft/init"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "oauth_get_oauth_session_status",
+    "group": "oauth",
+    "subcommand": "get-oauth-session-status",
+    "endpoint": {
+      "method": "GET",
+      "path": "/oauth/session/status/{sessionId}"
+    },
+    "fieldMappings": {
+      "sessionId": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "enrichment_signal_keywords_facet",
+    "group": "enrichment",
+    "subcommand": "signal-keywords-facet",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment/signal-keywords-facet"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "subsequences_get_subsequence_analytics",
+    "group": "subsequences",
+    "subcommand": "get-subsequence-analytics",
+    "endpoint": {
+      "method": "GET",
+      "path": "/subsequences/analytics"
+    },
+    "fieldMappings": {
+      "campaign_id": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "subsequences_get_campaign_subsequence",
+    "group": "subsequences",
+    "subcommand": "get-campaign-subsequence",
+    "endpoint": {
+      "method": "GET",
+      "path": "/subsequences/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "subsequences_get_subsequence_steps_analytics",
+    "group": "subsequences",
+    "subcommand": "get-subsequence-steps-analytics",
+    "endpoint": {
+      "method": "GET",
+      "path": "/subsequences/{id}/analytics/steps"
+    },
+    "fieldMappings": {
+      "start_date": "query",
+      "end_date": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "workspace_schedule_current_workspace_removal",
+    "group": "workspace",
+    "subcommand": "schedule-current-workspace-removal",
+    "endpoint": {
+      "method": "POST",
+      "path": "/workspaces/current/schedule-for-removal"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "workspace_cancel_current_workspace_removal",
+    "group": "workspace",
+    "subcommand": "cancel-current-workspace-removal",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/workspaces/current/schedule-for-removal"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_create_sales_agent",
+    "group": "ai-agents",
+    "subcommand": "create-sales-agent",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/sales"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_sales_agents",
+    "group": "ai-agents",
+    "subcommand": "list-sales-agents",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/sales"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "status": "query",
+      "search": "query",
+      "agent_type": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_sales_agent",
+    "group": "ai-agents",
+    "subcommand": "get-sales-agent",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/sales/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_patch_sales_agent",
+    "group": "ai-agents",
+    "subcommand": "patch-sales-agent",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/ai-agents/sales/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_delete_sales_agent",
+    "group": "ai-agents",
+    "subcommand": "delete-sales-agent",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/ai-agents/sales/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_sales_agent_analytics",
+    "group": "ai-agents",
+    "subcommand": "get-sales-agent-analytics",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/sales/{id}/analytics"
+    },
+    "fieldMappings": {
+      "start_date": "query",
+      "end_date": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_sales_agent_opportunity_summary",
+    "group": "ai-agents",
+    "subcommand": "get-sales-agent-opportunity-summary",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/sales/{id}/opportunities/summary"
+    },
+    "fieldMappings": {
+      "start_date": "query",
+      "end_date": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_sales_agent_lead_research",
+    "group": "ai-agents",
+    "subcommand": "get-sales-agent-lead-research",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/sales/{id}/leads/{lead_id}/research"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "lead_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_sales_agent_lead_activity_summary",
+    "group": "ai-agents",
+    "subcommand": "get-sales-agent-lead-activity-summary",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/sales/{id}/leads/activity/summary"
+    },
+    "fieldMappings": {
+      "start_date": "query",
+      "end_date": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_sales_agent_lead_activity",
+    "group": "ai-agents",
+    "subcommand": "list-sales-agent-lead-activity",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/sales/{id}/leads/activity"
+    },
+    "fieldMappings": {
+      "start_date": "query",
+      "end_date": "query",
+      "filter": "query",
+      "limit": "query",
+      "starting_after": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_sales_agent_activities",
+    "group": "ai-agents",
+    "subcommand": "list-sales-agent-activities",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/sales/{id}/activities"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "action_status": "query",
+      "action_type": "query",
+      "exclude_live_feed_hidden": "query",
+      "lead_email": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_approve_sales_agent_activity",
+    "group": "ai-agents",
+    "subcommand": "approve-sales-agent-activity",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/sales/{id}/activities/{activity_id}/approve"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "activity_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_reject_sales_agent_activity",
+    "group": "ai-agents",
+    "subcommand": "reject-sales-agent-activity",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/sales/{id}/activities/{activity_id}/reject"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "activity_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_approve_sales_agent_activities",
+    "group": "ai-agents",
+    "subcommand": "approve-sales-agent-activities",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/sales/{id}/activities/approve"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_reject_sales_agent_activities",
+    "group": "ai-agents",
+    "subcommand": "reject-sales-agent-activities",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/sales/{id}/activities/reject"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_sales_agent_guidance_rules",
+    "group": "ai-agents",
+    "subcommand": "list-sales-agent-guidance-rules",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/sales/{id}/guidance-rules"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_create_sales_agent_guidance_rule",
+    "group": "ai-agents",
+    "subcommand": "create-sales-agent-guidance-rule",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/sales/{id}/guidance-rules"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_patch_sales_agent_guidance_rule",
+    "group": "ai-agents",
+    "subcommand": "patch-sales-agent-guidance-rule",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/ai-agents/sales/{id}/guidance-rules/{rule_id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "rule_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_delete_sales_agent_guidance_rule",
+    "group": "ai-agents",
+    "subcommand": "delete-sales-agent-guidance-rule",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/ai-agents/sales/{id}/guidance-rules/{rule_id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "rule_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_create_inbox_manager_agent",
+    "group": "ai-agents",
+    "subcommand": "create-inbox-manager-agent",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/inbox-manager"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_inbox_manager_agents",
+    "group": "ai-agents",
+    "subcommand": "list-inbox-manager-agents",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/inbox-manager"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "status": "query",
+      "search": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_inbox_manager_agent",
+    "group": "ai-agents",
+    "subcommand": "get-inbox-manager-agent",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/inbox-manager/{id}"
+    },
+    "fieldMappings": {
+      "with_metadata": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_patch_inbox_manager_agent",
+    "group": "ai-agents",
+    "subcommand": "patch-inbox-manager-agent",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/ai-agents/inbox-manager/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_delete_inbox_manager_agent",
+    "group": "ai-agents",
+    "subcommand": "delete-inbox-manager-agent",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/ai-agents/inbox-manager/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_inbox_manager_guidances",
+    "group": "ai-agents",
+    "subcommand": "list-inbox-manager-guidances",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/inbox-manager/{id}/guidances"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "status": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_create_inbox_manager_guidance",
+    "group": "ai-agents",
+    "subcommand": "create-inbox-manager-guidance",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/inbox-manager/{id}/guidances"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_inbox_manager_guidance",
+    "group": "ai-agents",
+    "subcommand": "get-inbox-manager-guidance",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/inbox-manager/{id}/guidances/{guidance_id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "guidance_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_patch_inbox_manager_guidance",
+    "group": "ai-agents",
+    "subcommand": "patch-inbox-manager-guidance",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/ai-agents/inbox-manager/{id}/guidances/{guidance_id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "guidance_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_delete_inbox_manager_guidance",
+    "group": "ai-agents",
+    "subcommand": "delete-inbox-manager-guidance",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/ai-agents/inbox-manager/{id}/guidances/{guidance_id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "guidance_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_inbox_manager_replies",
+    "group": "ai-agents",
+    "subcommand": "list-inbox-manager-replies",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/inbox-manager/{id}/replies"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "requires_hitl": "query",
+      "information_requested": "query",
+      "action_pending": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_inbox_manager_reply",
+    "group": "ai-agents",
+    "subcommand": "get-inbox-manager-reply",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/inbox-manager/{id}/replies/{reply_id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "reply_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_patch_inbox_manager_reply",
+    "group": "ai-agents",
+    "subcommand": "patch-inbox-manager-reply",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/ai-agents/inbox-manager/{id}/replies/{reply_id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "reply_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_inbox_manager_analytics_summary",
+    "group": "ai-agents",
+    "subcommand": "get-inbox-manager-analytics-summary",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/inbox-manager/{id}/analytics/summary"
+    },
+    "fieldMappings": {
+      "from": "query",
+      "to": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_inbox_manager_analytics_summary_by_date",
+    "group": "ai-agents",
+    "subcommand": "get-inbox-manager-analytics-summary-by-date",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/inbox-manager/{id}/analytics/summary-by-date"
+    },
+    "fieldMappings": {
+      "from": "query",
+      "to": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_inbox_manager_activity",
+    "group": "ai-agents",
+    "subcommand": "list-inbox-manager-activity",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/inbox-manager/{id}/analytics/activity"
+    },
+    "fieldMappings": {
+      "starting_after": "query",
+      "limit": "query",
+      "action_pending": "query",
+      "activity_type": "query",
+      "job_type": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_lead_finder_agents",
+    "group": "ai-agents",
+    "subcommand": "list-lead-finder-agents",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/lead-finder"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "campaign_id": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_create_lead_finder_agent",
+    "group": "ai-agents",
+    "subcommand": "create-lead-finder-agent",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/lead-finder"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_lead_finder_agent_by_id",
+    "group": "ai-agents",
+    "subcommand": "get-lead-finder-agent-by-id",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/lead-finder/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_update_lead_finder_agent",
+    "group": "ai-agents",
+    "subcommand": "update-lead-finder-agent",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/ai-agents/lead-finder/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_delete_lead_finder_agent_v2",
+    "group": "ai-agents",
+    "subcommand": "delete-lead-finder-agent-v2",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/ai-agents/lead-finder/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_pause_lead_finder_agent_by_id",
+    "group": "ai-agents",
+    "subcommand": "pause-lead-finder-agent-by-id",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/lead-finder/{id}/pause"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_resume_lead_finder_agent_by_id",
+    "group": "ai-agents",
+    "subcommand": "resume-lead-finder-agent-by-id",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/lead-finder/{id}/resume"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_lead_finder_agent_stats",
+    "group": "ai-agents",
+    "subcommand": "get-lead-finder-agent-stats",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/lead-finder/{id}/stats"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_lead_finder_agent_activities_by_id",
+    "group": "ai-agents",
+    "subcommand": "list-lead-finder-agent-activities-by-id",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/lead-finder/{id}/activities"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_suggest_lead_finder_audience_v2",
+    "group": "ai-agents",
+    "subcommand": "suggest-lead-finder-audience-v2",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/lead-finder/suggest-audience"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_lead_finder_agent_enrichment_workflows_v2",
+    "group": "ai-agents",
+    "subcommand": "list-lead-finder-agent-enrichment-workflows-v2",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/lead-finder/enrichment-workflows"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_create_lead_finder_agent_enrichment_workflow_v2",
+    "group": "ai-agents",
+    "subcommand": "create-lead-finder-agent-enrichment-workflow-v2",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/lead-finder/enrichment-workflows"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_delete_lead_finder_agent_enrichment_workflow_v2",
+    "group": "ai-agents",
+    "subcommand": "delete-lead-finder-agent-enrichment-workflow-v2",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/ai-agents/lead-finder/enrichment-workflows/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_deliverability_agent",
+    "group": "ai-agents",
+    "subcommand": "get-deliverability-agent",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/deliverability"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_update_deliverability_agent_settings",
+    "group": "ai-agents",
+    "subcommand": "update-deliverability-agent-settings",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/ai-agents/deliverability/settings"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_deliverability_agent_state",
+    "group": "ai-agents",
+    "subcommand": "get-deliverability-agent-state",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/deliverability/state"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "feed_filter": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_pause_deliverability_affected_accounts",
+    "group": "ai-agents",
+    "subcommand": "pause-deliverability-affected-accounts",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/deliverability/feed-items/{id}/pause-affected-accounts"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_pause_deliverability_campaign_sending",
+    "group": "ai-agents",
+    "subcommand": "pause-deliverability-campaign-sending",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/deliverability/feed-items/{id}/pause-campaign-sending"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_complete_deliverability_feed_item",
+    "group": "ai-agents",
+    "subcommand": "complete-deliverability-feed-item",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/deliverability/feed-items/{id}/complete"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_run_deliverability_agent_now",
+    "group": "ai-agents",
+    "subcommand": "run-deliverability-agent-now",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/deliverability/run-now"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_deploy_deliverability_agent",
+    "group": "ai-agents",
+    "subcommand": "deploy-deliverability-agent",
+    "endpoint": {
+      "method": "POST",
+      "path": "/ai-agents/deliverability/deploy"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_deliverability_agent_by_id",
+    "group": "ai-agents",
+    "subcommand": "get-deliverability-agent-by-id",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/deliverability/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_patch_deliverability_agent",
+    "group": "ai-agents",
+    "subcommand": "patch-deliverability-agent",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/ai-agents/deliverability/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_delete_deliverability_agent",
+    "group": "ai-agents",
+    "subcommand": "delete-deliverability-agent",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/ai-agents/deliverability/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_get_deliverability_agent_state_by_id",
+    "group": "ai-agents",
+    "subcommand": "get-deliverability-agent-state-by-id",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/deliverability/{id}/state"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "feed_filter": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "ai_agents_list_deliverability_agent_feed_items",
+    "group": "ai-agents",
+    "subcommand": "list-deliverability-agent-feed-items",
+    "endpoint": {
+      "method": "GET",
+      "path": "/ai-agents/deliverability/{id}/feed-items"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "feed_filter": "query",
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "creator_search_search_creators",
+    "group": "creator-search",
+    "subcommand": "search-creators",
+    "endpoint": {
+      "method": "POST",
+      "path": "/creator-search/search"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "creator_search_get_creator_search_dictionaries",
+    "group": "creator-search",
+    "subcommand": "get-creator-search-dictionaries",
+    "endpoint": {
+      "method": "GET",
+      "path": "/creator-search/dictionaries"
+    },
+    "fieldMappings": {
+      "platform": "query",
+      "query": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "creator_search_get_creator_search_locations",
+    "group": "creator-search",
+    "subcommand": "get-creator-search-locations",
+    "endpoint": {
+      "method": "GET",
+      "path": "/creator-search/locations"
+    },
+    "fieldMappings": {
+      "platform": "query",
+      "query": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "creator_search_get_creator_search_capabilities",
+    "group": "creator-search",
+    "subcommand": "get-creator-search-capabilities",
+    "endpoint": {
+      "method": "GET",
+      "path": "/creator-search/capabilities"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "creator_search_get_creator_search_allowance",
+    "group": "creator-search",
+    "subcommand": "get-creator-search-allowance",
+    "endpoint": {
+      "method": "GET",
+      "path": "/creator-search/search-allowance"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "creator_search_create_creator_outreach_batch",
+    "group": "creator-search",
+    "subcommand": "create-creator-outreach-batch",
+    "endpoint": {
+      "method": "POST",
+      "path": "/creator-search/outreach-batches"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "creator_search_get_creator_outreach_batch",
+    "group": "creator-search",
+    "subcommand": "get-creator-outreach-batch",
+    "endpoint": {
+      "method": "GET",
+      "path": "/creator-search/outreach-batches/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "local_business_search_search_local_businesses",
+    "group": "local-business-search",
+    "subcommand": "search-local-businesses",
+    "endpoint": {
+      "method": "POST",
+      "path": "/local-business-search/search"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "local_business_search_generate_local_business_filters",
+    "group": "local-business-search",
+    "subcommand": "generate-local-business-filters",
+    "endpoint": {
+      "method": "POST",
+      "path": "/local-business-search/ai-filters"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "local_business_search_suggest_local_business_places",
+    "group": "local-business-search",
+    "subcommand": "suggest-local-business-places",
+    "endpoint": {
+      "method": "GET",
+      "path": "/local-business-search/places"
+    },
+    "fieldMappings": {
+      "q": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "local_business_search_convert_local_businesses",
+    "group": "local-business-search",
+    "subcommand": "convert-local-businesses",
+    "endpoint": {
+      "method": "POST",
+      "path": "/local-business-search/convert"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "local_business_search_get_local_business_convert_job",
+    "group": "local-business-search",
+    "subcommand": "get-local-business-convert-job",
+    "endpoint": {
+      "method": "GET",
+      "path": "/local-business-search/convert/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "company_lists_list_company_list_recipes",
+    "group": "company-lists",
+    "subcommand": "list-company-list-recipes",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/company-lists/recipes"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "company_lists_list_company_list_sources",
+    "group": "company-lists",
+    "subcommand": "list-company-list-sources",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/company-lists/sources"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "company_lists_get_company_list_filter_options",
+    "group": "company-lists",
+    "subcommand": "get-company-list-filter-options",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/company-lists/filter-options"
+    },
+    "fieldMappings": {
+      "catalog_id": "query",
+      "q": "query",
+      "limit": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "company_lists_create_company_list",
+    "group": "company-lists",
+    "subcommand": "create-company-list",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment/company-lists"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "company_lists_list_company_lists",
+    "group": "company-lists",
+    "subcommand": "list-company-lists",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/company-lists"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "cursor": "query",
+      "search": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "company_lists_get_company_list",
+    "group": "company-lists",
+    "subcommand": "get-company-list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/company-lists/{company_list_id}"
+    },
+    "fieldMappings": {
+      "company_list_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "company_lists_rename_company_list",
+    "group": "company-lists",
+    "subcommand": "rename-company-list",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/supersearch-enrichment/company-lists/{company_list_id}"
+    },
+    "fieldMappings": {
+      "company_list_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "company_lists_delete_company_list",
+    "group": "company-lists",
+    "subcommand": "delete-company-list",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/supersearch-enrichment/company-lists/{company_list_id}"
+    },
+    "fieldMappings": {
+      "company_list_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "company_lists_list_company_list_members",
+    "group": "company-lists",
+    "subcommand": "list-company-list-members",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/company-lists/{company_list_id}/companies"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "cursor": "query",
+      "company_list_id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "enrichment_get_integration_providers",
+    "group": "enrichment",
+    "subcommand": "get-integration-providers",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/integrations/providers"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "enrichment_run_integration_action",
+    "group": "enrichment",
+    "subcommand": "run-integration-action",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment/integrations/run"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "saved_searches_list_saved_searches",
+    "group": "saved-searches",
+    "subcommand": "list-saved-searches",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/saved-searches"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query"
+    },
+    "generated": true
+  },
+  {
+    "id": "saved_searches_create_saved_search",
+    "group": "saved-searches",
+    "subcommand": "create-saved-search",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment/saved-searches"
+    },
+    "fieldMappings": {},
+    "generated": true
+  },
+  {
+    "id": "saved_searches_get_saved_search",
+    "group": "saved-searches",
+    "subcommand": "get-saved-search",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/saved-searches/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "saved_searches_update_saved_search",
+    "group": "saved-searches",
+    "subcommand": "update-saved-search",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/supersearch-enrichment/saved-searches/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "saved_searches_delete_saved_search",
+    "group": "saved-searches",
+    "subcommand": "delete-saved-search",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/supersearch-enrichment/saved-searches/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": true
+  },
+  {
+    "id": "campaigns_list",
+    "group": "campaigns",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/campaigns"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "status": "query",
+      "search": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_get",
+    "group": "campaigns",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/campaigns/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_create",
+    "group": "campaigns",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns"
+    },
+    "fieldMappings": {
+      "name": "body",
+      "open_tracking": "body",
+      "link_tracking": "body",
+      "text_only": "body",
+      "stop_on_reply": "body",
+      "stop_on_auto_reply": "body",
+      "daily_limit": "body",
+      "email_gap": "body",
+      "email_list": "body",
+      "sequences": "body",
+      "campaign_schedule": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_update",
+    "group": "campaigns",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/campaigns/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "name": "body",
+      "open_tracking": "body",
+      "link_tracking": "body",
+      "text_only": "body",
+      "stop_on_reply": "body",
+      "stop_on_auto_reply": "body",
+      "daily_limit": "body",
+      "email_gap": "body",
+      "email_list": "body",
+      "sequences": "body",
+      "campaign_schedule": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_delete",
+    "group": "campaigns",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/campaigns/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_activate",
+    "group": "campaigns",
+    "subcommand": "activate",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns/{id}/activate"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_pause",
+    "group": "campaigns",
+    "subcommand": "pause",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns/{id}/pause"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_duplicate",
+    "group": "campaigns",
+    "subcommand": "duplicate",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns/{id}/duplicate"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "name": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_search-by-contact",
+    "group": "campaigns",
+    "subcommand": "search-by-contact",
+    "endpoint": {
+      "method": "GET",
+      "path": "/campaigns/search-by-contact"
+    },
+    "fieldMappings": {
+      "search": "query",
+      "sort_column": "query",
+      "sort_order": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_count-launched",
+    "group": "campaigns",
+    "subcommand": "count-launched",
+    "endpoint": {
+      "method": "GET",
+      "path": "/campaigns/count-launched"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "campaigns_sending-status",
+    "group": "campaigns",
+    "subcommand": "sending-status",
+    "endpoint": {
+      "method": "GET",
+      "path": "/campaigns/{id}/sending-status"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "with_ai_summary": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "campaigns_bulk-activate",
+    "group": "campaigns",
+    "subcommand": "bulk-activate",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns/{id}/activate"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "campaigns_bulk-pause",
+    "group": "campaigns",
+    "subcommand": "bulk-pause",
+    "endpoint": {
+      "method": "POST",
+      "path": "/campaigns/{id}/pause"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "leads_list",
+    "group": "leads",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "POST",
+      "path": "/leads/list"
+    },
+    "fieldMappings": {
+      "campaign_id": "body",
+      "list_id": "body",
+      "limit": "body",
+      "starting_after": "body",
+      "search": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_get",
+    "group": "leads",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/leads/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_create",
+    "group": "leads",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/leads"
+    },
+    "fieldMappings": {
+      "email": "body",
+      "campaign_id": "body",
+      "list_id": "body",
+      "first_name": "body",
+      "last_name": "body",
+      "company_name": "body",
+      "website": "body",
+      "phone": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_delete",
+    "group": "leads",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/leads/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_bulk_add",
+    "group": "leads",
+    "subcommand": "bulk-add",
+    "endpoint": {
+      "method": "POST",
+      "path": "/leads/add"
+    },
+    "fieldMappings": {
+      "campaign_id": "body",
+      "list_id": "body",
+      "leads": "body",
+      "skip_if_in_workspace": "body",
+      "skip_if_in_campaign": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_bulk_delete",
+    "group": "leads",
+    "subcommand": "bulk-delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/leads"
+    },
+    "fieldMappings": {
+      "campaign_id": "body",
+      "list_id": "body",
+      "ids": "body",
+      "status": "body",
+      "limit": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_move",
+    "group": "leads",
+    "subcommand": "move",
+    "endpoint": {
+      "method": "POST",
+      "path": "/leads/move"
+    },
+    "fieldMappings": {
+      "lead_ids": "body",
+      "from_campaign_id": "body",
+      "to_campaign_id": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_update",
+    "group": "leads",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/leads/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "first_name": "body",
+      "last_name": "body",
+      "company_name": "body",
+      "website": "body",
+      "phone": "body",
+      "personalization": "body",
+      "lt_interest_status": "body",
+      "pl_value_lead": "body",
+      "assigned_to": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_merge",
+    "group": "leads",
+    "subcommand": "merge",
+    "endpoint": {
+      "method": "POST",
+      "path": "/leads/merge"
+    },
+    "fieldMappings": {
+      "lead_id": "body",
+      "destination_lead_id": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_update_interest_status",
+    "group": "leads",
+    "subcommand": "update-interest-status",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/leads/{lead_id}"
+    },
+    "fieldMappings": {
+      "lead_id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_remove_from_subsequence",
+    "group": "leads",
+    "subcommand": "remove-from-subsequence",
+    "endpoint": {
+      "method": "POST",
+      "path": "/leads/subsequence/remove"
+    },
+    "fieldMappings": {
+      "id": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_bulk_assign",
+    "group": "leads",
+    "subcommand": "bulk-assign",
+    "endpoint": {
+      "method": "POST",
+      "path": "/leads/bulk-assign"
+    },
+    "fieldMappings": {
+      "organization_user_ids": "body",
+      "campaign": "body",
+      "list_id": "body",
+      "search": "body",
+      "ids": "body",
+      "in_campaign": "body",
+      "in_list": "body",
+      "smart_view_id": "body",
+      "limit": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "leads_subsequence_move",
+    "group": "leads",
+    "subcommand": "subsequence-move",
+    "endpoint": {
+      "method": "POST",
+      "path": "/leads/subsequence/move"
+    },
+    "fieldMappings": {
+      "lead_ids": "body",
+      "subsequence_id": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_list",
+    "group": "accounts",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/accounts"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query",
+      "status": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_get",
+    "group": "accounts",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/accounts/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_create",
+    "group": "accounts",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts"
+    },
+    "fieldMappings": {
+      "email": "body",
+      "first_name": "body",
+      "last_name": "body",
+      "smtp_host": "body",
+      "smtp_port": "body",
+      "smtp_username": "body",
+      "smtp_password": "body",
+      "imap_host": "body",
+      "imap_port": "body",
+      "imap_username": "body",
+      "imap_password": "body",
+      "daily_limit": "body",
+      "reply_to": "body",
+      "tracking_domain_name": "body",
+      "skip_cname_check": "body",
+      "warmup": "body",
+      "warmup_custom_ftag": "body",
+      "enable_slow_ramp": "body",
+      "inbox_placement_test_limit": "body",
+      "sending_gap": "body",
+      "provider_code": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_delete",
+    "group": "accounts",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/accounts/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_warmup_enable",
+    "group": "accounts",
+    "subcommand": "warmup-enable",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts/warmup/enable"
+    },
+    "fieldMappings": {
+      "account_ids": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_warmup_disable",
+    "group": "accounts",
+    "subcommand": "warmup-disable",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts/warmup/disable"
+    },
+    "fieldMappings": {
+      "account_ids": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_test_vitals",
+    "group": "accounts",
+    "subcommand": "test-vitals",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts/test/vitals"
+    },
+    "fieldMappings": {
+      "email": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_update",
+    "group": "accounts",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/accounts/{email}"
+    },
+    "fieldMappings": {
+      "email": "path",
+      "first_name": "body",
+      "last_name": "body",
+      "daily_limit": "body",
+      "tracking_domain_name": "body",
+      "tracking_domain_status": "body",
+      "enable_slow_ramp": "body",
+      "inbox_placement_test_limit": "body",
+      "sending_gap": "body",
+      "signature": "body",
+      "skip_cname_check": "body",
+      "remove_tracking_domain": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_pause",
+    "group": "accounts",
+    "subcommand": "pause",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts/{email}/pause"
+    },
+    "fieldMappings": {
+      "email": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_resume",
+    "group": "accounts",
+    "subcommand": "resume",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts/{email}/resume"
+    },
+    "fieldMappings": {
+      "email": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_mark-fixed",
+    "group": "accounts",
+    "subcommand": "mark-fixed",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts/{email}/mark-fixed"
+    },
+    "fieldMappings": {
+      "email": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "accounts_ctd-status",
+    "group": "accounts",
+    "subcommand": "ctd-status",
+    "endpoint": {
+      "method": "GET",
+      "path": "/accounts/ctd/status"
+    },
+    "fieldMappings": {
+      "host": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_list",
+    "group": "email",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/emails"
+    },
+    "fieldMappings": {
+      "campaign_id": "query",
+      "email_type": "query",
+      "is_read": "query",
+      "eaccount": "query",
+      "limit": "query",
+      "starting_after": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_get",
+    "group": "email",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/emails/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_reply",
+    "group": "email",
+    "subcommand": "reply",
+    "endpoint": {
+      "method": "POST",
+      "path": "/emails/reply"
+    },
+    "fieldMappings": {
+      "reply_to_uuid": "body",
+      "eaccount": "body",
+      "subject": "body",
+      "to": "body",
+      "body_text": "body",
+      "body_html": "body",
+      "cc_address_email_list": "body",
+      "bcc_address_email_list": "body",
+      "reminder_ts": "body",
+      "assigned_to": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_forward",
+    "group": "email",
+    "subcommand": "forward",
+    "endpoint": {
+      "method": "POST",
+      "path": "/emails/forward"
+    },
+    "fieldMappings": {
+      "forward_uuid": "body",
+      "eaccount": "body",
+      "to": "body",
+      "subject": "body",
+      "body_text": "body",
+      "body_html": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_delete",
+    "group": "email",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/emails/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_mark_read",
+    "group": "email",
+    "subcommand": "mark-read",
+    "endpoint": {
+      "method": "POST",
+      "path": "/emails/threads/{thread_id}/mark-as-read"
+    },
+    "fieldMappings": {
+      "thread_id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_unread_count",
+    "group": "email",
+    "subcommand": "unread-count",
+    "endpoint": {
+      "method": "GET",
+      "path": "/emails/unread/count"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "email_update",
+    "group": "email",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/emails/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "is_unread": "body",
+      "reminder_ts": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "analytics_campaign",
+    "group": "analytics",
+    "subcommand": "campaign",
+    "endpoint": {
+      "method": "GET",
+      "path": "/campaigns/analytics"
+    },
+    "fieldMappings": {
+      "id": "query",
+      "ids": "query",
+      "start_date": "query",
+      "end_date": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "analytics_campaign_overview",
+    "group": "analytics",
+    "subcommand": "campaign-overview",
+    "endpoint": {
+      "method": "GET",
+      "path": "/campaigns/analytics/overview"
+    },
+    "fieldMappings": {
+      "id": "query",
+      "ids": "query",
+      "start_date": "query",
+      "end_date": "query",
+      "campaign_status": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "analytics_daily_campaign",
+    "group": "analytics",
+    "subcommand": "daily-campaign",
+    "endpoint": {
+      "method": "GET",
+      "path": "/campaigns/analytics/daily"
+    },
+    "fieldMappings": {
+      "campaign_id": "query",
+      "start_date": "query",
+      "end_date": "query",
+      "campaign_status": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "analytics_campaign_steps",
+    "group": "analytics",
+    "subcommand": "campaign-steps",
+    "endpoint": {
+      "method": "GET",
+      "path": "/campaigns/analytics/steps"
+    },
+    "fieldMappings": {
+      "campaign_id": "query",
+      "start_date": "query",
+      "end_date": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "analytics_daily_account",
+    "group": "analytics",
+    "subcommand": "daily-account",
+    "endpoint": {
+      "method": "GET",
+      "path": "/accounts/analytics/daily"
+    },
+    "fieldMappings": {
+      "start_date": "query",
+      "end_date": "query",
+      "emails": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "analytics_warmup",
+    "group": "analytics",
+    "subcommand": "warmup",
+    "endpoint": {
+      "method": "POST",
+      "path": "/accounts/warmup-analytics"
+    },
+    "fieldMappings": {
+      "emails": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhooks_list",
+    "group": "webhooks",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/webhooks"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "campaign": "query",
+      "event_type": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhooks_get",
+    "group": "webhooks",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/webhooks/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhooks_create",
+    "group": "webhooks",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/webhooks"
+    },
+    "fieldMappings": {
+      "target_hook_url": "body",
+      "event_type": "body",
+      "campaign": "body",
+      "name": "body",
+      "custom_interest_value": "body",
+      "headers": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhooks_delete",
+    "group": "webhooks",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/webhooks/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhooks_test",
+    "group": "webhooks",
+    "subcommand": "test",
+    "endpoint": {
+      "method": "POST",
+      "path": "/webhooks/{id}/test"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhooks_event_types",
+    "group": "webhooks",
+    "subcommand": "event-types",
+    "endpoint": {
+      "method": "GET",
+      "path": "/webhooks/event-types"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "webhooks_resume",
+    "group": "webhooks",
+    "subcommand": "resume",
+    "endpoint": {
+      "method": "POST",
+      "path": "/webhooks/{id}/resume"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhooks_update",
+    "group": "webhooks",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/webhooks/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "target_hook_url": "body",
+      "event_type": "body",
+      "campaign": "body",
+      "name": "body",
+      "custom_interest_value": "body",
+      "headers": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_lists_list",
+    "group": "lead-lists",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/lead-lists"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_lists_get",
+    "group": "lead-lists",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/lead-lists/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_lists_create",
+    "group": "lead-lists",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/lead-lists"
+    },
+    "fieldMappings": {
+      "name": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_lists_update",
+    "group": "lead-lists",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/lead-lists/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "name": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_lists_delete",
+    "group": "lead-lists",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/lead-lists/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_lists_verification_stats",
+    "group": "lead-lists",
+    "subcommand": "verification-stats",
+    "endpoint": {
+      "method": "GET",
+      "path": "/lead-lists/{id}/verification-stats"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_enrich",
+    "group": "enrichment",
+    "subcommand": "enrich",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment/enrich-leads-from-supersearch"
+    },
+    "fieldMappings": {
+      "search_filters": "body",
+      "limit": "body",
+      "work_email_enrichment": "body",
+      "fully_enriched_profile": "body",
+      "custom_flow": "body",
+      "resource_id": "body",
+      "list_name": "body",
+      "search_name": "body",
+      "auto_update": "body",
+      "skip_rows_without_email": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_count",
+    "group": "enrichment",
+    "subcommand": "count",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment/count-leads-from-supersearch"
+    },
+    "fieldMappings": {
+      "search_filters": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_get",
+    "group": "enrichment",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/{resource_id}"
+    },
+    "fieldMappings": {
+      "resource_id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_run",
+    "group": "enrichment",
+    "subcommand": "run",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment/run"
+    },
+    "fieldMappings": {
+      "resource_id": "body",
+      "lead_ids": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_create",
+    "group": "enrichment",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment"
+    },
+    "fieldMappings": {
+      "resource_id": "body",
+      "type": "body",
+      "limit": "body",
+      "filters": "body",
+      "custom_flow": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_update-settings",
+    "group": "enrichment",
+    "subcommand": "update-settings",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/supersearch-enrichment/{resource_id}/settings"
+    },
+    "fieldMappings": {
+      "resource_id": "path",
+      "auto_update": "body",
+      "skip_rows_without_email": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_ai",
+    "group": "enrichment",
+    "subcommand": "ai",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment/ai"
+    },
+    "fieldMappings": {
+      "resource_id": "body",
+      "output_column": "body",
+      "resource_type": "body",
+      "model_version": "body",
+      "input_columns": "body",
+      "use_instantly_account": "body",
+      "overwrite": "body",
+      "auto_update": "body",
+      "skip_leads_without_email": "body",
+      "limit": "body",
+      "prompt": "body",
+      "template_id": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_ai-progress",
+    "group": "enrichment",
+    "subcommand": "ai-progress",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/ai/{resource_id}/in-progress"
+    },
+    "fieldMappings": {
+      "resource_id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_history",
+    "group": "enrichment",
+    "subcommand": "history",
+    "endpoint": {
+      "method": "GET",
+      "path": "/supersearch-enrichment/history/{resource_id}"
+    },
+    "fieldMappings": {
+      "resource_id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "enrichment_preview",
+    "group": "enrichment",
+    "subcommand": "preview",
+    "endpoint": {
+      "method": "POST",
+      "path": "/supersearch-enrichment/preview-leads-from-supersearch"
+    },
+    "fieldMappings": {
+      "search_filters": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "blocklist_list",
+    "group": "blocklist",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/block-lists-entries"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "domains_only": "query",
+      "search": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "blocklist_create",
+    "group": "blocklist",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/block-lists-entries"
+    },
+    "fieldMappings": {
+      "bl_value": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "blocklist_delete",
+    "group": "blocklist",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/block-lists-entries/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "blocklist_get",
+    "group": "blocklist",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/block-lists-entries/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "blocklist_update",
+    "group": "blocklist",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/block-lists-entries/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "bl_value": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_tags_list",
+    "group": "custom-tags",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/custom-tags"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query",
+      "resource_ids": "query",
+      "tag_ids": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_tags_get",
+    "group": "custom-tags",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/custom-tags/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_tags_create",
+    "group": "custom-tags",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/custom-tags"
+    },
+    "fieldMappings": {
+      "label": "body",
+      "description": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_tags_update",
+    "group": "custom-tags",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/custom-tags/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "label": "body",
+      "description": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_tags_delete",
+    "group": "custom-tags",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/custom-tags/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_tags_toggle",
+    "group": "custom-tags",
+    "subcommand": "toggle",
+    "endpoint": {
+      "method": "POST",
+      "path": "/custom-tags/toggle-resource"
+    },
+    "fieldMappings": {
+      "tag_ids": "body",
+      "resource_ids": "body",
+      "resource_type": "body",
+      "assign": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_labels_list",
+    "group": "lead-labels",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/lead-labels"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_labels_get",
+    "group": "lead-labels",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/lead-labels/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_labels_create",
+    "group": "lead-labels",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/lead-labels"
+    },
+    "fieldMappings": {
+      "label": "body",
+      "interest_status_label": "body",
+      "description": "body",
+      "use_with_ai": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_labels_update",
+    "group": "lead-labels",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/lead-labels/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "label": "body",
+      "interest_status_label": "body",
+      "description": "body",
+      "use_with_ai": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_labels_delete",
+    "group": "lead-labels",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/lead-labels/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "reassigned_status": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "lead_labels_test_ai",
+    "group": "lead-labels",
+    "subcommand": "test-ai",
+    "endpoint": {
+      "method": "POST",
+      "path": "/lead-labels/ai-reply-label"
+    },
+    "fieldMappings": {
+      "reply_text": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_get",
+    "group": "workspace",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspaces/current"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "workspace_update",
+    "group": "workspace",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/workspaces/current"
+    },
+    "fieldMappings": {
+      "name": "body",
+      "org_logo_url": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_whitelabel-create",
+    "group": "workspace",
+    "subcommand": "whitelabel-create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/workspaces/current/whitelabel-domain"
+    },
+    "fieldMappings": {
+      "domain": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_whitelabel-get",
+    "group": "workspace",
+    "subcommand": "whitelabel-get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspaces/current/whitelabel-domain"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "workspace_whitelabel-delete",
+    "group": "workspace",
+    "subcommand": "whitelabel-delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/workspaces/current/whitelabel-domain"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "workspace_change-owner",
+    "group": "workspace",
+    "subcommand": "change-owner",
+    "endpoint": {
+      "method": "POST",
+      "path": "/workspaces/current/change-owner"
+    },
+    "fieldMappings": {
+      "email": "body",
+      "sec": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_credits",
+    "group": "workspace",
+    "subcommand": "credits",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspaces/current"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "subsequences_list",
+    "group": "subsequences",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/subsequences"
+    },
+    "fieldMappings": {
+      "parent_campaign": "query",
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "subsequences_create",
+    "group": "subsequences",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/subsequences"
+    },
+    "fieldMappings": {
+      "parent_campaign": "body",
+      "name": "body",
+      "conditions": "body",
+      "subsequence_schedule": "body",
+      "sequences": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "subsequences_update",
+    "group": "subsequences",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/subsequences/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "name": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "subsequences_delete",
+    "group": "subsequences",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/subsequences/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "subsequences_duplicate",
+    "group": "subsequences",
+    "subcommand": "duplicate",
+    "endpoint": {
+      "method": "POST",
+      "path": "/subsequences/{id}/duplicate"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "parent_campaign": "body",
+      "name": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "subsequences_pause",
+    "group": "subsequences",
+    "subcommand": "pause",
+    "endpoint": {
+      "method": "POST",
+      "path": "/subsequences/{id}/pause"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "subsequences_resume",
+    "group": "subsequences",
+    "subcommand": "resume",
+    "endpoint": {
+      "method": "POST",
+      "path": "/subsequences/{id}/resume"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "subsequences_sending_status",
+    "group": "subsequences",
+    "subcommand": "sending-status",
+    "endpoint": {
+      "method": "GET",
+      "path": "/subsequences/{id}/sending-status"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "with_ai_summary": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "background_jobs_list",
+    "group": "background-jobs",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/background-jobs"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "ids": "query",
+      "type": "query",
+      "entity_type": "query",
+      "entity_id": "query",
+      "status": "query",
+      "sort_column": "query",
+      "sort_order": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "background_jobs_get",
+    "group": "background-jobs",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/background-jobs/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "data_fields": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_verification_verify",
+    "group": "email-verification",
+    "subcommand": "verify",
+    "endpoint": {
+      "method": "POST",
+      "path": "/email-verification"
+    },
+    "fieldMappings": {
+      "email": "body",
+      "webhook_url": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_verification_status",
+    "group": "email-verification",
+    "subcommand": "status",
+    "endpoint": {
+      "method": "GET",
+      "path": "/email-verification/{email}"
+    },
+    "fieldMappings": {
+      "email": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "account_mappings_get",
+    "group": "account-mappings",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/account-campaign-mappings/{email}"
+    },
+    "fieldMappings": {
+      "email": "path",
+      "limit": "query",
+      "starting_after": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "audit_logs_list",
+    "group": "audit-logs",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/audit-logs"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "activity_type": "query",
+      "search": "query",
+      "start_date": "query",
+      "end_date": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_members_list",
+    "group": "workspace-members",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspace-members"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "accepted": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_members_get",
+    "group": "workspace-members",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspace-members/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_members_create",
+    "group": "workspace-members",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/workspace-members"
+    },
+    "fieldMappings": {
+      "email": "body",
+      "role": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_members_update",
+    "group": "workspace-members",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/workspace-members/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "role": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_members_delete",
+    "group": "workspace-members",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/workspace-members/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "api_keys_create",
+    "group": "api-keys",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/api-keys"
+    },
+    "fieldMappings": {
+      "name": "body",
+      "scopes": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "api_keys_list",
+    "group": "api-keys",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/api-keys"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "api_keys_delete",
+    "group": "api-keys",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/api-keys/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_list",
+    "group": "inbox-placement",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/inbox-placement-tests"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query",
+      "status": "query",
+      "sort_order": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_get",
+    "group": "inbox-placement",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/inbox-placement-tests/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "with_metadata": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_create",
+    "group": "inbox-placement",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/inbox-placement-tests"
+    },
+    "fieldMappings": {
+      "name": "body",
+      "type": "body",
+      "sending_method": "body",
+      "email_subject": "body",
+      "email_body": "body",
+      "emails": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_update",
+    "group": "inbox-placement",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/inbox-placement-tests/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "name": "body",
+      "status": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_delete",
+    "group": "inbox-placement",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/inbox-placement-tests/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_esp-options",
+    "group": "inbox-placement",
+    "subcommand": "esp-options",
+    "endpoint": {
+      "method": "GET",
+      "path": "/inbox-placement-tests/email-service-provider-options"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "webhook_events_list",
+    "group": "webhook-events",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/webhook-events"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "success": "query",
+      "from": "query",
+      "to": "query",
+      "search": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhook_events_get",
+    "group": "webhook-events",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/webhook-events/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhook_events_summary",
+    "group": "webhook-events",
+    "subcommand": "summary",
+    "endpoint": {
+      "method": "GET",
+      "path": "/webhook-events/summary"
+    },
+    "fieldMappings": {
+      "from": "query",
+      "to": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "webhook_events_summary-by-date",
+    "group": "webhook-events",
+    "subcommand": "summary-by-date",
+    "endpoint": {
+      "method": "GET",
+      "path": "/webhook-events/summary-by-date"
+    },
+    "fieldMappings": {
+      "from": "query",
+      "to": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_group_members_list",
+    "group": "workspace-group-members",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspace-group-members"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_group_members_get",
+    "group": "workspace-group-members",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspace-group-members/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_group_members_create",
+    "group": "workspace-group-members",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/workspace-group-members"
+    },
+    "fieldMappings": {
+      "email": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_group_members_delete",
+    "group": "workspace-group-members",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/workspace-group-members/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_group_members_get-admin",
+    "group": "workspace-group-members",
+    "subcommand": "get-admin",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspace-group-members/admin"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "custom_tag_mappings_list",
+    "group": "custom-tag-mappings",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/custom-tag-mappings"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "resource_ids": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "workspace_billing_plan-details",
+    "group": "workspace-billing",
+    "subcommand": "plan-details",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspace-billing/plan-details"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "workspace_billing_subscription-details",
+    "group": "workspace-billing",
+    "subcommand": "subscription-details",
+    "endpoint": {
+      "method": "GET",
+      "path": "/workspace-billing/subscription-details"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "crm_actions_list-phone-numbers",
+    "group": "crm-actions",
+    "subcommand": "list-phone-numbers",
+    "endpoint": {
+      "method": "GET",
+      "path": "/crm-actions/phone-numbers"
+    },
+    "fieldMappings": {},
+    "generated": false
+  },
+  {
+    "id": "crm_actions_delete-phone-number",
+    "group": "crm-actions",
+    "subcommand": "delete-phone-number",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/crm-actions/phone-numbers/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "dfy_orders_create",
+    "group": "dfy-orders",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/dfy-email-account-orders"
+    },
+    "fieldMappings": {
+      "items": "body",
+      "order_type": "body",
+      "simulation": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "dfy_orders_list",
+    "group": "dfy-orders",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/dfy-email-account-orders"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "dfy_orders_similar_domains",
+    "group": "dfy-orders",
+    "subcommand": "similar-domains",
+    "endpoint": {
+      "method": "POST",
+      "path": "/dfy-email-account-orders/domains/similar"
+    },
+    "fieldMappings": {
+      "domain": "body",
+      "tlds": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "dfy_orders_check_domains",
+    "group": "dfy-orders",
+    "subcommand": "check-domains",
+    "endpoint": {
+      "method": "POST",
+      "path": "/dfy-email-account-orders/domains/check"
+    },
+    "fieldMappings": {
+      "domains": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "dfy_orders_pre_warmed",
+    "group": "dfy-orders",
+    "subcommand": "pre-warmed",
+    "endpoint": {
+      "method": "POST",
+      "path": "/dfy-email-account-orders/domains/pre-warmed-up-list"
+    },
+    "fieldMappings": {
+      "extensions": "body",
+      "search": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "dfy_orders_list_accounts",
+    "group": "dfy-orders",
+    "subcommand": "list-accounts",
+    "endpoint": {
+      "method": "GET",
+      "path": "/dfy-email-account-orders/accounts"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "with_passwords": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "dfy_orders_cancel",
+    "group": "dfy-orders",
+    "subcommand": "cancel",
+    "endpoint": {
+      "method": "POST",
+      "path": "/dfy-email-account-orders/accounts/cancel"
+    },
+    "fieldMappings": {
+      "accounts": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_analytics_list",
+    "group": "inbox-placement-analytics",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/inbox-placement-analytics"
+    },
+    "fieldMappings": {
+      "test_id": "query",
+      "limit": "query",
+      "starting_after": "query",
+      "date_from": "query",
+      "date_to": "query",
+      "recipient_geo": "query",
+      "recipient_type": "query",
+      "recipient_esp": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_analytics_get",
+    "group": "inbox-placement-analytics",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/inbox-placement-analytics/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_analytics_stats_by_test",
+    "group": "inbox-placement-analytics",
+    "subcommand": "stats-by-test",
+    "endpoint": {
+      "method": "POST",
+      "path": "/inbox-placement-analytics/stats-by-test-id"
+    },
+    "fieldMappings": {
+      "test_ids": "body",
+      "date_from": "body",
+      "date_to": "body",
+      "recipient_geo": "body",
+      "recipient_type": "body",
+      "recipient_esp": "body",
+      "sender_email": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_analytics_stats_by_date",
+    "group": "inbox-placement-analytics",
+    "subcommand": "stats-by-date",
+    "endpoint": {
+      "method": "POST",
+      "path": "/inbox-placement-analytics/stats-by-date"
+    },
+    "fieldMappings": {
+      "test_id": "body",
+      "date_from": "body",
+      "date_to": "body",
+      "recipient_geo": "body",
+      "recipient_type": "body",
+      "recipient_esp": "body",
+      "sender_email": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_analytics_insights",
+    "group": "inbox-placement-analytics",
+    "subcommand": "insights",
+    "endpoint": {
+      "method": "POST",
+      "path": "/inbox-placement-analytics/deliverability-insights"
+    },
+    "fieldMappings": {
+      "test_id": "body",
+      "date_from": "body",
+      "date_to": "body",
+      "previous_date_from": "body",
+      "previous_date_to": "body",
+      "show_previous": "body",
+      "recipient_geo": "body",
+      "recipient_type": "body",
+      "recipient_esp": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_reports_list",
+    "group": "inbox-placement-reports",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/inbox-placement-reports"
+    },
+    "fieldMappings": {
+      "test_id": "query",
+      "limit": "query",
+      "starting_after": "query",
+      "date_from": "query",
+      "date_to": "query",
+      "skip_spam_assassin_report": "query",
+      "skip_blacklist_report": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "inbox_placement_reports_get",
+    "group": "inbox-placement-reports",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/inbox-placement-reports/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_prompt_templates_create",
+    "group": "custom-prompt-templates",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/custom-prompt-templates"
+    },
+    "fieldMappings": {
+      "name": "body",
+      "prompt": "body",
+      "category": "body",
+      "is_public": "body",
+      "description": "body",
+      "model_version": "body",
+      "template_type": "body",
+      "from_shared": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_prompt_templates_list",
+    "group": "custom-prompt-templates",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/custom-prompt-templates"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_prompt_templates_get",
+    "group": "custom-prompt-templates",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/custom-prompt-templates/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_prompt_templates_update",
+    "group": "custom-prompt-templates",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/custom-prompt-templates/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "name": "body",
+      "prompt": "body",
+      "category": "body",
+      "is_public": "body",
+      "description": "body",
+      "model_version": "body",
+      "template_type": "body",
+      "from_shared": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "custom_prompt_templates_delete",
+    "group": "custom-prompt-templates",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/custom-prompt-templates/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "sales_flow_create",
+    "group": "sales-flow",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/sales-flow"
+    },
+    "fieldMappings": {
+      "name": "body",
+      "queries": "body",
+      "is_default": "body",
+      "list_id": "body",
+      "campaign_id": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "sales_flow_list",
+    "group": "sales-flow",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/sales-flow"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "sales_flow_get",
+    "group": "sales-flow",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/sales-flow/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "sales_flow_update",
+    "group": "sales-flow",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/sales-flow/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "name": "body",
+      "queries": "body",
+      "is_default": "body",
+      "list_id": "body",
+      "campaign_id": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "sales_flow_delete",
+    "group": "sales-flow",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/sales-flow/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_templates_create",
+    "group": "email-templates",
+    "subcommand": "create",
+    "endpoint": {
+      "method": "POST",
+      "path": "/email-templates"
+    },
+    "fieldMappings": {
+      "name": "body",
+      "body": "body",
+      "subject": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_templates_list",
+    "group": "email-templates",
+    "subcommand": "list",
+    "endpoint": {
+      "method": "GET",
+      "path": "/email-templates"
+    },
+    "fieldMappings": {
+      "limit": "query",
+      "starting_after": "query",
+      "search": "query"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_templates_get",
+    "group": "email-templates",
+    "subcommand": "get",
+    "endpoint": {
+      "method": "GET",
+      "path": "/email-templates/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_templates_update",
+    "group": "email-templates",
+    "subcommand": "update",
+    "endpoint": {
+      "method": "PATCH",
+      "path": "/email-templates/{id}"
+    },
+    "fieldMappings": {
+      "id": "path",
+      "name": "body",
+      "body": "body",
+      "subject": "body"
+    },
+    "generated": false
+  },
+  {
+    "id": "email_templates_delete",
+    "group": "email-templates",
+    "subcommand": "delete",
+    "endpoint": {
+      "method": "DELETE",
+      "path": "/email-templates/{id}"
+    },
+    "fieldMappings": {
+      "id": "path"
+    },
+    "generated": false
+  }
+]

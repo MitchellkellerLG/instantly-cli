@@ -19,7 +19,7 @@ export const ai_agents_delete_inbox_manager_guidance = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5e9c-7efe-816e-39cae4189824"
+        "example": "01a1a7f0-1cd8-7fc1-a533-a4f849899311"
       },
       "description": "AI Inbox Manager ID"
     },
@@ -31,7 +31,7 @@ export const ai_agents_delete_inbox_manager_guidance = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5e9c-7efe-816e-39cbd86cd563"
+        "example": "01a1a7f0-1cd8-7fc1-a533-a4f9cf9e1722"
       },
       "description": "Guidance ID"
     }

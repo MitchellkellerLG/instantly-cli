@@ -2,7 +2,7 @@
 
 **Instantly.ai in your terminal.** Run cold email campaigns, manage leads, monitor deliverability, and automate every outbound motion — from a single command line.
 
-274 command definitions shared by the CLI and MCP, covering all 255 operations in the pinned [Instantly.ai public V2 API spec](https://api.instantly.ai/openapi/api_v2.json), plus retained upstream commands. Built for humans, scripts, CI/CD pipelines, and AI agents.
+287 command definitions shared by the CLI and MCP, covering all 268 operations in the pinned [Instantly.ai public V2 API spec](https://api.instantly.ai/openapi/api_v2.json), plus retained upstream commands. Built for humans, scripts, CI/CD pipelines, and AI agents.
 
 ```bash
 npm install -g instantly-cli
@@ -12,7 +12,7 @@ npm install -g instantly-cli
 
 ## API coverage and maintenance
 
-This fork extends [Brandon Charleson's original CLI](https://github.com/bcharleson/instantly-cli) with 103 generated command definitions. One definition drives both the CLI and MCP. Coverage counts unique HTTP method and path pairs, normalizing parameter names and trailing slashes. Coverage proves endpoint availability against the spec, not live service behavior or complete parameter coverage in legacy commands. Tests use mocked HTTP only, with no real API keys.
+This fork extends [Brandon Charleson's original CLI](https://github.com/bcharleson/instantly-cli) with 116 generated command definitions. One definition drives both the CLI and MCP. Coverage counts unique HTTP method and path pairs, normalizing parameter names and trailing slashes. Coverage proves endpoint availability against the spec, not live service behavior or complete parameter coverage in legacy commands. Tests use mocked HTTP only, with no real API keys.
 
 | Public API path group | Upstream covered | This fork covered / spec |
 |---|---:|---:|
@@ -26,7 +26,9 @@ This fork extends [Brandon Charleson's original CLI](https://github.com/bcharles
 | campaigns | 15 | 19 / 19 |
 | crm-actions | 2 | 2 / 2 |
 | custom-tag-mappings | 1 | 1 / 1 |
-| custom-tags | 6 | 6 / 6 |
+| custom-tags | 6 | 7 / 7 |
+| creator-search | 0 | 7 / 7 |
+| local-business-search | 0 | 5 / 5 |
 | dfy-email-account-orders | 7 | 7 / 7 |
 | domains | 0 | 3 / 3 |
 | emails | 8 | 9 / 9 |
@@ -47,7 +49,7 @@ This fork extends [Brandon Charleson's original CLI](https://github.com/bcharles
 | workspace-members | 5 | 5 / 5 |
 | workspaces | 6 | 8 / 8 |
 | ai-agents | 0 | 61 / 61 |
-| **Total** | **152** | **255 / 255** |
+| **Total** | **152** | **268 / 268** |
 
 The 15 off-spec operations in `custom-prompt-templates`, `sales-flow`, and `email-templates` remain available and show `[Undocumented API]` in CLI help and MCP descriptions. Their availability is not guaranteed by the public spec.
 
@@ -95,7 +97,7 @@ The package and binary names remain unchanged. The existing npm install commands
 
 ### Official CLI coalesce
 
-The official 0.2.7 package registers 167 command definitions across 31 groups, plus login, logout, OAuth, and MCP entrypoints (its README advertises 156 tools). All official command names are already present here; 163 endpoint declarations match, while four undocumented sales-flow paths differ. The comparison retains this fork's 274 definitions, 255/255 public API endpoint coverage, generated-command design, and profile/workspace guards. The adopted features extend existing definitions for both CLI and MCP:
+The official 0.2.7 package registers 167 command definitions across 31 groups, plus login, logout, OAuth, and MCP entrypoints (its README advertises 156 tools). All official command names are already present here; 163 endpoint declarations match, while four undocumented sales-flow paths differ. The comparison retains this fork's 287 definitions, 268/268 public API endpoint coverage, generated-command design, and profile/workspace guards. The adopted features extend existing definitions for both CLI and MCP:
 
 | Official feature | Disposition | Result or reason |
 |---|---|---|
@@ -739,7 +741,7 @@ instantly oauth status <session-id>                   # Check connection status
 
 ## MCP Server
 
-The CLI doubles as an [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server, giving AI assistants direct access to all 274 Instantly command tools as native function calls.
+The CLI doubles as an [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server, giving AI assistants direct access to all 287 Instantly command tools as native function calls.
 
 ```bash
 instantly mcp
@@ -790,7 +792,7 @@ Every MCP tool description says pass `profile` for agency. Mutating tools requir
 }
 ```
 
-This registers 274 command tools across 37 groups, plus `status` and `health`:
+This registers 287 command tools across 39 groups, plus `status` and `health`:
 
 | Group | Tools | Examples |
 |-------|-------|---------|
@@ -811,7 +813,7 @@ This registers 274 command tools across 37 groups, plus `status` and `health`:
 | analytics | 6 | `analytics_campaign`, `analytics_campaign_overview` |
 | webhooks | 8 | `webhooks_list`, `webhooks_get` |
 | lead-lists | 6 | `lead_lists_list`, `lead_lists_get` |
-| custom-tags | 6 | `custom_tags_list`, `custom_tags_get` |
+| custom-tags | 7 | `custom_tags_list`, `custom_tags_get` |
 | lead-labels | 6 | `lead_labels_list`, `lead_labels_get` |
 | background-jobs | 2 | `background_jobs_list`, `background_jobs_get` |
 | email-verification | 2 | `email_verification_verify`, `email_verification_status` |
@@ -831,6 +833,8 @@ This registers 274 command tools across 37 groups, plus `status` and `health`:
 | custom-prompt-templates | 5 | `custom_prompt_templates_create`, `custom_prompt_templates_list` |
 | sales-flow | 5 | `sales_flow_create`, `sales_flow_list` |
 | email-templates | 5 | `email_templates_create`, `email_templates_list` |
+| creator-search | 7 | `creator_search_search_creators`, `creator_search_get_creator_search_dictionaries` |
+| local-business-search | 5 | `local_business_search_search_local_businesses`, `local_business_search_generate_local_business_filters` |
 
 ---
 
@@ -962,9 +966,12 @@ npm install
 
 npm run dev -- campaigns list    # Run in dev mode (tsx)
 npm run build                    # Build with tsup
-npm test                         # Run tests (138 tests, vitest)
+npm test                         # Run tests (vitest)
 npm run typecheck                # Type-check (tsc --noEmit)
 ```
+
+See [the offline evaluation reference](evals/README.md) for frozen fixtures,
+replay commands, score interpretation, and the safe dispatcher's scope.
 
 ### Tech Stack
 

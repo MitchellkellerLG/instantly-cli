@@ -19,7 +19,7 @@ export const ai_agents_patch_sales_agent = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ee9-774e-b1fd-55ab8d42667f"
+        "example": "01a1a7f0-1d21-7b3d-b5dc-0dd9866185fe"
       },
       "description": "AI Sales Agent ID"
     }
@@ -485,7 +485,7 @@ export const ai_agents_patch_sales_agent = createSpecCommand({
                 "items": {
                   "type": "string",
                   "format": "uuid",
-                  "example": "01a1891e-5eea-7ad3-bc0d-544b9a7c2aed"
+                  "example": "01a1a7f0-1d21-7b3d-b5dc-0dda805baad9"
                 }
               },
               "daily_limit": {
@@ -559,7 +559,7 @@ export const ai_agents_patch_sales_agent = createSpecCommand({
               "null"
             ],
             "description": "App connection id of the Slack workspace used for daily reports. `null` disconnects Slack.",
-            "example": "01a1891e-5eea-7ad3-bc0d-544c4afa0990"
+            "example": "01a1a7f0-1d21-7b3d-b5dc-0ddba7fcd6e9"
           }
         }
       },

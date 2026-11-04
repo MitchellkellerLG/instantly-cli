@@ -19,7 +19,7 @@ export const campaigns_export_campaign = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-7534-79f8-b65c-578fd6ea5c4a"
+        "example": "01a1a7f0-2b00-7b88-b91f-d07350fe1ba9"
       },
       "description": "Campaign ID"
     }

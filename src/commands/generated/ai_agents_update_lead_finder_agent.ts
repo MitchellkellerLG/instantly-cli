@@ -19,7 +19,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ec2-74d4-9933-04b60b403d91"
+        "example": "01a1a7f0-1d02-7f5b-9281-f05b6c6f766d"
       },
       "description": "AI Lead Finder Agent ID"
     }
@@ -39,11 +39,10 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
         "type": "string",
         "format": "uuid",
         "description": "Reassign the agent to another campaign. A campaign can have at most one active agent.",
-        "example": "01a1891e-5ec2-74d4-9933-04b60b403d91"
+        "example": "01a1a7f0-1d02-7f5b-9281-f05b6c6f766d"
       },
       "search_filters": {
         "type": "object",
-        "description": "Audience search filters in the SuperSearch format. Unknown keys are rejected: the search would otherwise silently ignore them and return unfiltered results. Enum values are matched literally, including spacing.",
         "properties": {
           "company_list_id": {
             "type": "string",
@@ -55,7 +54,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
             "oneOf": [
               {
                 "type": "array",
-                "description": "Legacy format: Array of locations to include in the search. For new integrations, use the object format with include/exclude properties.",
                 "items": {
                   "oneOf": [
                     {
@@ -111,6 +109,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                           "example": "United States"
                         }
                       },
+                      "additionalProperties": false,
                       "anyOf": [
                         {
                           "required": [
@@ -127,15 +126,14 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                             "country"
                           ]
                         }
-                      ],
-                      "additionalProperties": false
+                      ]
                     }
                   ]
-                }
+                },
+                "description": "Legacy format: Array of locations to include in the search. For new integrations, use the object format with include/exclude properties."
               },
               {
                 "type": "object",
-                "description": "Locations to include or exclude in the search",
                 "properties": {
                   "include": {
                     "type": "array",
@@ -194,6 +192,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                               "example": "United States"
                             }
                           },
+                          "additionalProperties": false,
                           "anyOf": [
                             {
                               "required": [
@@ -210,8 +209,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                                 "country"
                               ]
                             }
-                          ],
-                          "additionalProperties": false
+                          ]
                         }
                       ]
                     },
@@ -274,6 +272,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                               "example": "United States"
                             }
                           },
+                          "additionalProperties": false,
                           "anyOf": [
                             {
                               "required": [
@@ -290,14 +289,14 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                                 "country"
                               ]
                             }
-                          ],
-                          "additionalProperties": false
+                          ]
                         }
                       ]
                     },
                     "description": "Locations to exclude from the search"
                   }
                 },
+                "description": "Locations to include or exclude in the search",
                 "additionalProperties": false
               }
             ]
@@ -382,7 +381,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
           },
           "employeeCount": {
             "type": "array",
-            "description": "Employee count filters.",
             "items": {
               "oneOf": [
                 {
@@ -415,7 +413,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                 },
                 {
                   "type": "object",
-                  "description": "Employee count greater-than-or-equal range",
                   "properties": {
                     "op": {
                       "type": "string",
@@ -448,11 +445,11 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                     "op",
                     "min"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "description": "Employee count greater-than-or-equal range"
                 },
                 {
                   "type": "object",
-                  "description": "Employee count less-than-or-equal range",
                   "properties": {
                     "op": {
                       "type": "string",
@@ -485,11 +482,11 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                     "op",
                     "max"
                   ],
-                  "additionalProperties": false
+                  "additionalProperties": false,
+                  "description": "Employee count less-than-or-equal range"
                 },
                 {
                   "type": "object",
-                  "description": "Custom employee count bounded range",
                   "properties": {
                     "op": {
                       "type": "string",
@@ -528,6 +525,8 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                   "required": [
                     "op"
                   ],
+                  "additionalProperties": false,
+                  "description": "Custom employee count bounded range",
                   "anyOf": [
                     {
                       "required": [
@@ -549,12 +548,10 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                         }
                       }
                     }
-                  ],
-                  "additionalProperties": false
+                  ]
                 },
                 {
                   "type": "object",
-                  "description": "Preset employee count bounded range",
                   "properties": {
                     "op": {
                       "type": "string",
@@ -593,6 +590,8 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                   "required": [
                     "op"
                   ],
+                  "additionalProperties": false,
+                  "description": "Preset employee count bounded range",
                   "anyOf": [
                     {
                       "required": [
@@ -614,11 +613,11 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                         }
                       }
                     }
-                  ],
-                  "additionalProperties": false
+                  ]
                 }
               ]
-            }
+            },
+            "description": "Employee count filters."
           },
           "revenue": {
             "type": "array",
@@ -726,11 +725,11 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
           },
           "jobListingFilter": {
             "type": "array",
-            "deprecated": true,
             "items": {
               "type": "string",
               "example": "Software Engineer"
             },
+            "deprecated": true,
             "description": "Deprecated compatibility key for Job Listing filters. Use `jobListing` instead. Cannot be combined with `jobListing` on this endpoint."
           },
           "title": {
@@ -805,7 +804,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
           },
           "businessType": {
             "type": "object",
-            "description": "Business type of the lead company. Any-of on each side: `include` returns only companies labelled with one of the types, `exclude` drops them and keeps companies with no label.",
             "properties": {
               "include": {
                 "type": "array",
@@ -856,11 +854,11 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                 "description": "Business types of the lead company to exclude from the search"
               }
             },
+            "description": "Business type of the lead company. Any-of on each side: `include` returns only companies labelled with one of the types, `exclude` drops them and keeps companies with no label.",
             "additionalProperties": false
           },
           "customerType": {
             "type": "object",
-            "description": "Who the lead company sells to. Any-of on each side: `include` returns only companies labelled with one of the values, `exclude` drops them and keeps companies with no label. A company selling to both holds both values, so \"B2B only\" is include b2b with exclude b2c.",
             "properties": {
               "include": {
                 "type": "array",
@@ -895,6 +893,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                 "description": "Customer types of the lead company to exclude from the search"
               }
             },
+            "description": "Who the lead company sells to. Any-of on each side: `include` returns only companies labelled with one of the values, `exclude` drops them and keeps companies with no label. A company selling to both holds both values, so \"B2B only\" is include b2b with exclude b2c.",
             "additionalProperties": false
           },
           "look_alike": {
@@ -1803,9 +1802,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                 },
                 {
                   "type": "object",
-                  "required": [
-                    "key"
-                  ],
                   "properties": {
                     "key": {
                       "type": "string",
@@ -1842,7 +1838,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                         },
                         {
                           "type": "object",
-                          "description": "Per-field map of keyword tokens. Each property name is a keyword index field; each value is the list of tokens to OR-match within that field. Records must have at least one matching token in EACH selected field - fields act as additional filters. Example: `{ \"objection_type\": [\"security\"], \"buying_stage\": [\"consideration\"] }`.",
                           "additionalProperties": {
                             "type": "array",
                             "items": {
@@ -1853,11 +1848,15 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                               ],
                               "example": "security"
                             }
-                          }
+                          },
+                          "description": "Per-field map of keyword tokens. Each property name is a keyword index field; each value is the list of tokens to OR-match within that field. Records must have at least one matching token in EACH selected field - fields act as additional filters. Example: `{ \"objection_type\": [\"security\"], \"buying_stage\": [\"consideration\"] }`."
                         }
                       ]
                     }
                   },
+                  "required": [
+                    "key"
+                  ],
                   "additionalProperties": false
                 }
               ]
@@ -1884,6 +1883,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
             "example": "contact"
           }
         },
+        "description": "Audience search filters in the SuperSearch format. Unknown keys are rejected: the search would otherwise silently ignore them and return unfiltered results. Enum values are matched literally, including spacing.",
         "allOf": [
           {
             "not": {
@@ -1969,7 +1969,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
         "anyOf": [
           {
             "type": "object",
-            "description": "Audience search filters in the SuperSearch format. Unknown keys are rejected: the search would otherwise silently ignore them and return unfiltered results. Enum values are matched literally, including spacing.",
             "properties": {
               "company_list_id": {
                 "type": "string",
@@ -1984,7 +1983,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                 "oneOf": [
                   {
                     "type": "array",
-                    "description": "Legacy format: Array of locations to include in the search. For new integrations, use the object format with include/exclude properties.",
                     "items": {
                       "oneOf": [
                         {
@@ -2040,6 +2038,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                               "example": "United States"
                             }
                           },
+                          "additionalProperties": false,
                           "anyOf": [
                             {
                               "required": [
@@ -2056,15 +2055,14 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                                 "country"
                               ]
                             }
-                          ],
-                          "additionalProperties": false
+                          ]
                         }
                       ]
-                    }
+                    },
+                    "description": "Legacy format: Array of locations to include in the search. For new integrations, use the object format with include/exclude properties."
                   },
                   {
                     "type": "object",
-                    "description": "Locations to include or exclude in the search",
                     "properties": {
                       "include": {
                         "type": "array",
@@ -2123,6 +2121,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                                   "example": "United States"
                                 }
                               },
+                              "additionalProperties": false,
                               "anyOf": [
                                 {
                                   "required": [
@@ -2139,8 +2138,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                                     "country"
                                   ]
                                 }
-                              ],
-                              "additionalProperties": false
+                              ]
                             }
                           ]
                         },
@@ -2203,6 +2201,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                                   "example": "United States"
                                 }
                               },
+                              "additionalProperties": false,
                               "anyOf": [
                                 {
                                   "required": [
@@ -2219,14 +2218,14 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                                     "country"
                                   ]
                                 }
-                              ],
-                              "additionalProperties": false
+                              ]
                             }
                           ]
                         },
                         "description": "Locations to exclude from the search"
                       }
                     },
+                    "description": "Locations to include or exclude in the search",
                     "additionalProperties": false
                   }
                 ]
@@ -2321,7 +2320,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
               },
               "employeeCount": {
                 "type": "array",
-                "description": "Employee count filters.",
                 "items": {
                   "oneOf": [
                     {
@@ -2354,7 +2352,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                     },
                     {
                       "type": "object",
-                      "description": "Employee count greater-than-or-equal range",
                       "properties": {
                         "op": {
                           "type": "string",
@@ -2387,11 +2384,11 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                         "op",
                         "min"
                       ],
-                      "additionalProperties": false
+                      "additionalProperties": false,
+                      "description": "Employee count greater-than-or-equal range"
                     },
                     {
                       "type": "object",
-                      "description": "Employee count less-than-or-equal range",
                       "properties": {
                         "op": {
                           "type": "string",
@@ -2424,11 +2421,11 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                         "op",
                         "max"
                       ],
-                      "additionalProperties": false
+                      "additionalProperties": false,
+                      "description": "Employee count less-than-or-equal range"
                     },
                     {
                       "type": "object",
-                      "description": "Custom employee count bounded range",
                       "properties": {
                         "op": {
                           "type": "string",
@@ -2467,6 +2464,8 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                       "required": [
                         "op"
                       ],
+                      "additionalProperties": false,
+                      "description": "Custom employee count bounded range",
                       "anyOf": [
                         {
                           "required": [
@@ -2488,12 +2487,10 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                             }
                           }
                         }
-                      ],
-                      "additionalProperties": false
+                      ]
                     },
                     {
                       "type": "object",
-                      "description": "Preset employee count bounded range",
                       "properties": {
                         "op": {
                           "type": "string",
@@ -2532,6 +2529,8 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                       "required": [
                         "op"
                       ],
+                      "additionalProperties": false,
+                      "description": "Preset employee count bounded range",
                       "anyOf": [
                         {
                           "required": [
@@ -2553,11 +2552,11 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                             }
                           }
                         }
-                      ],
-                      "additionalProperties": false
+                      ]
                     }
                   ]
-                }
+                },
+                "description": "Employee count filters."
               },
               "revenue": {
                 "type": "array",
@@ -2679,7 +2678,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
               },
               "jobListingFilter": {
                 "type": "array",
-                "deprecated": true,
                 "items": {
                   "type": "string",
                   "examples": [
@@ -2688,6 +2686,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                   ],
                   "example": "Software Engineer"
                 },
+                "deprecated": true,
                 "description": "Deprecated compatibility key for Job Listing filters. Use `jobListing` instead. Cannot be combined with `jobListing` on this endpoint."
               },
               "title": {
@@ -2792,7 +2791,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
               },
               "businessType": {
                 "type": "object",
-                "description": "Business type of the lead company. Any-of on each side: `include` returns only companies labelled with one of the types, `exclude` drops them and keeps companies with no label.",
                 "properties": {
                   "include": {
                     "type": "array",
@@ -2850,11 +2848,11 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                     "description": "Business types of the lead company to exclude from the search"
                   }
                 },
+                "description": "Business type of the lead company. Any-of on each side: `include` returns only companies labelled with one of the types, `exclude` drops them and keeps companies with no label.",
                 "additionalProperties": false
               },
               "customerType": {
                 "type": "object",
-                "description": "Who the lead company sells to. Any-of on each side: `include` returns only companies labelled with one of the values, `exclude` drops them and keeps companies with no label. A company selling to both holds both values, so \"B2B only\" is include b2b with exclude b2c.",
                 "properties": {
                   "include": {
                     "type": "array",
@@ -2895,6 +2893,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                     "description": "Customer types of the lead company to exclude from the search"
                   }
                 },
+                "description": "Who the lead company sells to. Any-of on each side: `include` returns only companies labelled with one of the values, `exclude` drops them and keeps companies with no label. A company selling to both holds both values, so \"B2B only\" is include b2b with exclude b2c.",
                 "additionalProperties": false
               },
               "look_alike": {
@@ -3863,9 +3862,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                     },
                     {
                       "type": "object",
-                      "required": [
-                        "key"
-                      ],
                       "properties": {
                         "key": {
                           "type": "string",
@@ -3902,7 +3898,6 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                             },
                             {
                               "type": "object",
-                              "description": "Per-field map of keyword tokens. Each property name is a keyword index field; each value is the list of tokens to OR-match within that field. Records must have at least one matching token in EACH selected field - fields act as additional filters. Example: `{ \"objection_type\": [\"security\"], \"buying_stage\": [\"consideration\"] }`.",
                               "additionalProperties": {
                                 "type": "array",
                                 "items": {
@@ -3913,11 +3908,15 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                                   ],
                                   "example": "security"
                                 }
-                              }
+                              },
+                              "description": "Per-field map of keyword tokens. Each property name is a keyword index field; each value is the list of tokens to OR-match within that field. Records must have at least one matching token in EACH selected field - fields act as additional filters. Example: `{ \"objection_type\": [\"security\"], \"buying_stage\": [\"consideration\"] }`."
                             }
                           ]
                         }
                       },
+                      "required": [
+                        "key"
+                      ],
                       "additionalProperties": false
                     }
                   ]
@@ -3954,6 +3953,7 @@ export const ai_agents_update_lead_finder_agent = createSpecCommand({
                 "example": "contact"
               }
             },
+            "description": "Audience search filters in the SuperSearch format. Unknown keys are rejected: the search would otherwise silently ignore them and return unfiltered results. Enum values are matched literally, including spacing.",
             "examples": [
               {
                 "title": {

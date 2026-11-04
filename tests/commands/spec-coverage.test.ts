@@ -29,14 +29,14 @@ function command(id: string) {
 }
 
 describe('public API coverage and generator', () => {
-  it('covers 255/255 operations and explicitly labels the 15 off-spec endpoints', () => {
+  it('covers 268/268 operations and explicitly labels the 15 off-spec endpoints', () => {
     const report = coverage(spec, allCommands);
-    expect(report).toMatchObject({ total: 255, covered: 255, missing: [] });
+    expect(report).toMatchObject({ total: 268, covered: 268, missing: [] });
     expect(report.undocumented).toHaveLength(15);
     for (const c of allCommands.filter(c => report.undocumented.includes(operationKey(c.endpoint.method, c.endpoint.path)))) {
       expect(c.description).toContain('[Undocumented API]');
     }
-    expect(generatedCommands).toHaveLength(103);
+    expect(generatedCommands).toHaveLength(116);
   });
 
   it('detects spec additions and missing methods, normalizing path parameter names and slashes', () => {

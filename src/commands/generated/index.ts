@@ -10,6 +10,7 @@ import { campaigns_share_campaign } from './campaigns_share_campaign.js';
 import { campaigns_create_from_export } from './campaigns_create_from_export.js';
 import { campaigns_export_campaign } from './campaigns_export_campaign.js';
 import { campaigns_add_variables } from './campaigns_add_variables.js';
+import { custom_tags_search_custom_tags_by_resources } from './custom_tags_search_custom_tags_by_resources.js';
 import { domains_get_domain_forwarding } from './domains_get_domain_forwarding.js';
 import { domains_update_domain_forwarding } from './domains_update_domain_forwarding.js';
 import { domains_delete_domain_forwarding } from './domains_delete_domain_forwarding.js';
@@ -85,6 +86,18 @@ import { ai_agents_patch_deliverability_agent } from './ai_agents_patch_delivera
 import { ai_agents_delete_deliverability_agent } from './ai_agents_delete_deliverability_agent.js';
 import { ai_agents_get_deliverability_agent_state_by_id } from './ai_agents_get_deliverability_agent_state_by_id.js';
 import { ai_agents_list_deliverability_agent_feed_items } from './ai_agents_list_deliverability_agent_feed_items.js';
+import { creator_search_search_creators } from './creator_search_search_creators.js';
+import { creator_search_get_creator_search_dictionaries } from './creator_search_get_creator_search_dictionaries.js';
+import { creator_search_get_creator_search_locations } from './creator_search_get_creator_search_locations.js';
+import { creator_search_get_creator_search_capabilities } from './creator_search_get_creator_search_capabilities.js';
+import { creator_search_get_creator_search_allowance } from './creator_search_get_creator_search_allowance.js';
+import { creator_search_create_creator_outreach_batch } from './creator_search_create_creator_outreach_batch.js';
+import { creator_search_get_creator_outreach_batch } from './creator_search_get_creator_outreach_batch.js';
+import { local_business_search_search_local_businesses } from './local_business_search_search_local_businesses.js';
+import { local_business_search_generate_local_business_filters } from './local_business_search_generate_local_business_filters.js';
+import { local_business_search_suggest_local_business_places } from './local_business_search_suggest_local_business_places.js';
+import { local_business_search_convert_local_businesses } from './local_business_search_convert_local_businesses.js';
+import { local_business_search_get_local_business_convert_job } from './local_business_search_get_local_business_convert_job.js';
 import { company_lists_list_company_list_recipes } from './company_lists_list_company_list_recipes.js';
 import { company_lists_list_company_list_sources } from './company_lists_list_company_list_sources.js';
 import { company_lists_get_company_list_filter_options } from './company_lists_get_company_list_filter_options.js';
@@ -115,6 +128,7 @@ export const generatedCommands = [
   campaigns_create_from_export,
   campaigns_export_campaign,
   campaigns_add_variables,
+  custom_tags_search_custom_tags_by_resources,
   domains_get_domain_forwarding,
   domains_update_domain_forwarding,
   domains_delete_domain_forwarding,
@@ -190,6 +204,18 @@ export const generatedCommands = [
   ai_agents_delete_deliverability_agent,
   ai_agents_get_deliverability_agent_state_by_id,
   ai_agents_list_deliverability_agent_feed_items,
+  creator_search_search_creators,
+  creator_search_get_creator_search_dictionaries,
+  creator_search_get_creator_search_locations,
+  creator_search_get_creator_search_capabilities,
+  creator_search_get_creator_search_allowance,
+  creator_search_create_creator_outreach_batch,
+  creator_search_get_creator_outreach_batch,
+  local_business_search_search_local_businesses,
+  local_business_search_generate_local_business_filters,
+  local_business_search_suggest_local_business_places,
+  local_business_search_convert_local_businesses,
+  local_business_search_get_local_business_convert_job,
   company_lists_list_company_list_recipes,
   company_lists_list_company_list_sources,
   company_lists_get_company_list_filter_options,

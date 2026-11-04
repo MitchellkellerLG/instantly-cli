@@ -32,7 +32,7 @@ export const ai_agents_list_lead_finder_agents = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ec2-74d4-9933-04b60b403d91"
+        "example": "01a1a7f0-1d02-7f5b-9281-f05b6c6f766d"
       },
       "description": "The ID of the last item in the previous page - used for pagination. You can use the value of the `next_starting_after` field from the previous response."
     },
@@ -44,7 +44,7 @@ export const ai_agents_list_lead_finder_agents = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ec2-74d4-9933-04b60b403d91"
+        "example": "01a1a7f0-1d02-7f5b-9281-f05b6c6f766d"
       },
       "description": "Only return the agent keeping this campaign stocked (active or paused). A campaign has at most one agent, so the list holds zero or one item and `limit` / `starting_after` are ignored; `next_starting_after` is omitted."
     }

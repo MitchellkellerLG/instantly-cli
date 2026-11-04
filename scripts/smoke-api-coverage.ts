@@ -3,6 +3,8 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { allCommands } from '../src/commands/index.js';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 
@@ -58,6 +60,16 @@ try {
   assert.equal(reply.request.assigned_to, workspace);
   assert.equal(reply.__confirmed_recipient, 'lead@example.com');
   console.log('PASS built CLI: member filters, account settings, array flags, lead list/move, string template IDs, reply reminder/assignment');
+  const delta = JSON.parse(readFileSync('evals/public-delta-v1/fixtures.json', 'utf8')).fixtures;
+  for (const fixture of delta) {
+    const command = allCommands.find(c => c.name === fixture.context.command)!;
+    const args = Object.entries(fixture.context.arguments).flatMap(([key, value]) =>
+      [`--${key.replace(/_/g, '-')}`, typeof value === 'string' ? value : JSON.stringify(value)]);
+    const invocation = [command.group, command.subcommand, ...args];
+    assert.deepEqual(cli(['--workspace', workspace, ...invocation]), fixture.response);
+    if (command.mutating) assert.ok(cli(invocation, false).error);
+  }
+  console.log('PASS built CLI: all 13 new public operations and conservative POST workspace guards');
   const client = new Client({ name: 'coverage-smoke', version: '1.0.0' });
   const transport = new StdioClientTransport({ command: process.execPath, args: ['--import', loader, resolve('dist/mcp.js')], env: Object.fromEntries(Object.entries(env).filter((entry): entry is [string, string] => entry[1] !== undefined)) });
   try {
@@ -66,6 +78,15 @@ try {
     assert.ok(tools.some(t => t.name === 'domains_update_domain_forwarding'));
     assert.ok(tools.some(t => t.name === 'saved_searches_list_saved_searches'));
     console.log(`PASS built MCP: lists ${tools.length} tools including generated commands`);
+    assert.equal(tools.length, 289);
+    for (const fixture of delta) {
+      assert.ok(tools.some(t => t.name === fixture.context.command));
+      const response = await client.callTool({ name: fixture.context.command,
+        arguments: { profile: 'mock', workspace_id: workspace, ...fixture.context.arguments } });
+      assert.notEqual(response.isError, true, JSON.stringify(response));
+      assert.deepEqual(JSON.parse((response.content as Array<{ text: string }>)[0].text), fixture.response);
+    }
+    console.log('PASS built MCP: all 13 new public operations over stdio against independent synthetic fixtures');
     const read = await client.callTool({ name: 'saved_searches_list_saved_searches', arguments: { profile: 'mock' } });
     assert.notEqual(read.isError, true);
     const result = await client.callTool({ name: 'domains_update_domain_forwarding', arguments: { profile: 'mock', workspace_id: workspace, domain: 'example.com', body: { forwarding_domain: 'destination.com' } } });

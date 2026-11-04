@@ -32,7 +32,7 @@ export const ai_agents_list_inbox_manager_agents = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-7c99-7eb2-a940-adc09f0a469f"
+        "example": "01a1a7f0-2f04-7cf3-b62e-223ea9eed5f7"
       },
       "description": "The ID of the last item in the previous page - used for pagination. You can use the value of the `next_starting_after` field from the previous response."
     },

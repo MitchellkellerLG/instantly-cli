@@ -32,7 +32,7 @@ export const ai_agents_list_sales_agents = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-7d23-7288-a570-41a71c3d24a2"
+        "example": "01a1a7f0-2f63-7d71-8fb8-1f04cf3e8a93"
       },
       "description": "The ID of the last item in the previous page - used for pagination. You can use the value of the `next_starting_after` field from the previous response."
     },

@@ -68,6 +68,8 @@ export interface InstantlyClient {
     query?: Record<string, string | number | boolean | (string | number | boolean)[] | undefined>;
     body?: unknown;
     responseType?: 'text';
+    /** Safe dispatch consumes a preview before a single mutation attempt. */
+    retry?: 'never';
   }): Promise<T>;
 
   get<T>(path: string, query?: Record<string, any>): Promise<T>;

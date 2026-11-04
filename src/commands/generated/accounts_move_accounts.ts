@@ -27,12 +27,12 @@ export const accounts_move_accounts = createSpecCommand({
       "source_workspace_id": {
         "type": "string",
         "description": "ID of the source workspace (the workspace that the accounts are currently in)",
-        "example": "01a1891e-73c5-7132-9d5f-7853f805881d"
+        "example": "01a1a7f0-29f6-74ac-9cae-c92f14680f6c"
       },
       "destination_workspace_id": {
         "type": "string",
         "description": "ID of the destination workspace (the workspace that the accounts will be moved to)",
-        "example": "01a1891e-73c5-7132-9d5f-785471453218"
+        "example": "01a1a7f0-29f6-74ac-9cae-c9307e980f91"
       }
     },
     "required": [

@@ -19,7 +19,7 @@ export const ai_agents_get_sales_agent_lead_research = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5eea-7ad3-bc0d-544fbc1fcf78"
+        "example": "01a1a7f0-1d21-7b3d-b5dc-0dde205f0fee"
       },
       "description": "id"
     },
@@ -31,7 +31,7 @@ export const ai_agents_get_sales_agent_lead_research = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5eea-7ad3-bc0d-545052dca264"
+        "example": "01a1a7f0-1d21-7b3d-b5dc-0ddf57c16a98"
       },
       "description": "lead_id"
     }

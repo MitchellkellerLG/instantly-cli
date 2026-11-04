@@ -44,6 +44,7 @@ export class InstantlyClient implements IInstantlyClient {
     query?: Record<string, string | number | boolean | (string | number | boolean)[] | undefined>;
     body?: unknown;
     responseType?: 'text';
+    retry?: 'never';
   }): Promise<T> {
     const url = new URL(this.baseUrl + options.path);
 
@@ -67,10 +68,11 @@ export class InstantlyClient implements IInstantlyClient {
     }
 
     let lastError: Error | undefined;
+    const maxRetries = options.retry === 'never' ? 0 : this.maxRetries;
     const isWrite = options.method !== 'GET';
     const effectiveTimeout = isWrite ? Math.min(this.timeout, WRITE_TIMEOUT) : this.timeout;
 
-    for (let attempt = 0; attempt <= this.maxRetries; attempt++) {
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), effectiveTimeout);
@@ -110,7 +112,7 @@ export class InstantlyClient implements IInstantlyClient {
           case 429: {
             const retryAfter = parseInt(response.headers.get('retry-after') ?? '', 10);
             const err = new RateLimitError(errorMessage, isNaN(retryAfter) ? undefined : retryAfter);
-            if (attempt < this.maxRetries) {
+            if (attempt < maxRetries) {
               const delay = err.retryAfter
                 ? err.retryAfter * 1000
                 : Math.min(1000 * Math.pow(2, attempt), 10_000);
@@ -123,7 +125,7 @@ export class InstantlyClient implements IInstantlyClient {
           default:
             if (response.status >= 500) {
               const err = new ServerError(errorMessage, response.status);
-              if (attempt < this.maxRetries) {
+              if (attempt < maxRetries) {
                 await sleep(Math.min(1000 * Math.pow(2, attempt), 10_000));
                 lastError = err;
                 continue;
@@ -146,7 +148,7 @@ export class InstantlyClient implements IInstantlyClient {
             'TIMEOUT',
           );
           // Don't retry write operations on timeout — could create duplicates
-          if (!isWrite && attempt < this.maxRetries) {
+          if (!isWrite && attempt < maxRetries) {
             await sleep(Math.min(1000 * Math.pow(2, attempt), 10_000));
             continue;
           }

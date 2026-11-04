@@ -19,7 +19,7 @@ export const ai_agents_get_lead_finder_agent_stats = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ec2-74d4-9933-04b60b403d91"
+        "example": "01a1a7f0-1d02-7f5b-9281-f05b6c6f766d"
       },
       "description": "AI Lead Finder Agent ID"
     }

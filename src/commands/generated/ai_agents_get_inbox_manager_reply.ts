@@ -19,7 +19,7 @@ export const ai_agents_get_inbox_manager_reply = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5e9c-7efe-816e-39cc0f91ccba"
+        "example": "01a1a7f0-1cd8-7fc1-a533-a4fa9fcd78b1"
       },
       "description": "AI Inbox Manager ID"
     },
@@ -31,7 +31,7 @@ export const ai_agents_get_inbox_manager_reply = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5e9d-74ec-85f7-4e5b96eb23b1"
+        "example": "01a1a7f0-1cd8-7fc1-a533-a4fb2d2a4563"
       },
       "description": "Reply ID"
     }

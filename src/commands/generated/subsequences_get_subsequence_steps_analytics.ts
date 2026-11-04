@@ -41,7 +41,7 @@ export const subsequences_get_subsequence_steps_analytics = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-79a8-756f-a068-be421bb4b7ba"
+        "example": "01a1a7f0-2d2b-7022-8b2f-a123d024e0c2"
       },
       "description": "The ID of the subsequence to analyze."
     }

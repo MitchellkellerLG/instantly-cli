@@ -30,7 +30,7 @@ export const leads_update_lead_interest_status = createSpecCommand({
       "campaign_id": {
         "type": "string",
         "description": "The ID of the campaign to update the interest status of.",
-        "example": "01a1891e-786b-7a53-b882-48c00ba5af6d"
+        "example": "01a1a7f0-2cad-70c1-98e7-595afc0365a0"
       },
       "ai_interest_value": {
         "type": "number",
@@ -45,7 +45,7 @@ export const leads_update_lead_interest_status = createSpecCommand({
       "list_id": {
         "type": "string",
         "description": "The ID of the list to update the interest status of.",
-        "example": "01a1891e-786b-7a53-b882-48c1dc9f0a82"
+        "example": "01a1a7f0-2cad-70c1-98e7-595b85a104e5"
       }
     },
     "required": [

@@ -1,4 +1,8 @@
+import { readFileSync } from 'node:fs';
+import { isDeepStrictEqual } from 'node:util';
+
 // Network-denying fixture for built CLI and MCP smoke tests. No real credentials.
+const delta = JSON.parse(readFileSync(new URL('../../evals/public-delta-v1/fixtures.json', import.meta.url), 'utf8')).fixtures;
 const workspace = '11111111-1111-4111-8111-111111111111';
 globalThis.fetch = async (input, options = {}) => {
   const url = new URL(String(input));
@@ -24,6 +28,13 @@ globalThis.fetch = async (input, options = {}) => {
     const body = JSON.parse(options.body);
     if (body.forwarding_domain !== 'destination.com') throw new Error('Unexpected forwarding body');
     result = { domain: 'example.com', ...body };
-  } else throw new Error(`Mock refuses unexpected request: ${method} ${path}`);
+  } else {
+    const request = { method, path: path.replace(/^\/api\/v2/, '') };
+    if (url.search) request.query = Object.fromEntries(url.searchParams);
+    if (options.body) request.body = JSON.parse(options.body);
+    const fixture = delta.find(f => isDeepStrictEqual(f.request, request));
+    if (!fixture) throw new Error(`Mock refuses unexpected request: ${method} ${path}`);
+    result = fixture.response;
+  }
   return new Response(JSON.stringify(result), { headers: { 'content-type': 'application/json' } });
 };

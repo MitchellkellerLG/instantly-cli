@@ -79,9 +79,9 @@ export const ai_agents_patch_inbox_manager_agent = createSpecCommand({
                   "type": "string",
                   "format": "uuid",
                   "examples": [
-                    "01a1891d-fae9-7537-8111-b440256b1b80"
+                    "01a1a7ef-db62-7baa-9c7f-cde8077e79e0"
                   ],
-                  "example": "01a1891d-fae9-7537-8111-b440256b1b80"
+                  "example": "01a1a7ef-db62-7baa-9c7f-cde8077e79e0"
                 }
               ]
             },
@@ -324,7 +324,7 @@ export const ai_agents_patch_inbox_manager_agent = createSpecCommand({
                     "type": "array",
                     "items": {
                       "type": "string",
-                      "example": "01a1891d-fae9-7537-8111-b44222446239"
+                      "example": "01a1a7ef-db62-7baa-9c7f-cdea24e75121"
                     }
                   }
                 },

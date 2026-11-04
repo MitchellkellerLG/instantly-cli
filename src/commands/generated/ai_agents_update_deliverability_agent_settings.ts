@@ -33,10 +33,10 @@ export const ai_agents_update_deliverability_agent_settings = createSpecCommand(
                 "type": "string",
                 "format": "uuid",
                 "examples": [
-                  "01a1891e-5e83-78cb-98fa-a58e45181432"
+                  "01a1a7f0-1cc7-7c01-89bd-d160ca62c6b6"
                 ],
                 "description": "Slack app connection ID.",
-                "example": "01a1891e-5e83-78cb-98fa-a58e45181432"
+                "example": "01a1a7f0-1cc7-7c01-89bd-d160ca62c6b6"
               },
               "enabled": {
                 "type": "boolean",

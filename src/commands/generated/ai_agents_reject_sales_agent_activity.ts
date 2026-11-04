@@ -19,7 +19,7 @@ export const ai_agents_reject_sales_agent_activity = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ef9-755a-bb42-52bcb8670af7"
+        "example": "01a1a7f0-1d2c-7e1f-9004-edd00f32616b"
       },
       "description": "AI Sales Agent ID"
     },
@@ -31,7 +31,7 @@ export const ai_agents_reject_sales_agent_activity = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ef9-755a-bb42-52bda579e03c"
+        "example": "01a1a7f0-1d2c-7e1f-9004-edd174a73076"
       },
       "description": "Activity ID"
     }

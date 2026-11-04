@@ -59,7 +59,7 @@ export const ai_agents_get_deliverability_agent_state_by_id = createSpecCommand(
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5e83-78cb-98fa-a58e45181432"
+        "example": "01a1a7f0-1cc7-7c01-89bd-d160ca62c6b6"
       },
       "description": "AI Deliverability Agent ID. Call `GET /api/v2/ai-agents/deliverability` and use the returned `agent.id` value to retrieve the workspace default agent ID."
     }

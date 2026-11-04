@@ -588,7 +588,7 @@ instantly campaigns list --limit 10 --starting-after "<last-id>"
 
 ## MCP Server (for Claude, Cursor, VS Code)
 
-The CLI also includes a built-in MCP server exposing all 274 command definitions as tools, plus status and health. One MCP server process per profile. Every tool description says pass `profile` for agency. Mutating tools require `profile` + `workspace_id` matching the bound pair. Call `status` first.
+The CLI also includes a built-in MCP server exposing all 287 command definitions as tools, plus status and health. One MCP server process per profile. Every tool description says pass `profile` for agency. Mutating tools require `profile` + `workspace_id` matching the bound pair. Call `status` first.
 
 ```bash
 # Start the MCP server

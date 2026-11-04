@@ -19,6 +19,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run spec:generated-check
+      - run: npx tsx scripts/eval/freeze.ts
+      - run: npx tsx scripts/eval/run.ts --surface legacy --output /tmp/instantly-offline
+      - run: npx tsx scripts/eval/run.ts --surface safe --output /tmp/instantly-offline
       - run: npm run spec:check
       - run: npm run typecheck
       - run: npm test -- --maxWorkers=2 --minWorkers=1

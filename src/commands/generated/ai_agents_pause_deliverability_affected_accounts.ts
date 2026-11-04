@@ -19,7 +19,7 @@ export const ai_agents_pause_deliverability_affected_accounts = createSpecComman
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5e83-78cb-98fa-a58e45181432"
+        "example": "01a1a7f0-1cc7-7c01-89bd-d160ca62c6b6"
       },
       "description": "Deliverability Agent feed item ID. Retrieve feed items from `GET /api/v2/ai-agents/deliverability/{id}/feed-items`, using the agent ID returned by `GET /api/v2/ai-agents/deliverability`."
     }

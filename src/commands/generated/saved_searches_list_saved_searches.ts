@@ -33,7 +33,7 @@ export const saved_searches_list_saved_searches = createSpecCommand({
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-6582-72d0-81dd-79c45db816ca"
+        "example": "01a1a7f0-21e6-7094-b944-4f2087ded5ef"
       },
       "description": "The ID of the last item in the previous page"
     },

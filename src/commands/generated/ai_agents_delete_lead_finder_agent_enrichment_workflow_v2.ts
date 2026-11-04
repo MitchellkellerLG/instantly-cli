@@ -19,7 +19,7 @@ export const ai_agents_delete_lead_finder_agent_enrichment_workflow_v2 = createS
       "schema": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-5ed6-7998-a6dd-fa7869e6a43e"
+        "example": "01a1a7f0-1d13-7ee7-8104-d65faa5b6a62"
       },
       "description": "id"
     }

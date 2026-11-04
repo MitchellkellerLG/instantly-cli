@@ -55,7 +55,7 @@ export const enrichment_run_integration_action = createSpecCommand({
       "app_connection_id": {
         "type": "string",
         "format": "uuid",
-        "example": "01a1891e-6569-7f69-8c42-58899ec46139"
+        "example": "01a1a7f0-21d5-7b78-982c-94edd656f6f9"
       }
     },
     "required": [

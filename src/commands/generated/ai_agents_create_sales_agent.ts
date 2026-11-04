@@ -495,7 +495,7 @@ export const ai_agents_create_sales_agent = createSpecCommand({
                 "items": {
                   "type": "string",
                   "format": "uuid",
-                  "example": "01a1891e-5eea-7ad3-bc0d-544b9a7c2aed"
+                  "example": "01a1a7f0-1d21-7b3d-b5dc-0dda805baad9"
                 }
               },
               "daily_limit": {
@@ -569,7 +569,7 @@ export const ai_agents_create_sales_agent = createSpecCommand({
               "null"
             ],
             "description": "App connection id of the Slack workspace used for daily reports. `null` disconnects Slack.",
-            "example": "01a1891e-5eea-7ad3-bc0d-544c4afa0990"
+            "example": "01a1a7f0-1d21-7b3d-b5dc-0ddba7fcd6e9"
           }
         }
       },
@@ -625,7 +625,7 @@ export const ai_agents_create_sales_agent = createSpecCommand({
         "type": "string",
         "format": "uuid",
         "description": "Master lead list ID for the AI Sales Agent.",
-        "example": "01a1891e-7d1f-7636-ae1a-1d4c8fe66b3e"
+        "example": "01a1a7f0-2f60-705a-a832-a02165dbef2b"
       },
       "initial_scrape_ready": {
         "type": "boolean",
@@ -641,7 +641,7 @@ export const ai_agents_create_sales_agent = createSpecCommand({
         "type": "string",
         "format": "uuid",
         "description": "Required when is_duplicate is true: the id of the AI Sales Agent to copy from. Must exist in the current workspace.",
-        "example": "01a1891e-7d1f-7636-ae1a-1d4d2adedb82"
+        "example": "01a1a7f0-2f60-705a-a832-a022009462aa"
       }
     },
     "required": [
