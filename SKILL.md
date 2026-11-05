@@ -102,8 +102,8 @@ One MCP server process per profile. Set `INSTANTLY_PROFILE=client-a` (or `INSTAN
 {
   "mcpServers": {
     "instantly-client-a": {
-      "command": "npx",
-      "args": ["instantly-cli", "mcp"],
+      "command": "node",
+      "args": ["/absolute/path/to/instantly-cli/dist/index.js", "mcp"],
       "env": { "INSTANTLY_PROFILE": "client-a" }
     }
   }

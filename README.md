@@ -4,15 +4,22 @@
 
 287 API command definitions shared by the CLI and MCP, covering all 268 operations in the pinned [Instantly.ai public V2 API spec](https://api.instantly.ai/openapi/api_v2.json), plus retained upstream commands. Optional [web-app support](#web-app-routes-and-attended-browser-actions) adds browser reads and attended actions. Built for humans, scripts, CI/CD pipelines, and AI agents.
 
+> **Community-maintained copy.** This is an unofficial, community-maintained CLI and MCP server for Instantly.ai, not an Instantly.ai product. It is built from [Brandon Charleson's original CLI](https://github.com/bcharleson/instantly-cli); see [Credits and license](#credits-and-license). It is installed from this repository, not from npm.
+
+<!-- TODO(owner): add the Instantly VIP link here, as one line such as "New to Instantly? <link>". No VIP or partner URL exists anywhere in this repository, so none was invented. -->
+
 ```bash
-npm install -g instantly-cli
+git clone https://github.com/MitchellkellerLG/instantly-cli.git
+cd instantly-cli
+npm ci && npm run build
+node dist/index.js --help
 ```
 
 ---
 
 ## API coverage and maintenance
 
-This fork extends [Brandon Charleson's original CLI](https://github.com/bcharleson/instantly-cli) with 116 generated command definitions. One definition drives both the CLI and MCP. Coverage counts unique HTTP method and path pairs, normalizing parameter names and trailing slashes. Coverage proves endpoint availability against the spec, not live service behavior or complete parameter coverage in legacy commands. Tests use mocked HTTP only, with no real API keys.
+This copy extends [Brandon Charleson's original CLI](https://github.com/bcharleson/instantly-cli) with 116 generated command definitions. One definition drives both the CLI and MCP. Coverage counts unique HTTP method and path pairs, normalizing parameter names and trailing slashes. Coverage proves endpoint availability against the spec, not live service behavior or complete parameter coverage in legacy commands. Tests use mocked HTTP only, with no real API keys.
 
 | Public API path group | Upstream covered | This fork covered / spec |
 |---|---:|---:|
@@ -89,11 +96,13 @@ Review generated changes before committing. The generator resolves local referen
 
 ### Credits and license
 
-Maintained in [LeadGrowGTM/instantly-cli](https://github.com/LeadGrowGTM/instantly-cli). Original implementation and project history: [Brandon Charleson](https://github.com/bcharleson/instantly-cli). API coverage extension and maintenance: [Mitchell Keller](https://github.com/MitchellkellerLG). Selected capabilities were independently implemented after comparison with [Instantly.ai's official @instantlyai/cli 0.2.7](https://www.npmjs.com/package/@instantlyai/cli).
+**Provenance.** The first commit of this history is Brandon Charleson's `instantly-cli` v0.1.0, whose `package.json` labels the author "Instantly.ai" and the license MIT. Commit `fafe1cf` later restored v0.1.13 to v0.1.17 source from the published npm sourcemaps. Everything since is community work on top of that code: generated API coverage, workspace profiles, the compact MCP surface, playbooks, web-app support, and the security hardening in this repository's history. The original license grant has not been confirmed with its author; see the notes below.
+
+Community-maintained in [MitchellkellerLG/instantly-cli](https://github.com/MitchellkellerLG/instantly-cli). Original implementation and project history: [Brandon Charleson](https://github.com/bcharleson/instantly-cli). API coverage extension and maintenance: [Mitchell Keller](https://github.com/MitchellkellerLG). Selected capabilities were independently implemented after comparison with [Instantly.ai's official @instantlyai/cli 0.2.7](https://www.npmjs.com/package/@instantlyai/cli).
 
 Both upstream packages declare MIT. Brandon Charleson's repository has no LICENSE file as inspected on 2026-10-29. The official npm tarball also has no LICENSE file; its README says MIT. Its linked [GitLab source](https://gitlab.com/foomonk/instantly-cli) required sign-in, so the versioned sources embedded in its published sourcemaps were used for comparison. This fork supplies MIT text and credits both upstreams in [LICENSE](LICENSE); this does not imply either upstream supplied a license file.
 
-The package and binary names remain unchanged. The existing npm install commands refer to the upstream package; this fork has not been published to npm. To use this fork, clone this repository, run `npm ci` and `npm run build`, then run `node dist/index.js --help` from the repository root.
+The package and binary names remain unchanged, but this copy has not been published to npm, and `npm install -g instantly-cli` or `npx instantly-cli` installs the upstream package instead. To use this copy, clone this repository, run `npm ci` and `npm run build`, then run `node dist/index.js --help` from the repository root.
 
 ### Official CLI coalesce
 
@@ -159,26 +168,16 @@ The Instantly CLI provides access to the public API and optional [web-app routes
 
 ## Install
 
-### npm (recommended)
+### From source (this repository)
 
 ```bash
-npm install -g instantly-cli
-```
-
-### npx (zero-install)
-
-```bash
-npx instantly-cli campaigns list
-```
-
-### From source
-
-```bash
-git clone https://github.com/LeadGrowGTM/instantly-cli.git
+git clone https://github.com/MitchellkellerLG/instantly-cli.git
 cd instantly-cli
-npm install && npm run build
-npm link
+npm ci && npm run build
+npm link              # optional: puts `instantly` on your PATH
 ```
+
+The npm package named `instantly-cli` is the upstream project, not this repository. This copy is not published to npm; do not use `npm install -g instantly-cli` or `npx instantly-cli` expecting it.
 
 ---
 
@@ -211,7 +210,7 @@ instantly login
 # Prompts for your API key, validates it, stamps api_key + workspace_id + workspace_name onto ~/.instantly/config.json
 ```
 
-`npx instantly-cli campaigns list` keeps working with one key. `--profile` is not required for old single-key users.
+`instantly campaigns list` keeps working with one key. `--profile` is not required for old single-key users.
 
 ### Opt-in workspace profiles (agency / agent mode)
 
@@ -766,8 +765,8 @@ Add to your MCP settings (Claude Desktop, Cursor, VS Code, Windsurf):
 {
   "mcpServers": {
     "instantly": {
-      "command": "npx",
-      "args": ["instantly-cli", "mcp"],
+      "command": "node",
+      "args": ["/absolute/path/to/instantly-cli/dist/index.js", "mcp"],
       "env": {
         "INSTANTLY_API_KEY": "your-api-key"
       }
@@ -776,14 +775,23 @@ Add to your MCP settings (Claude Desktop, Cursor, VS Code, Windsurf):
 }
 ```
 
-Every MCP tool description says pass `profile` for agency. Mutating tools require `profile` + `workspace_id` matching the bound pair. Use `INSTANTLY_PROFILE` for a single-profile agent process. Call `status` first. There is no “run across all profiles” tool.
+**Safe by default.** The default MCP exposes only a reviewed read allowlist plus `status` and `health`. Writes and credential-bearing reads are opt-in through operator configuration on the server process, never through tool arguments a model controls:
+
+| Setting | Effect |
+|---|---|
+| `--allow-write <ids>` or `INSTANTLY_MCP_ALLOW_WRITES` | Registers the named write commands. Each call must also carry `workspace_id` equal to the live workspace. |
+| `--allow-sensitive <ids>` or `INSTANTLY_MCP_ALLOW_SENSITIVE` | Lets the named commands return credential material, for example `dfy_orders_list_accounts` with `with_passwords`, or `api_keys_list`. Without it, those requests are refused and credential-named fields are masked. |
+
+Unknown ids fail at startup. Local CLI commands are unaffected by these settings.
+
+**One process, one profile.** The server resolves a single profile (`INSTANTLY_PROFILE` or `--profile`) or key at startup and stays bound to it. A tool call that names a different `profile` is refused, so run one server per client. Call `status` first. Errors and results are scrubbed of the active API key and of credential-named fields.
 
 ```json
 {
   "mcpServers": {
     "instantly-acme": {
-      "command": "npx",
-      "args": ["instantly-cli", "mcp"],
+      "command": "node",
+      "args": ["/absolute/path/to/instantly-cli/dist/index.js", "mcp"],
       "env": {
         "INSTANTLY_PROFILE": "acme"
       }
@@ -804,12 +812,12 @@ Every MCP tool description says pass `profile` for agency. Mutating tools requir
 | `instantly_run` | `mode: read` runs an approved read. `mode: write` takes only the preview token. | Yes |
 
 ```json
-{ "mcpServers": { "instantly": { "command": "npx", "args": ["instantly-cli", "mcp", "--surface", "compact"], "env": { "INSTANTLY_PROFILE": "acme" } } } }
+{ "mcpServers": { "instantly": { "command": "node", "args": ["/absolute/path/to/instantly-cli/dist/index.js", "mcp", "--surface", "compact"], "env": { "INSTANTLY_PROFILE": "acme" } } } }
 ```
 
 `status` and `health` are virtual command IDs run with `instantly_run`, not extra tools. Every `preview` and `run` carries an explicit `profile` and `workspace_id`. `status` reports whether they match; other commands refuse a mismatch before executing the requested operation, though live workspace checks may still send requests. Use `profile: "default"` for the unprofiled key, overriding `INSTANTLY_PROFILE`.
 
-Safety lives in code, not prose. Reads must be on the reviewed read allowlist (a GET alone grants nothing). Writes are refused unless the operator names the command, for example `instantly mcp --surface compact --allow-write campaigns_update`, and the token binds the profile, workspace, resolved credential, request, registry, context and policy, so it cannot be replayed, redirected or changed. `--allow-unknown-cost` additionally permits allowed writes whose cost is unknown. **The legacy command tools have none of these guarantees**: they can still perform unpreviewed writes, and must not be described as protected by the compact policy. `INSTANTLY_MCP_SURFACE`, `INSTANTLY_MCP_ALLOW_WRITES` and `INSTANTLY_MCP_ALLOW_UNKNOWN_COST=1` set the same options from the environment for MCP.
+Safety lives in code, not prose. Reads must be on the reviewed read allowlist (a GET alone grants nothing). Writes are refused unless the operator names the command, for example `instantly mcp --surface compact --allow-write campaigns_update`, and the token binds the profile, workspace, resolved credential, request, registry, context and policy, so it cannot be replayed, redirected or changed. `--allow-unknown-cost` additionally permits allowed writes whose cost is unknown. **The legacy command tools do not preview**: once the operator allows a write with `--allow-write`, a call with the right `workspace_id` executes directly, so prefer the compact surface for writes. `INSTANTLY_MCP_SURFACE`, `INSTANTLY_MCP_ALLOW_WRITES` and `INSTANTLY_MCP_ALLOW_UNKNOWN_COST=1` set the same options from the environment for MCP.
 
 The same four operations exist on the command line, with identical inputs and outputs:
 
@@ -1033,7 +1041,7 @@ Adding a new API endpoint = creating one file. The command is automatically avai
 ## Development
 
 ```bash
-git clone https://github.com/LeadGrowGTM/instantly-cli.git
+git clone https://github.com/MitchellkellerLG/instantly-cli.git
 cd instantly-cli
 npm install
 

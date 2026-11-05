@@ -1,4 +1,5 @@
 import { InstantlyClient } from './client.js';
+import { ValidationError } from './errors.js';
 import { webClientFor } from '../web/browser-client.js';
 import { resolveCredentials, type ResolvedCredentials } from './auth.js';
 import {
@@ -14,6 +15,8 @@ export interface CommandContextOptions {
   profile?: string;
   workspace?: string;
   mutating: boolean;
+  /** MCP: a write must carry the workspace UUID on every path, including the default single-key path. */
+  requireWriteWorkspace?: boolean;
   /** 'web' swaps the HTTP client for the attended-browser client, bound to the API key's live workspace. */
   origin?: 'api' | 'web';
 }
@@ -62,6 +65,9 @@ async function createApiContext(
 
   // Default single-key path: --workspace is optional. Omitted = today's behavior.
   if (!workspaceFlag) {
+    if (opts.mutating && opts.requireWriteWorkspace) {
+      throw new ValidationError('Write tools require workspace_id matching the workspace shown by status.');
+    }
     return { client, credentials };
   }
 

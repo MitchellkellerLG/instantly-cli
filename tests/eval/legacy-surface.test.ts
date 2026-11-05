@@ -1,4 +1,4 @@
-import { it, expect, vi } from 'vitest';
+import { it, expect, vi, beforeEach } from 'vitest';
 const tools = vi.hoisted(() => [] as string[]);
 vi.mock('@modelcontextprotocol/sdk/server/mcp.js', () => ({
   McpServer: class {
@@ -13,11 +13,24 @@ vi.mock('../../src/core/auth.js', () => ({
 }));
 import { startMcpServer } from '../../src/mcp/server.js';
 import { allCommands } from '../../src/commands/index.js';
-import baseline from '../../evals/v1/baseline/registry.json';
-it('retains the 276 existing MCP registrations and adds 13 public operations without credentials or network', async () => {
+import { isReviewedRead } from '../../src/mcp/policy.js';
+import { isMutatingCommand } from '../../src/core/mutating.js';
+
+beforeEach(() => { tools.length = 0; });
+
+it('registers only the reviewed read allowlist plus status and health by default', async () => {
   await startMcpServer();
-  expect(tools).toEqual([...allCommands.map(c => c.name), 'status', 'health']);
-  expect(tools).toHaveLength(289);
-  expect(new Set(tools).size).toBe(289);
-  for (const command of baseline) expect(tools).toContain(command.id);
+  const reads = allCommands.filter(isReviewedRead).map(c => c.name);
+  expect(reads.length).toBeGreaterThan(50);
+  expect(tools).toEqual([...reads, 'status', 'health']);
+  for (const command of allCommands.filter(c => isMutatingCommand(c) && !isReviewedRead(c))) expect(tools, command.name).not.toContain(command.name);
+  for (const risky of ['campaigns_activate', 'email_reply', 'api_keys_create', 'api_keys_list', 'workspace_change-owner']) expect(tools).not.toContain(risky);
+});
+
+it('adds exactly the operator-allowed commands and rejects typos at startup', async () => {
+  await startMcpServer({ allowWrites: ['campaigns_activate'], allowSensitive: ['api_keys_list'] });
+  expect(tools).toContain('campaigns_activate');
+  expect(tools).toContain('api_keys_list');
+  expect(tools).not.toContain('email_reply');
+  await expect(startMcpServer({ allowWrites: ['campaigns_activte'] })).rejects.toThrow(/Unknown command id/);
 });

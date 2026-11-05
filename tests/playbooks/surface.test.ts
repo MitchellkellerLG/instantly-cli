@@ -99,7 +99,7 @@ describe('opt-in registration', () => {
     expect(mcpOptionsFrom({ playbooks: true, tier: 'managed' }, {})).toMatchObject({ playbooks: true, tier: 'managed' });
     expect(mcpOptionsFrom({}, { INSTANTLY_MCP_PLAYBOOKS: '1', INSTANTLY_TIER: 'internal' })).toMatchObject({ playbooks: true, tier: 'internal' });
     expect(() => mcpOptionsFrom({ playbooks: true, tier: 'root' }, {})).toThrow('UNKNOWN_TIER');
-    expect(() => mcpOptionsFrom({ allowWrite: 'campaigns_create' }, {})).toThrow('--playbooks');
+    expect(() => mcpOptionsFrom({ allowUnknownCost: true }, {})).toThrow('--playbooks');
     expect(mcpOptionsFrom({ allowWrite: 'campaigns_create', playbooks: true }, {}).allowWrites).toEqual(['campaigns_create']);
   });
   it('prompts render the exact preview command and the safety rules', async () => {

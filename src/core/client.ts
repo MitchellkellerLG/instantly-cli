@@ -7,6 +7,7 @@ import {
   ServerError,
   InstantlyError,
 } from './errors.js';
+import { redactText } from './redact.js';
 
 const BASE_URL = 'https://api.instantly.ai/api/v2';
 const MAX_RETRIES = 3;
@@ -100,6 +101,8 @@ export class InstantlyClient implements IInstantlyClient {
         } catch {
           errorMessage = errorBody || response.statusText;
         }
+        // Upstream text may reflect the credential; never carry it into errors, logs or MCP results.
+        errorMessage = redactText(typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage), [this.apiKey]);
 
         switch (response.status) {
           case 401:
@@ -125,7 +128,8 @@ export class InstantlyClient implements IInstantlyClient {
           default:
             if (response.status >= 500) {
               const err = new ServerError(errorMessage, response.status);
-              if (attempt < maxRetries) {
+              // A 5xx after a write is ambiguous: the server may have committed it. Only reads are retried.
+              if (!isWrite && attempt < maxRetries) {
                 await sleep(Math.min(1000 * Math.pow(2, attempt), 10_000));
                 lastError = err;
                 continue;
@@ -157,7 +161,7 @@ export class InstantlyClient implements IInstantlyClient {
 
         // Network errors (DNS, connection refused, etc.)
         if (error instanceof TypeError && String(error.message).includes('fetch')) {
-          throw new InstantlyError(`Network error: ${error.message}`, 'NETWORK_ERROR');
+          throw new InstantlyError(`Network error: ${redactText(error.message, [this.apiKey])}`, 'NETWORK_ERROR');
         }
 
         throw error;

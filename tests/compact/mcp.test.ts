@@ -71,7 +71,10 @@ describe('surface switch', () => {
     expect(mcpOptionsFrom({}, { INSTANTLY_MCP_SURFACE: 'compact' }).surface).toBe('compact');
     expect(mcpOptionsFrom({ surface: 'compact', allowWrite: 'campaigns_update, email_reply' }, {}).allowWrites).toEqual(['campaigns_update', 'email_reply']);
     expect(() => mcpOptionsFrom({ surface: 'tiny' }, {})).toThrow(/Unknown MCP surface/);
-    expect(() => mcpOptionsFrom({ surface: 'legacy', allowWrite: 'campaigns_update' }, {})).toThrow(/only to --surface compact/);
+    expect(mcpOptionsFrom({ surface: 'legacy', allowWrite: 'campaigns_update' }, {}).allowWrites).toEqual(['campaigns_update']);
+    expect(mcpOptionsFrom({}, { INSTANTLY_MCP_ALLOW_SENSITIVE: 'api_keys_list' }).allowSensitive).toEqual(['api_keys_list']);
+    expect(() => mcpOptionsFrom({ surface: 'legacy', allowUnknownCost: true }, {})).toThrow(/only to --surface compact/);
+    expect(() => mcpOptionsFrom({ surface: 'compact', allowSensitive: 'api_keys_list' }, {})).toThrow(/legacy surface/);
   });
 });
 

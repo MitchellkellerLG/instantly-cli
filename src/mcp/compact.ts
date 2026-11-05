@@ -15,6 +15,8 @@ export interface McpOptions {
   /** Command IDs the operator allows to execute as writes after a preview. Default none. */
   allowWrites?: string[];
   allowUnknownCost?: boolean;
+  /** Legacy surface only: credential-bearing reads the operator opts in to. Default none. */
+  allowSensitive?: string[];
   profile?: string;
   /** Opt-in: also register the four playbook tools and playbook prompts. Default surfaces are unchanged. */
   playbooks?: boolean;
@@ -59,7 +61,7 @@ export async function startCompactMcpServer(options: McpOptions = {}): Promise<v
 
 /** Flags win over the host-provided environment. An unknown surface is an error, never a silent fallback. */
 export function mcpOptionsFrom(
-  flags: { surface?: string; allowWrite?: string; allowUnknownCost?: boolean; profile?: string; playbooks?: boolean; tier?: string },
+  flags: { surface?: string; allowWrite?: string; allowSensitive?: string; allowUnknownCost?: boolean; profile?: string; playbooks?: boolean; tier?: string },
   host: Record<string, string | undefined> = process.env,
 ): McpOptions {
   const surface = flags.surface ?? host.INSTANTLY_MCP_SURFACE ?? 'legacy';
@@ -67,8 +69,10 @@ export function mcpOptionsFrom(
   const allow = (flags.allowWrite ?? host.INSTANTLY_MCP_ALLOW_WRITES ?? '').split(',').map(s => s.trim()).filter(Boolean);
   const unknownCost = flags.allowUnknownCost === true || host.INSTANTLY_MCP_ALLOW_UNKNOWN_COST === '1';
   const playbooks = flags.playbooks === true || host.INSTANTLY_MCP_PLAYBOOKS === '1';
-  if (surface === 'legacy' && !playbooks && (allow.length || unknownCost)) throw new Error('Write allowances apply only to --surface compact or --playbooks.');
+  const sensitive = (flags.allowSensitive ?? host.INSTANTLY_MCP_ALLOW_SENSITIVE ?? '').split(',').map(s => s.trim()).filter(Boolean);
+  if (surface === 'legacy' && !playbooks && unknownCost) throw new Error('--allow-unknown-cost applies only to --surface compact or --playbooks.');
+  if (surface === 'compact' && sensitive.length) throw new Error('--allow-sensitive applies only to the legacy surface; the compact surface never exports credentials.');
   const tier = flags.tier ?? host.INSTANTLY_TIER;
   if (tier !== undefined && tier !== '') resolveTier(tier); // a typo fails at startup and never widens access
-  return { surface, allowWrites: allow, allowUnknownCost: unknownCost, profile: flags.profile, ...(playbooks ? { playbooks: true } : {}), ...(tier ? { tier } : {}) };
+  return { surface, allowWrites: allow, allowSensitive: sensitive, allowUnknownCost: unknownCost, profile: flags.profile, ...(playbooks ? { playbooks: true } : {}), ...(tier ? { tier } : {}) };
 }

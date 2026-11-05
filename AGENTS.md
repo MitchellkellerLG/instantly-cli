@@ -7,8 +7,9 @@
 ## Quick Start
 
 ```bash
-# Install globally
-npm install -g instantly-cli
+# Install from source (this copy is not on npm)
+git clone https://github.com/MitchellkellerLG/instantly-cli.git && cd instantly-cli
+npm ci && npm run build && npm link
 
 # Authenticate (non-interactive — best for agents)
 export INSTANTLY_API_KEY="your-api-key-here"
@@ -600,8 +601,8 @@ Default (one workspace):
 {
   "mcpServers": {
     "instantly": {
-      "command": "npx",
-      "args": ["instantly-cli", "mcp"],
+      "command": "node",
+      "args": ["/absolute/path/to/instantly-cli/dist/index.js", "mcp"],
       "env": { "INSTANTLY_API_KEY": "your-key" }
     }
   }
