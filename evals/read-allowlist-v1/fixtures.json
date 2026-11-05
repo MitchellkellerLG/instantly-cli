@@ -1,0 +1,121 @@
+{
+  "version": 1,
+  "source": "https://api.instantly.ai/openapi/api_v2.json",
+  "captured": "2026-11-05",
+  "provenance": "synthetic",
+  "fixtures": [
+    {
+      "context": {
+        "command": "accounts_ctd-status",
+        "arguments": {
+          "host": "track.example.com"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/accounts/ctd/status",
+        "query": {
+          "host": "track.example.com"
+        }
+      },
+      "response": {
+        "ssl": false,
+        "cname": false,
+        "host": "track.example.com"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-05",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "e88f3b3ea9843d3409ba3f97ea5f5ef865df99438d12898525c79ea4cc1e96cc"
+    },
+    {
+      "context": {
+        "command": "oauth_get_oauth_session_status",
+        "arguments": {
+          "sessionId": "sess_synthetic_1"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/oauth/session/status/sess_synthetic_1"
+      },
+      "response": {
+        "status": "expired"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-05",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "6c13e3565e3959f5db8bd0224e3b0116eabddc36e71b9a84f84a7fcbdff7c193"
+    },
+    {
+      "context": {
+        "command": "oauth_get_oauth_session_status",
+        "arguments": {
+          "sessionId": "sess_synthetic_2"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/oauth/session/status/sess_synthetic_2"
+      },
+      "response": {
+        "status": "success",
+        "email": "connected@example.com",
+        "name": "Synthetic Owner"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-05",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "f3adaf8d762179827541e0e9428d2eee6a967aa23d932007636d384f5591c7fc"
+    },
+    {
+      "context": {
+        "command": "blocklist_download_block_list_entry",
+        "arguments": {
+          "search": "example.com"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/block-lists-entries/download",
+        "query": {
+          "search": "example.com"
+        },
+        "responseType": "text"
+      },
+      "response": "Blocked Email,Date\r\nexample.com,2026-11-05\r\n",
+      "provenance": "synthetic",
+      "captured": "2026-11-05",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "895661a2923c05195397e18885b7b9043b3e595309d1d95013f184fc6f5c1a43"
+    }
+  ]
+}

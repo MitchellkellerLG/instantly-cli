@@ -96,6 +96,8 @@ registry. The separate `public-delta-v1/fixtures.json` manifest adds independent
 synthetic wire, argument, returned-value and effect oracles for all 13 new
 operations. Run `npx vitest run tests/safe/public-delta.test.ts` to replay them.
 
+The audited-read manifest `read-allowlist-v1/fixtures.json` (replay: `npx vitest run tests/safe/read-allowlist.test.ts`) adds three more GET reads: `accounts_ctd-status` (DNS/SSL check of a caller-supplied host, no workspace data, no mailbox credentials), `oauth_get_oauth_session_status` (poll; success returns the connected account email and name) and `blocklist_download_block_list_entry` (unpaginated CSV export with optional `search` and `domains_only` filters). `api_keys_list` (returns key material) and `accounts_test_vitals` (probes mailbox servers) stay refused.
+
 The delta read allowlist explicitly includes creator metadata, allowance and job
 status, local-business places and job status, custom-tag lookup and the documented
 free local-business search POST. Legacy POST workspace confirmation remains

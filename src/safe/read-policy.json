@@ -3,6 +3,10 @@
     "method": "GET",
     "path": "/account-campaign-mappings/{email}"
   },
+  "accounts_ctd-status": {
+    "method": "GET",
+    "path": "/accounts/ctd/status"
+  },
   "accounts_get": {
     "method": "GET",
     "path": "/accounts/{id}"
@@ -162,6 +166,10 @@
   "background_jobs_list": {
     "method": "GET",
     "path": "/background-jobs"
+  },
+  "blocklist_download_block_list_entry": {
+    "method": "GET",
+    "path": "/block-lists-entries/download"
   },
   "blocklist_get": {
     "method": "GET",
@@ -402,6 +410,10 @@
   "local_business_search_suggest_local_business_places": {
     "method": "GET",
     "path": "/local-business-search/places"
+  },
+  "oauth_get_oauth_session_status": {
+    "method": "GET",
+    "path": "/oauth/session/status/{sessionId}"
   },
   "sales_flow_get": {
     "method": "GET",

@@ -405,7 +405,7 @@ instantly accounts test-vitals <id>                   # Run DNS/SMTP/IMAP health
 instantly accounts pause <email>                      # Pause an account
 instantly accounts resume <email>                     # Resume a paused account
 instantly accounts mark-fixed <email>                 # Clear error flags
-instantly accounts ctd-status                         # Check click-to-deliver status
+instantly accounts ctd-status --host track.example.com # Check custom tracking domain status
 instantly accounts delete <id>                        # Remove account
 ```
 
