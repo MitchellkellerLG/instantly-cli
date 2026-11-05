@@ -33,7 +33,6 @@ export interface Segment {
   abstained: boolean;
   lead_ids: string[];
 }
-const MAX_IDS = 200;
 
 export function classify(lead: any, imported: Record<string, string>): string | null {
   const domain = String(lead?.company_domain ?? '').toLowerCase();
@@ -59,7 +58,7 @@ export function segmentLeads(leads: any[], imported: Record<string, string> = {}
   return [...groups.entries()].map(([id, g]) => ({
     segment_id: id, signal: g.rule ? (g.label ? `${g.rule.signal}: ${g.label}` : g.rule.signal) : null,
     adjacency: g.rule?.adjacency ?? null, persona_kpi: g.rule?.persona_kpi ?? null, ladder_rung: g.rule?.rung ?? null,
-    size: g.ids.length, abstained: !g.rule, lead_ids: g.ids.slice(0, MAX_IDS),
+    size: g.ids.length, abstained: !g.rule, lead_ids: g.ids,
   })).sort((a, b) => Number(a.abstained) - Number(b.abstained) || b.size - a.size || a.segment_id.localeCompare(b.segment_id));
 }
 const slug = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);

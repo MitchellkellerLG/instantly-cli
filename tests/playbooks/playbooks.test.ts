@@ -195,6 +195,24 @@ describe('segments (S6, S7)', () => {
     for (const s of a.segments.filter((s: any) => !s.abstained)) { expect(s.signal).toBeTruthy(); expect(s.persona_kpi).toBeTruthy(); expect(a.ladder).toContain(s.ladder_rung); }
     expect(a.segments[a.segments.length - 1].abstained).toBe(true);
   });
+  it.each(['campaign_id', 'list_id'])('returns all 500 membership IDs for a bounded %s preview', async source => {
+    const leads = Array.from({ length: 500 }, (_, i) => ({ id: uuid(i + 1000), job_title: 'CEO' }));
+    let page = 0;
+    const w = makeWorld({ responses: { 'POST /leads/list': () => {
+      const items = leads.slice(page * 50, (page + 1) * 50);
+      page++;
+      return { items, next_starting_after: page < 10 ? items[items.length - 1].id : null };
+    } } });
+    const preview = await w.runner.preview('skin_in_the_game_segments', { [source]: uuid(10), max_leads: 500 });
+    const artifact = preview.artifact as any;
+    expect(artifact.sampled).toBe(500);
+    expect(artifact.segments).toHaveLength(1);
+    expect(artifact.segments[0]).toMatchObject({ segment_id: 'exec_title', size: 500, lead_ids: leads.map(lead => lead.id) });
+    expect(artifact.segments[0].lead_ids).toHaveLength(500);
+    expect(page).toBe(10);
+    expect(w.mutations()).toEqual([]);
+    await expect(w.runner.preview('skin_in_the_game_segments', { [source]: uuid(10), max_leads: 501 })).rejects.toThrow();
+  });
   it('requires exactly one of campaign_id or list_id', async () => {
     const w = makeWorld();
     await expect(w.runner.preview('skin_in_the_game_segments', {})).rejects.toThrow();
