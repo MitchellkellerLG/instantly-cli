@@ -1,0 +1,6 @@
+# Synthetic test credentials are not secrets. The playbook idempotency ids are deterministic hashes.
+[extend]
+useDefault = true
+
+[allowlist]
+regexes = ['''pb-[0-9a-f]{40}''']

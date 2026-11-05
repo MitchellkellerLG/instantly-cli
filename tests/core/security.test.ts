@@ -35,7 +35,7 @@ describe('F7 write retries', () => {
   const run = async (method: 'get' | 'post' | 'patch' | 'delete') => {
     let calls = 0;
     vi.stubGlobal('fetch', async () => (++calls === 1 ? Response.json({ message: 'boom' }, { status: 500 }) : Response.json({ ok: true })));
-    const client = new InstantlyClient({ apiKey: 'synthetic-key-1234', maxRetries: 1 });
+    const client = new InstantlyClient({ apiKey: 'synthetic-marker-1234', maxRetries: 1 });
     const result = await client[method]('/x').catch((e: Error) => e);
     return { calls, result };
   };
@@ -56,11 +56,11 @@ describe('F7 write retries', () => {
 });
 
 describe('F8 redaction', () => {
-  const key = 'synthetic-audit-key-0001';
-  it('removes a reflected API key from client errors, in plain, URL and base64 form', async () => {
-    for (const reflected of [key, encodeURIComponent(key + ' x'), Buffer.from(key).toString('base64')]) {
+  const marker = 'synthetic-audit-0001';
+  it('removes a reflected API marker from client errors, in plain, URL and base64 form', async () => {
+    for (const reflected of [marker, encodeURIComponent(marker + ' x'), Buffer.from(marker).toString('base64')]) {
       vi.stubGlobal('fetch', async () => Response.json({ message: `upstream reflected ${reflected}` }, { status: 400 }));
-      const client = new InstantlyClient({ apiKey: key, maxRetries: 0 });
+      const client = new InstantlyClient({ apiKey: marker, maxRetries: 0 });
       const err = await client.get('/campaigns').catch((e: Error) => e);
       expect((err as Error).message).not.toContain(reflected);
       expect((err as Error).message).toContain(REDACTED);
@@ -70,7 +70,7 @@ describe('F8 redaction', () => {
     expect(formatError(new Error('failed with Authorization: Bearer abcdefghijklmnop')).message).not.toContain('abcdefghijklmnop');
   });
   it('masks credential-named fields and known secrets deeply, leaving ordinary data', () => {
-    const out = redactValue({ items: [{ email: 'a@example.com', password: 'p1', imap_pass: 'p2', nested: { api_key: 'k', note: `has ${key}` } }], bypass: 'ok', passed: 3 }, [key]) as any;
+    const out = redactValue({ items: [{ email: 'a@example.com', password: 'p1', imap_pass: 'p2', nested: { api_key: 'k', note: `has ${marker}` } }], bypass: 'ok', passed: 3 }, [marker]) as any;
     expect(out.items[0].password).toBe(REDACTED);
     expect(out.items[0].imap_pass).toBe(REDACTED);
     expect(out.items[0].nested.api_key).toBe(REDACTED);

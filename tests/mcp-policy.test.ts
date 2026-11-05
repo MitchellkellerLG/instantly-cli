@@ -8,11 +8,11 @@ vi.mock('@modelcontextprotocol/sdk/server/mcp.js', () => ({
   },
 }));
 vi.mock('@modelcontextprotocol/sdk/server/stdio.js', () => ({ StdioServerTransport: class {} }));
-const KEY = 'synthetic-pinned-key-0001';
+const PINNED = 'synthetic-pinned-0001';
 vi.mock('../src/core/auth.js', () => ({
   resolveCredentials: async (o: { profile?: string } = {}) => o.profile
-    ? { apiKey: KEY, source: `profile (${o.profile})`, profile: { slug: o.profile, workspace_id: 'ws-a', workspace_name: 'A', api_key: KEY }, boundWorkspace: { id: 'ws-a', name: 'A' } }
-    : { apiKey: KEY, source: 'env' },
+    ? { apiKey: PINNED, source: `profile (${o.profile})`, profile: { slug: o.profile, workspace_id: 'ws-a', workspace_name: 'A', api_key: PINNED }, boundWorkspace: { id: 'ws-a', name: 'A' } }
+    : { apiKey: PINNED, source: 'env' },
   boundWorkspaceOf: (c: any) => c.boundWorkspace,
   displayProfileSlug: (c: any) => c.profile?.slug ?? 'default',
 }));
@@ -27,8 +27,8 @@ beforeEach(() => {
     if (path.endsWith('/workspaces/current')) return Response.json({ id: 'ws-a', name: 'A' });
     if (path.includes('/dfy-email-account-orders/accounts')) return Response.json({ items: [{ password: 'pw-marker' }] });
     if (path.endsWith('/campaigns/c1/activate')) return Response.json({ id: 'c1' });
-    if (path.endsWith('/campaigns')) return Response.json({ items: [], echoed: KEY });
-    return Response.json({ message: `bad ${KEY}` }, { status: 400 });
+    if (path.endsWith('/campaigns')) return Response.json({ items: [], echoed: PINNED });
+    return Response.json({ message: `bad ${PINNED}` }, { status: 400 });
   });
 });
 afterEach(() => vi.unstubAllGlobals());
@@ -82,6 +82,6 @@ it('F3/F8: operator-approved sensitive reads return credentials; otherwise resul
 
 it('F8: the active key never appears in results or errors', async () => {
   await startMcpServer();
-  expect(JSON.stringify(await call('campaigns_list'))).not.toContain(KEY);
-  expect(JSON.stringify(await call('campaigns_get', { id: 'nope' }))).not.toContain(KEY);
+  expect(JSON.stringify(await call('campaigns_list'))).not.toContain(PINNED);
+  expect(JSON.stringify(await call('campaigns_get', { id: 'nope' }))).not.toContain(PINNED);
 });
