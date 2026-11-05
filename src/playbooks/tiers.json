@@ -1,0 +1,23 @@
+{
+  "vip": {
+    "description": "The client, their own key, their own machine. Reads and previews only.",
+    "allowedWrites": [],
+    "allowUnknownCost": false,
+    "creditCeiling": 0,
+    "forbiddenRequires": ["browser_write"]
+  },
+  "managed": {
+    "description": "A LeadGrow operator with a client profile. Draft and organisational writes only; never activate, send or delete.",
+    "allowedWrites": ["campaigns_create", "campaigns_add_variables", "lead_lists_create", "custom_tags_create", "custom_tags_toggle", "leads_move", "webhooks_create"],
+    "allowUnknownCost": true,
+    "creditCeiling": 0,
+    "forbiddenRequires": ["browser_write"]
+  },
+  "internal": {
+    "description": "The LeadGrow team on a LeadGrow or test workspace with the owner signed in.",
+    "allowedWrites": ["campaigns_create", "campaigns_add_variables", "lead_lists_create", "custom_tags_create", "custom_tags_toggle", "leads_move", "webhooks_create", "local_business_search_convert_local_businesses"],
+    "allowUnknownCost": true,
+    "creditCeiling": 50,
+    "forbiddenRequires": []
+  }
+}

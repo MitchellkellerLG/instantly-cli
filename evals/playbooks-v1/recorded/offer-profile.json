@@ -1,0 +1,895 @@
+{
+  "id": "offer-profile",
+  "playbook": "offer_profile",
+  "tier": "internal",
+  "input": {},
+  "scope": {
+    "profile": "default",
+    "workspace": "00000000-0000-4000-8000-ecffa89fb5d5"
+  },
+  "workspaceName": "Synthetic sandbox",
+  "allowedWrites": [
+    "campaigns_create",
+    "lead_lists_create",
+    "webhooks_create",
+    "local_business_search_convert_local_businesses"
+  ],
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspace-billing/plan-details"
+      },
+      "response": {
+        "organization_id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "organization_name": "text-13",
+        "subscriptions": {
+          "outreach": {
+            "plan_name": "Hyper Growth",
+            "addons_qty": 0,
+            "total_lead_limit": 25000,
+            "current_lead_count": 10,
+            "base_lead_limit": 25000,
+            "interval": "month",
+            "current_period_end": 1795673564,
+            "cancel_at_time": null,
+            "price_in_dollars": 107,
+            "product_id": "text-9"
+          },
+          "credits": {
+            "plan_name": "Free Trial",
+            "total_credits": 1000,
+            "available_credits": 49986,
+            "interval": null,
+            "current_period_end": null,
+            "cancel_at_time": null,
+            "price_in_dollars": null,
+            "product_id": "text-8",
+            "price_option_id": null
+          },
+          "bundle": {
+            "plan_name": null,
+            "total_lead_limit": 0,
+            "current_lead_count": 10,
+            "base_lead_limit": 0,
+            "interval": null,
+            "current_period_end": null,
+            "cancel_at_time": null,
+            "price_in_dollars": null,
+            "product_id": null
+          },
+          "crm": {
+            "plan_name": null,
+            "interval": null,
+            "current_period_end": null,
+            "cancel_at_time": null,
+            "price_in_dollars": null,
+            "product_id": null,
+            "available_credits": null,
+            "plan_limit": null
+          },
+          "website_visitors": {
+            "plan_name": null,
+            "interval": null,
+            "current_period_end": null,
+            "cancel_at_time": null,
+            "price_in_dollars": null,
+            "product_id": null,
+            "available_credits": null,
+            "plan_limit": null
+          },
+          "inbox_placement": {
+            "plan_name": null,
+            "interval": null,
+            "current_period_end": null,
+            "cancel_at_time": null,
+            "price_in_dollars": null,
+            "product_id": null,
+            "available_credits": null,
+            "plan_limit": null,
+            "included_with_crm": false
+          }
+        },
+        "addons": {
+          "outreach": {
+            "product_id": "text-17",
+            "unit_lead_limit": 25000,
+            "existing_quantity": 0,
+            "max_quantity": 20,
+            "interval": null,
+            "can_purchase": true,
+            "purchase_blocked_reason": null,
+            "annual_discount_percent": 20,
+            "monthly_pricing_tiers": [
+              {
+                "from_quantity": 1,
+                "to_quantity": 5,
+                "price_in_dollars": 87
+              },
+              {
+                "from_quantity": 6,
+                "to_quantity": 20,
+                "price_in_dollars": 80
+              },
+              {
+                "from_quantity": 21,
+                "to_quantity": null,
+                "price_in_dollars": 72
+              }
+            ]
+          },
+          "credits": {
+            "product_id": "text-19",
+            "annual_product_id": "text-26",
+            "unit_credits": 50000,
+            "annual_unit_credits": 600000,
+            "existing_quantity": 0,
+            "max_quantity": 10,
+            "interval": null,
+            "can_purchase": false,
+            "purchase_blocked_reason": "text-27",
+            "monthly_price_in_dollars": 425,
+            "annual_price_in_dollars": 5100
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/ai-agents/sales",
+        "query": {
+          "limit": 10
+        }
+      },
+      "response": {
+        "items": [
+          {
+            "id": "00000000-0000-4000-8000-a4b2b9a53f56",
+            "workspace_id": "00000000-0000-4000-8000-ecffa89fb5d5",
+            "name": "text-34",
+            "status": 1,
+            "initial_scrape_ready": true,
+            "timestamp_created": "2026-07-29T21:00:44.448Z",
+            "timestamp_updated": "2026-11-04T09:35:58.862Z",
+            "type": "website",
+            "input": "https://example.invalid/0fd323f7",
+            "config": {
+              "memory": {
+                "icps": [
+                  {
+                    "usp": "text-240",
+                    "name": "text-92",
+                    "benefits": [
+                      "text-75",
+                      "text-81",
+                      "text-73",
+                      "text-88",
+                      "text-84"
+                    ],
+                    "industry": [
+                      "text-19",
+                      "text-17"
+                    ],
+                    "keywords": {
+                      "exclude": "",
+                      "include": ""
+                    },
+                    "location": {
+                      "exclude": [],
+                      "include": [
+                        {
+                          "label": "text-13",
+                          "value": "text-13",
+                          "placeId": "text-27"
+                        }
+                      ]
+                    },
+                    "job_title": {
+                      "exclude": [
+                        "text-6",
+                        "text-9",
+                        "text-11"
+                      ],
+                      "include": [
+                        "text-8",
+                        "text-13",
+                        "text-18",
+                        "text-25",
+                        "text-14"
+                      ]
+                    },
+                    "company_size": [
+                      "text-8",
+                      "text-9"
+                    ],
+                    "customer_goals": [
+                      "text-56",
+                      "text-66",
+                      "text-72",
+                      "text-69"
+                    ],
+                    "problems_solved": [
+                      "text-63",
+                      "text-81",
+                      "text-65",
+                      "text-83",
+                      "text-65"
+                    ],
+                    "success_stories": "text-314"
+                  },
+                  {
+                    "usp": "text-236",
+                    "name": "text-113",
+                    "benefits": [
+                      "text-82",
+                      "text-96",
+                      "text-85",
+                      "text-82",
+                      "text-82"
+                    ],
+                    "industry": [
+                      "text-17",
+                      "text-19"
+                    ],
+                    "keywords": {
+                      "exclude": "",
+                      "include": ""
+                    },
+                    "location": {
+                      "exclude": [],
+                      "include": [
+                        {
+                          "label": "text-13",
+                          "value": "text-13",
+                          "placeId": "text-27"
+                        },
+                        {
+                          "label": "text-14",
+                          "value": "text-14",
+                          "placeId": "text-27"
+                        }
+                      ]
+                    },
+                    "job_title": {
+                      "exclude": [
+                        "text-6",
+                        "text-9",
+                        "text-11"
+                      ],
+                      "include": [
+                        "text-7",
+                        "text-3",
+                        "text-13",
+                        "text-14",
+                        "text-28"
+                      ]
+                    },
+                    "company_size": [
+                      "text-6",
+                      "text-8"
+                    ],
+                    "customer_goals": [
+                      "text-58",
+                      "text-73",
+                      "text-57",
+                      "text-59"
+                    ],
+                    "problems_solved": [
+                      "text-61",
+                      "text-67",
+                      "text-59",
+                      "text-69",
+                      "text-55"
+                    ],
+                    "success_stories": "text-257"
+                  }
+                ],
+                "company": "text-9",
+                "language": "text-7",
+                "business_offers": [
+                  "text-355",
+                  "text-347",
+                  "text-301"
+                ],
+                "active_icps_indexes": [
+                  0,
+                  1
+                ],
+                "business_description": "text-480",
+                "active_business_offers_indexes": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              "position_details": "text-400",
+              "enrichment_settings": {
+                "enrichment_limit_per_run": 10
+              },
+              "outreach_settings": {
+                "opt_out_settings": {
+                  "text_opt_out_enabled": true
+                },
+                "email_list": [],
+                "daily_limit": 10,
+                "open_tracking": false,
+                "stop_on_reply": true,
+                "email_tag_list": [],
+                "match_lead_esp": true,
+                "campaign_schedule": {
+                  "schedules": [
+                    {
+                      "days": {
+                        "0": false,
+                        "1": true,
+                        "2": true,
+                        "3": true,
+                        "4": true,
+                        "5": true,
+                        "6": false
+                      },
+                      "name": "text-8",
+                      "timing": {
+                        "to": "text-5",
+                        "from": "text-5"
+                      },
+                      "timezone": "text-10"
+                    }
+                  ]
+                },
+                "prioritize_new_leads": true,
+                "first_email_text_only": true
+              },
+              "autonomy_settings": {
+                "autopilot_mode": false,
+                "auto_reply_to_responses": true
+              }
+            },
+            "created_by": "00000000-0000-4000-8000-36e85c99de7d",
+            "master_lead_list_id": "00000000-0000-4000-8000-bc4e0bd53640",
+            "agent_type": 7,
+            "self_improvement": true,
+            "timestamp_last_decision": "2026-11-04T09:35:58.862Z",
+            "next_decision_time": "2026-11-05T09:35:57.527Z"
+          },
+          {
+            "id": "00000000-0000-4000-8000-5a11b592b6f8",
+            "workspace_id": "00000000-0000-4000-8000-ecffa89fb5d5",
+            "name": "text-29",
+            "status": 0,
+            "initial_scrape_ready": true,
+            "timestamp_created": "2026-04-08T19:02:24.861Z",
+            "timestamp_updated": "2026-04-08T19:08:49.190Z",
+            "type": "website",
+            "input": "https://example.invalid/0fd323f7",
+            "config": {
+              "memory": {
+                "icps": [
+                  {
+                    "usp": "text-220",
+                    "name": "text-92",
+                    "benefits": [
+                      "text-95",
+                      "text-75",
+                      "text-101",
+                      "text-75",
+                      "text-75"
+                    ],
+                    "industry": [
+                      "text-19",
+                      "text-17"
+                    ],
+                    "keywords": {
+                      "exclude": "",
+                      "include": ""
+                    },
+                    "location": {
+                      "exclude": [],
+                      "include": [
+                        {
+                          "label": "text-13",
+                          "placeId": "text-27"
+                        }
+                      ]
+                    },
+                    "job_title": {
+                      "exclude": [
+                        "text-6",
+                        "text-9",
+                        "text-11"
+                      ],
+                      "include": [
+                        "text-13",
+                        "text-13",
+                        "text-18",
+                        "text-14",
+                        "text-11"
+                      ]
+                    },
+                    "company_size": [
+                      "text-8",
+                      "text-9"
+                    ],
+                    "customer_goals": [
+                      "text-56",
+                      "text-48",
+                      "text-54",
+                      "text-65"
+                    ],
+                    "problems_solved": [
+                      "text-70",
+                      "text-55",
+                      "text-63",
+                      "text-75",
+                      "text-70"
+                    ],
+                    "success_stories": "text-305"
+                  },
+                  {
+                    "usp": "text-249",
+                    "name": "text-126",
+                    "benefits": [
+                      "text-74",
+                      "text-71",
+                      "text-76",
+                      "text-78",
+                      "text-84"
+                    ],
+                    "industry": [
+                      "text-19",
+                      "text-23"
+                    ],
+                    "keywords": {
+                      "exclude": "",
+                      "include": ""
+                    },
+                    "location": {
+                      "exclude": [],
+                      "include": [
+                        {
+                          "label": "text-6",
+                          "placeId": "text-27"
+                        },
+                        {
+                          "label": "text-14",
+                          "placeId": "text-27"
+                        }
+                      ]
+                    },
+                    "job_title": {
+                      "exclude": [
+                        "text-6",
+                        "text-11",
+                        "text-9"
+                      ],
+                      "include": [
+                        "text-18",
+                        "text-13",
+                        "text-11",
+                        "text-11",
+                        "text-12"
+                      ]
+                    },
+                    "company_size": [
+                      "text-9",
+                      "text-10"
+                    ],
+                    "customer_goals": [
+                      "text-63",
+                      "text-54",
+                      "text-53",
+                      "text-79"
+                    ],
+                    "problems_solved": [
+                      "text-67",
+                      "text-48",
+                      "text-50",
+                      "text-50",
+                      "text-76"
+                    ],
+                    "success_stories": "text-172"
+                  }
+                ],
+                "company": "text-9",
+                "language": "text-7",
+                "business_offers": [
+                  "text-314",
+                  "text-338",
+                  "text-296"
+                ],
+                "active_icps_indexes": [
+                  0,
+                  1
+                ],
+                "business_description": "text-458",
+                "active_business_offers_indexes": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              "enrichment_settings": {
+                "enrichment_limit_per_run": 10
+              },
+              "outreach_settings": {
+                "opt_out_settings": {
+                  "text_opt_out_enabled": true
+                },
+                "email_list": [],
+                "daily_limit": 10,
+                "open_tracking": false,
+                "stop_on_reply": true,
+                "email_tag_list": [],
+                "match_lead_esp": true,
+                "campaign_schedule": {
+                  "schedules": [
+                    {
+                      "days": {
+                        "0": false,
+                        "1": true,
+                        "2": true,
+                        "3": true,
+                        "4": true,
+                        "5": true,
+                        "6": false
+                      },
+                      "name": "text-8",
+                      "timing": {
+                        "to": "text-5",
+                        "from": "text-5"
+                      },
+                      "timezone": "text-10"
+                    }
+                  ]
+                },
+                "prioritize_new_leads": true,
+                "first_email_text_only": true
+              },
+              "autonomy_settings": {
+                "autopilot_mode": false,
+                "auto_reply_to_responses": true
+              }
+            },
+            "created_by": "00000000-0000-4000-8000-36e85c99de7d",
+            "master_lead_list_id": "00000000-0000-4000-8000-e38511252d8f",
+            "agent_type": 2,
+            "self_improvement": false,
+            "next_decision_time": "2026-04-09T09:00:00.000Z"
+          }
+        ]
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/campaigns",
+        "query": {
+          "limit": 100
+        }
+      },
+      "response": {
+        "items": [
+          {
+            "id": "00000000-0000-4000-8000-3fbfbe84bbb1",
+            "name": "text-16",
+            "status": 0,
+            "campaign_schedule": {},
+            "timestamp_created": "2026-03-20T11:42:36.927Z",
+            "timestamp_updated": "2026-03-20T11:48:06.156Z",
+            "open_tracking": false,
+            "core_variables": {
+              "phone": true,
+              "website": true,
+              "lastName": true,
+              "firstName": true,
+              "companyName": true
+            },
+            "custom_variables": {
+              "City": true,
+              "Country": true,
+              "Industry": true,
+              "jobTitle": true
+            },
+            "organization": "00000000-0000-4000-8000-ecffa89fb5d5",
+            "owned_by": "00000000-0000-4000-8000-36e85c99de7d",
+            "created_by": "00000000-0000-4000-8000-36e85c99de7d"
+          }
+        ],
+        "next_starting_after": "00000000-0000-4000-8000-3fbfbe84bbb1"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/campaigns",
+        "query": {
+          "limit": 100,
+          "starting_after": "00000000-0000-4000-8000-3fbfbe84bbb1"
+        }
+      },
+      "response": {
+        "items": []
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "body": {
+          "limit": 50
+        },
+        "method": "POST",
+        "path": "/leads/list"
+      },
+      "response": {
+        "items": [
+          {
+            "id": "00000000-0000-4000-8000-647fe8cd68df",
+            "timestamp_created": "2026-01-26T17:56:00.975Z",
+            "timestamp_updated": "2026-01-26T18:00:32.020Z",
+            "organization": "00000000-0000-4000-8000-ecffa89fb5d5",
+            "status": 0,
+            "email_open_count": 0,
+            "email_reply_count": 0,
+            "email_click_count": 0,
+            "company_domain": "text-15",
+            "status_summary": {},
+            "email": "ufc80a7a0@example.com",
+            "last_name": "text-5",
+            "first_name": "text-4",
+            "company_name": "text-12",
+            "job_title": "text-13",
+            "payload": {
+              "firstName": "text-4",
+              "lastName": "text-5",
+              "companyName": "text-12",
+              "jobTitle": "text-13",
+              "email": "ufc80a7a0@example.com",
+              "linkedIn": "text-61",
+              "location": "text-38",
+              "companyDomain": "text-15"
+            },
+            "verification_status": 1,
+            "list_id": "00000000-0000-4000-8000-097a4ccaa8ee",
+            "esp_code": 2
+          },
+          {
+            "id": "00000000-0000-4000-8000-0ae8272d723a",
+            "timestamp_created": "2026-01-26T17:56:00.975Z",
+            "timestamp_updated": "2026-01-26T18:00:31.319Z",
+            "organization": "00000000-0000-4000-8000-ecffa89fb5d5",
+            "status": 0,
+            "email_open_count": 0,
+            "email_reply_count": 0,
+            "email_click_count": 0,
+            "company_domain": "text-15",
+            "status_summary": {},
+            "email": "udf523dcd@example.com",
+            "last_name": "text-13",
+            "first_name": "text-7",
+            "company_name": "text-13",
+            "job_title": "text-13",
+            "payload": {
+              "firstName": "text-7",
+              "lastName": "text-13",
+              "companyName": "text-13",
+              "jobTitle": "text-13",
+              "email": "udf523dcd@example.com",
+              "linkedIn": "text-47",
+              "location": "text-38",
+              "companyDomain": "text-15"
+            },
+            "verification_status": 1,
+            "list_id": "00000000-0000-4000-8000-097a4ccaa8ee",
+            "esp_code": 2
+          },
+          {
+            "id": "00000000-0000-4000-8000-c5450a84c6fb",
+            "timestamp_created": "2026-01-26T17:56:00.975Z",
+            "timestamp_updated": "2026-01-26T18:01:01.324Z",
+            "organization": "00000000-0000-4000-8000-ecffa89fb5d5",
+            "status": 0,
+            "email_open_count": 0,
+            "email_reply_count": 0,
+            "email_click_count": 0,
+            "company_domain": "text-13",
+            "status_summary": {},
+            "email": "u2464e268@example.com",
+            "last_name": "text-4",
+            "first_name": "text-6",
+            "company_name": "text-19",
+            "job_title": "text-13",
+            "payload": {
+              "firstName": "text-6",
+              "lastName": "text-4",
+              "companyName": "text-19",
+              "jobTitle": "text-13",
+              "email": "u2464e268@example.com",
+              "linkedIn": "text-37",
+              "location": "text-39",
+              "companyDomain": "text-13"
+            },
+            "verification_status": 1,
+            "list_id": "00000000-0000-4000-8000-097a4ccaa8ee",
+            "esp_code": 2
+          },
+          {
+            "id": "00000000-0000-4000-8000-24074da758e5",
+            "timestamp_created": "2026-01-26T17:56:00.975Z",
+            "timestamp_updated": "2026-01-26T18:00:30.620Z",
+            "organization": "00000000-0000-4000-8000-ecffa89fb5d5",
+            "status": 0,
+            "email_open_count": 0,
+            "email_reply_count": 0,
+            "email_click_count": 0,
+            "company_domain": "text-9",
+            "status_summary": {},
+            "email": "u654ff3ea@example.com",
+            "last_name": "text-7",
+            "first_name": "text-4",
+            "company_name": "text-22",
+            "job_title": "text-45",
+            "payload": {
+              "firstName": "text-4",
+              "lastName": "text-7",
+              "companyName": "text-22",
+              "jobTitle": "text-45",
+              "email": "u654ff3ea@example.com",
+              "linkedIn": "text-37",
+              "location": "text-36",
+              "companyDomain": "text-9"
+            },
+            "verification_status": 1,
+            "list_id": "00000000-0000-4000-8000-097a4ccaa8ee",
+            "esp_code": 2
+          },
+          {
+            "id": "00000000-0000-4000-8000-630ff533e44e",
+            "timestamp_created": "2026-01-26T17:56:00.975Z",
+            "timestamp_updated": "2026-01-26T18:01:01.329Z",
+            "organization": "00000000-0000-4000-8000-ecffa89fb5d5",
+            "status": 0,
+            "email_open_count": 0,
+            "email_reply_count": 0,
+            "email_click_count": 0,
+            "company_domain": "text-15",
+            "status_summary": {},
+            "email": "u65c12598@example.com",
+            "last_name": "text-7",
+            "first_name": "text-7",
+            "company_name": "text-15",
+            "job_title": "text-13",
+            "payload": {
+              "firstName": "text-7",
+              "lastName": "text-7",
+              "companyName": "text-15",
+              "jobTitle": "text-13",
+              "email": "u65c12598@example.com",
+              "linkedIn": "text-41",
+              "location": "text-35",
+              "companyDomain": "text-15"
+            },
+            "verification_status": 1,
+            "list_id": "00000000-0000-4000-8000-097a4ccaa8ee",
+            "esp_code": 999,
+            "esg_code": 1
+          }
+        ],
+        "next_starting_after": "00000000-0000-4000-8000-479ad5f899d9"
+      }
+    }
+  ],
+  "expect": {
+    "plan_hash": "edbe6084b1cdf0e96baadcf30afdaade22d88be9c3eba348a94a66d308bb043b",
+    "artifact_hash": "8e0c3716b274f3795129ba9b60e1dd143a2292b3351947d4f0a3d464cd92d24a",
+    "refusals": [
+      "NEEDS_CONFIRMATION"
+    ],
+    "steps": [],
+    "token_issued": false
+  }
+}

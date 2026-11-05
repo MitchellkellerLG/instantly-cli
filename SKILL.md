@@ -3,7 +3,7 @@ name: instantly-cli
 description: Use the Instantly CLI and MCP server for cold email campaigns, leads, accounts, and inbox. Name every client as a profile. Confirm status (slug, workspace_id, workspace_name) before other commands. One process, one profile.
 ---
 
-# Instantly CLI — agent skill
+# Instantly CLI - agent skill
 
 Public CLI (`npm i -g instantly-cli`). JSON on stdout. Node.js 18+.
 
@@ -20,7 +20,7 @@ Resolve order **without** `--profile` / `INSTANTLY_PROFILE`:
 3. cwd `.env` `INSTANTLY_API_KEY`
 4. `~/.instantly/config.json` from `instantly login`
 
-`instantly login` stamps `{ api_key, workspace_id, workspace_name }` onto `~/.instantly/config.json` (mode 0600). `status` / `whoami` print `profile: "default"` plus that bound pair — not null.
+`instantly login` stamps `{ api_key, workspace_id, workspace_name }` onto `~/.instantly/config.json` (mode 0600). `status` / `whoami` print `profile: "default"` plus that bound pair - not null.
 
 ```bash
 export INSTANTLY_API_KEY="your-key"
@@ -80,7 +80,7 @@ instantly --profile client-a health
 
 ## Campaign bodies
 
-Instantly delivers HTML. **Pass readable copy with real line breaks** in each variant `body`. The CLI converts plain-text newlines to `<br/>`/`<p>` on `campaigns create` / `update` and `subsequences create`. Do not send a run-on string. Do not hand-write HTML tags unless the body is already tagged. Existing HTML is left unchanged. `--text-only` skips conversion. Same Instantly `body` key — no second field.
+Instantly delivers HTML. **Pass readable copy with real line breaks** in each variant `body`. The CLI converts plain-text newlines to `<br/>`/`<p>` on `campaigns create` / `update` and `subsequences create`. Do not send a run-on string. Do not hand-write HTML tags unless the body is already tagged. Existing HTML is left unchanged. `--text-only` skips conversion. Same Instantly `body` key - no second field.
 
 The same convert-for-you path applies to `email reply`, `email forward`, and `leads bulk-add` custom_variables whose key contains `body`.
 
@@ -113,6 +113,10 @@ One MCP server process per profile. Set `INSTANTLY_PROFILE=client-a` (or `INSTAN
 ### Compact MCP surface (opt-in)
 
 See [the compact surface guide](README.md#compact-surface-four-tools-instead-of-289) for tool inputs, credentials and write policy. Flow: find an ID, describe it, then run a read or preview a write. Always run `status` first (`instantly_run` with `mode: read`, `command_id: status`, `profile` and `workspace_id`). Pass the same scope on every preview and run; find and describe do not accept scope fields. Features reported as unavailable have no supported command: say so, do not guess an endpoint. Hosts must load this skill themselves; the server only sends short instructions.
+
+### Playbooks (opt-in)
+
+`instantly playbooks list` shows ready-made plans (offer profile, campaign ideas, segmentation, website visitors, local lookalike). Preview first (`playbooks run <slug>`); the output has a `plan_hash`, the planned single-request writes and an attended browser checklist. Execute only after the user approves, with `--confirm <plan_hash>`, `--allow-write` and a tier that permits it. The default tier is `vip` and never executes a write. Browser steps are for a human: never click Save, Submit or Launch for them. See [the playbooks section](README.md#playbooks-ready-made-plans-over-the-safe-dispatcher).
 
 ## Discover commands
 

@@ -220,3 +220,9 @@ inherited security, servers, path parameters and non-schema components, and repo
 operation and schema additions, removals and changes. Semantic differences or missing
 command coverage exit with status 2; the pin is never updated automatically.
 The recorded review is [`v1/spec-review.json`](v1/spec-review.json).
+
+## Playbook eval family
+
+[`playbooks-v1/jobs.json`](playbooks-v1/jobs.json) is a 33-job eval family for the playbooks (read, preview, executed, refusal, gap, safety) with a hand-written outcome oracle; `npx tsx scripts/playbooks/eval.ts --write` replays it against synthetic worlds. The trace grader in `scripts/playbooks/eval.ts` matches each mutation's complete normalized request to a previously previewed, consumed token and rejects reuse without a fresh preview.
+
+`playbooks-v1/recorded/` holds regenerated strict-replay recordings of redacted live response shapes. Their goldens pin request order and computation on redacted data, not live-only content; `scripts/playbooks/replay.ts` drops trailing live-only exchanges when regenerating them. `tests/playbooks/` covers the registry, tiers, runner, per-playbook behavior, MCP and CLI surfaces, and these replays. [`playbooks-v1/live-proof.json`](playbooks-v1/live-proof.json) records the live Keagans Space proof, including draft status and membership of the lookalike campaign's two converted leads, the credit delta, and cleanup. The zero credit delta reflects reuse of an idempotent conversion from earlier diagnosis; total spend across diagnosis and proof was at most 4 credits, within the 50-credit ceiling. `scripts/playbooks/proof.ts` runs that live proof and `scripts/playbooks/proof-checks.ts` verifies the lookalike campaign evidence.

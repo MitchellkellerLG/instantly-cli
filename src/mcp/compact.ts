@@ -7,6 +7,8 @@ import { createLiveHost } from '../compact/host.js';
 import { defaultContext, type Context } from '../compact/catalog.js';
 import { Finder } from '../compact/find.js';
 import { describeShape, findShape, previewShape, runShape } from '../compact/tools.js';
+import { resolveTier } from '../playbooks/tiers.js';
+import { registerPlaybooks, playbookServiceFor } from './playbooks.js';
 
 export interface McpOptions {
   surface?: 'compact' | 'legacy';
@@ -14,6 +16,9 @@ export interface McpOptions {
   allowWrites?: string[];
   allowUnknownCost?: boolean;
   profile?: string;
+  /** Opt-in: also register the four playbook tools and playbook prompts. Default surfaces are unchanged. */
+  playbooks?: boolean;
+  tier?: string;
 }
 
 const reply = (result: unknown) => ({
@@ -42,6 +47,7 @@ export function createCompactServer(options: McpOptions = {}, surface?: CompactS
     allowUnknownCost: options.allowUnknownCost, context });
   const server = new McpServer({ name: 'instantly', version: '0.1.22' }, { instructions: context.instructions });
   registerCompactTools(server, surface ?? new CompactSurface(new Finder(context), () => host), context);
+  if (options.playbooks) registerPlaybooks(server, playbookServiceFor(options, host));
   return server;
 }
 
@@ -53,13 +59,16 @@ export async function startCompactMcpServer(options: McpOptions = {}): Promise<v
 
 /** Flags win over the host-provided environment. An unknown surface is an error, never a silent fallback. */
 export function mcpOptionsFrom(
-  flags: { surface?: string; allowWrite?: string; allowUnknownCost?: boolean; profile?: string },
+  flags: { surface?: string; allowWrite?: string; allowUnknownCost?: boolean; profile?: string; playbooks?: boolean; tier?: string },
   host: Record<string, string | undefined> = process.env,
 ): McpOptions {
   const surface = flags.surface ?? host.INSTANTLY_MCP_SURFACE ?? 'legacy';
   if (surface !== 'compact' && surface !== 'legacy') throw new Error(`Unknown MCP surface '${surface}'. Use compact or legacy.`);
   const allow = (flags.allowWrite ?? host.INSTANTLY_MCP_ALLOW_WRITES ?? '').split(',').map(s => s.trim()).filter(Boolean);
   const unknownCost = flags.allowUnknownCost === true || host.INSTANTLY_MCP_ALLOW_UNKNOWN_COST === '1';
-  if (surface === 'legacy' && (allow.length || unknownCost)) throw new Error('Write allowances apply only to --surface compact.');
-  return { surface, allowWrites: allow, allowUnknownCost: unknownCost, profile: flags.profile };
+  const playbooks = flags.playbooks === true || host.INSTANTLY_MCP_PLAYBOOKS === '1';
+  if (surface === 'legacy' && !playbooks && (allow.length || unknownCost)) throw new Error('Write allowances apply only to --surface compact or --playbooks.');
+  const tier = flags.tier ?? host.INSTANTLY_TIER;
+  if (tier !== undefined && tier !== '') resolveTier(tier); // a typo fails at startup and never widens access
+  return { surface, allowWrites: allow, allowUnknownCost: unknownCost, profile: flags.profile, ...(playbooks ? { playbooks: true } : {}), ...(tier ? { tier } : {}) };
 }

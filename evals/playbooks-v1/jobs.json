@@ -1,0 +1,890 @@
+[
+ {
+  "id": "op-01",
+  "family": "read",
+  "playbook": "offer_profile",
+  "world": "saas",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {},
+  "run": false,
+  "expect": {
+   "outcome": "read_result",
+   "mutations": 0,
+   "token": false,
+   "steps": [],
+   "refusals": [],
+   "checks": [
+    {
+     "path": "offer_profile.offer_category",
+     "equals": "saas"
+    },
+    {
+     "path": "offer_profile.offer_angle",
+     "equals": "make_money"
+    },
+    {
+     "path": "offer_profile.confidence",
+     "equals": "high"
+    }
+   ]
+  }
+ },
+ {
+  "id": "op-02",
+  "family": "refusal",
+  "playbook": "offer_profile",
+  "world": "empty",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {},
+  "run": false,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "NEEDS_CONFIRMATION"
+   ],
+   "checks": [
+    {
+     "path": "offer_profile.offer_category",
+     "equals": "unknown"
+    },
+    {
+     "path": "offer_profile.needs_confirmation",
+     "equals": true
+    }
+   ]
+  }
+ },
+ {
+  "id": "op-03",
+  "family": "read",
+  "playbook": "offer_profile",
+  "world": "recruiting",
+  "tier": "managed",
+  "hostAllowedWrites": [],
+  "input": {},
+  "run": false,
+  "expect": {
+   "outcome": "read_result",
+   "mutations": 0,
+   "checks": [
+    {
+     "path": "offer_profile.offer_category",
+     "equals": "recruiting"
+    }
+   ]
+  }
+ },
+ {
+  "id": "op-04",
+  "family": "refusal",
+  "playbook": "offer_profile",
+  "world": "saas",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {
+   "surprise": 1
+  },
+  "run": false,
+  "expect": {
+   "outcome": "error",
+   "mutations": 0,
+   "error": "UNKNOWN_ARGUMENTS"
+  }
+ },
+ {
+  "id": "op-05",
+  "family": "safety",
+  "playbook": "offer_profile",
+  "world": "saas",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {},
+  "run": true,
+  "expect": {
+   "outcome": "read_result",
+   "mutations": 0,
+   "token": false
+  }
+ },
+ {
+  "id": "ci-01",
+  "family": "read",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {
+   "count": 18
+  },
+  "run": false,
+  "expect": {
+   "outcome": "read_result",
+   "mutations": 0,
+   "checks": [
+    {
+     "path": "ideas.length",
+     "equals": 18
+    },
+    {
+     "path": "ideas.0.id",
+     "equals": "idea-01"
+    }
+   ]
+  }
+ },
+ {
+  "id": "ci-02",
+  "family": "read",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {
+   "count": 25
+  },
+  "run": false,
+  "expect": {
+   "outcome": "read_result",
+   "mutations": 0,
+   "checks": [
+    {
+     "path": "ideas.length",
+     "equals": 25
+    }
+   ]
+  }
+ },
+ {
+  "id": "ci-03",
+  "family": "read",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {
+   "count": 15,
+   "offer_angle": "save_time"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "read_result",
+   "mutations": 0,
+   "checks": [
+    {
+     "path": "ideas.0.offer_angle",
+     "equals": "save_time"
+    },
+    {
+     "path": "ideas.14.offer_angle",
+     "equals": "save_time"
+    }
+   ]
+  }
+ },
+ {
+  "id": "ci-04",
+  "family": "refusal",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {
+   "count": 5
+  },
+  "run": false,
+  "expect": {
+   "outcome": "error",
+   "mutations": 0
+  }
+ },
+ {
+  "id": "ci-05",
+  "family": "preview",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "vip",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "draft_idea": "idea-01"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "WRITE_POLICY_DENIED"
+   ],
+   "steps": [
+    "lead_lists_create",
+    "campaigns_create"
+   ],
+   "token": false
+  }
+ },
+ {
+  "id": "ci-06",
+  "family": "executed",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "draft_idea": "idea-01"
+  },
+  "run": true,
+  "expect": {
+   "outcome": "executed",
+   "mutations": 2,
+   "steps": [
+    "lead_lists_create",
+    "campaigns_create"
+   ],
+   "token": true,
+   "checks": [
+    {
+     "path": "run.receipts.length",
+     "equals": 2
+    },
+    {
+     "path": "run.unexecuted.length",
+     "equals": 0
+    }
+   ]
+  }
+ },
+ {
+  "id": "ci-07",
+  "family": "refusal",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "internal",
+  "hostAllowedWrites": [],
+  "input": {
+   "draft_idea": "idea-01"
+  },
+  "run": true,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "WRITE_POLICY_DENIED"
+   ],
+   "token": false
+  }
+ },
+ {
+  "id": "ci-08",
+  "family": "refusal",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "draft_idea": "idea-99"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "INSUFFICIENT_DATA"
+   ],
+   "steps": []
+  }
+ },
+ {
+  "id": "ci-09",
+  "family": "safety",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "draft_idea": "idea-01"
+  },
+  "run": true,
+  "expect": {
+   "outcome": "failed",
+   "mutations": 2,
+   "checks": [
+    {
+     "path": "run.failed.code",
+     "equals": "UNKNOWN_EXECUTION_STATUS"
+    },
+    {
+     "path": "run.failed.step",
+     "equals": "campaign"
+    },
+    {
+     "path": "run.receipts.length",
+     "equals": 1
+    }
+   ]
+  },
+  "failWrite": 2
+ },
+ {
+  "id": "ci-10",
+  "family": "safety",
+  "playbook": "campaign_ideas",
+  "world": "saas",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "draft_idea": "idea-01"
+  },
+  "run": true,
+  "expect": {
+   "outcome": "failed",
+   "mutations": 1,
+   "checks": [
+    {
+     "path": "run.unexecuted.length",
+     "equals": 2
+    }
+   ]
+  },
+  "failWrite": 1
+ },
+ {
+  "id": "sg-01",
+  "family": "read",
+  "playbook": "skin_in_the_game_segments",
+  "world": "segments",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {
+   "campaign_id": "00000000-0000-4000-8000-000000000010"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "read_result",
+   "mutations": 0,
+   "checks": [
+    {
+     "path": "segments.0.segment_id",
+     "equals": "growth_title"
+    },
+    {
+     "path": "segments.0.size",
+     "equals": 2
+    },
+    {
+     "path": "abstained",
+     "equals": 1
+    },
+    {
+     "path": "sampled",
+     "equals": 6
+    }
+   ]
+  }
+ },
+ {
+  "id": "sg-02",
+  "family": "preview",
+  "playbook": "skin_in_the_game_segments",
+  "world": "segments",
+  "tier": "vip",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "campaign_id": "00000000-0000-4000-8000-000000000010",
+   "apply": "lists"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "WRITE_POLICY_DENIED"
+   ],
+   "steps": [
+    "lead_lists_create",
+    "lead_lists_create",
+    "lead_lists_create",
+    "lead_lists_create"
+   ],
+   "token": false
+  }
+ },
+ {
+  "id": "sg-03",
+  "family": "executed",
+  "playbook": "skin_in_the_game_segments",
+  "world": "segments",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "campaign_id": "00000000-0000-4000-8000-000000000010",
+   "apply": "lists"
+  },
+  "run": true,
+  "expect": {
+   "outcome": "executed",
+   "mutations": 4,
+   "token": true
+  }
+ },
+ {
+  "id": "sg-04",
+  "family": "refusal",
+  "playbook": "skin_in_the_game_segments",
+  "world": "segments",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {
+   "campaign_id": "00000000-0000-4000-8000-000000000010",
+   "list_id": "00000000-0000-4000-8000-000000000010"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "error",
+   "mutations": 0
+  }
+ },
+ {
+  "id": "sg-05",
+  "family": "refusal",
+  "playbook": "skin_in_the_game_segments",
+  "world": "empty",
+  "tier": "vip",
+  "hostAllowedWrites": [],
+  "input": {
+   "list_id": "00000000-0000-4000-8000-000000000010"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "INSUFFICIENT_DATA"
+   ],
+   "checks": [
+    {
+     "path": "sampled",
+     "equals": 0
+    }
+   ]
+  }
+ },
+ {
+  "id": "wv-01",
+  "family": "refusal",
+  "playbook": "website_visitors_setup",
+  "world": "saas",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "domain": "example.com"
+  },
+  "run": true,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "NOT_ENTITLED"
+   ],
+   "steps": [],
+   "checks": [
+    {
+     "path": "entitled",
+     "equals": false
+    }
+   ]
+  }
+ },
+ {
+  "id": "wv-02",
+  "family": "gap",
+  "playbook": "website_visitors_setup",
+  "world": "entitled",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "domain": "example.com"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "preview_only",
+   "mutations": 0,
+   "steps": [
+    "lead_lists_create",
+    "campaigns_create"
+   ],
+   "token": true,
+   "checks": [
+    {
+     "path": "entitled",
+     "equals": true
+    },
+    {
+     "path": "visitors.identified",
+     "equals": 0
+    }
+   ]
+  }
+ },
+ {
+  "id": "wv-03",
+  "family": "executed",
+  "playbook": "website_visitors_setup",
+  "world": "entitled",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "domain": "example.com"
+  },
+  "run": true,
+  "expect": {
+   "outcome": "executed",
+   "mutations": 2,
+   "token": true
+  }
+ },
+ {
+  "id": "wv-04",
+  "family": "executed",
+  "playbook": "website_visitors_setup",
+  "world": "entitled",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "domain": "example.com",
+   "webhook_url": "https://hooks.example.com/x"
+  },
+  "run": true,
+  "expect": {
+   "outcome": "executed",
+   "mutations": 3,
+   "steps": [
+    "lead_lists_create",
+    "campaigns_create",
+    "webhooks_create"
+   ]
+  }
+ },
+ {
+  "id": "wv-05",
+  "family": "read",
+  "playbook": "website_visitors_setup",
+  "world": "existing_lists",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "domain": "example.com",
+   "webhook_url": "https://hooks.example.com/x"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "read_result",
+   "mutations": 0,
+   "steps": [],
+   "token": false,
+   "refusals": [],
+   "checks": [
+    {
+     "path": "entitled",
+     "equals": true
+    }
+   ]
+  }
+ },
+ {
+  "id": "wv-06",
+  "family": "refusal",
+  "playbook": "website_visitors_setup",
+  "world": "entitled",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "domain": "https://example.com/path"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "error",
+   "mutations": 0
+  }
+ },
+ {
+  "id": "wv-07",
+  "family": "gap",
+  "playbook": "website_visitors_setup",
+  "world": "entitled",
+  "tier": "vip",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "domain": "example.com"
+  },
+  "run": true,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "WRITE_POLICY_DENIED"
+   ],
+   "token": false
+  }
+ },
+ {
+  "id": "ll-01",
+  "family": "preview",
+  "playbook": "local_lookalike",
+  "world": "local",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "category": "dentist",
+   "place": "Austin, TX",
+   "count": 5
+  },
+  "run": false,
+  "expect": {
+   "outcome": "preview_only",
+   "mutations": 0,
+   "steps": [
+    "local_business_search_convert_local_businesses"
+   ],
+   "token": true,
+   "checks": [
+    {
+     "path": "convert.max_credits",
+     "equals": 10
+    },
+    {
+     "path": "place",
+     "equals": "Austin, TX"
+    },
+    {
+     "path": "convert.campaign_name",
+     "equals": "[DRAFT] Local dentist - Austin, TX"
+    }
+   ]
+  }
+ },
+ {
+  "id": "ll-02",
+  "family": "refusal",
+  "playbook": "local_lookalike",
+  "world": "local",
+  "tier": "managed",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "category": "dentist",
+   "place": "Austin, TX",
+   "count": 5
+  },
+  "run": false,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "SPEND_CEILING",
+    "WRITE_POLICY_DENIED"
+   ],
+   "token": false
+  }
+ },
+ {
+  "id": "ll-03",
+  "family": "refusal",
+  "playbook": "local_lookalike",
+  "world": "local",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "category": "dentist",
+   "place": "Austin, TX",
+   "count": 30
+  },
+  "run": false,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "SPEND_CEILING"
+   ],
+   "token": false
+  }
+ },
+ {
+  "id": "ll-04",
+  "family": "executed",
+  "playbook": "local_lookalike",
+  "world": "local",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "category": "dentist",
+   "place": "Austin, TX",
+   "count": 2
+  },
+  "run": true,
+  "expect": {
+   "outcome": "executed",
+   "mutations": 1,
+   "token": true,
+   "checks": [
+    {
+     "path": "run.credits_spent_max",
+     "equals": 4
+    },
+    {
+     "path": "convert.campaign_name",
+     "equals": "[DRAFT] Local dentist - Austin, TX"
+    }
+   ]
+  }
+ },
+ {
+  "id": "ll-05",
+  "family": "refusal",
+  "playbook": "local_lookalike",
+  "world": "noplace",
+  "tier": "internal",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "category": "dentist",
+   "place": "Nowhereville"
+  },
+  "run": false,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "INSUFFICIENT_DATA"
+   ],
+   "steps": []
+  }
+ },
+ {
+  "id": "ll-06",
+  "family": "refusal",
+  "playbook": "local_lookalike",
+  "world": "local",
+  "tier": "vip",
+  "hostAllowedWrites": [
+   "campaigns_create",
+   "lead_lists_create",
+   "webhooks_create",
+   "local_business_search_convert_local_businesses"
+  ],
+  "input": {
+   "category": "dentist",
+   "place": "Austin, TX",
+   "count": 3
+  },
+  "run": true,
+  "expect": {
+   "outcome": "refused",
+   "mutations": 0,
+   "refusals": [
+    "SPEND_CEILING",
+    "WRITE_POLICY_DENIED"
+   ],
+   "token": false
+  }
+ }
+]

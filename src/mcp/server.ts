@@ -9,6 +9,7 @@ import { isMutatingCommand } from '../core/mutating.js';
 import { boundWorkspaceOf, displayProfileSlug, resolveCredentials } from '../core/auth.js';
 import { fetchLiveWorkspace } from '../core/workspace.js';
 import { startCompactMcpServer, type McpOptions } from './compact.js';
+import { playbookServiceFor, registerPlaybooks } from './playbooks.js';
 
 export type { McpOptions };
 
@@ -102,6 +103,8 @@ export async function startMcpServer(options: McpOptions = {}): Promise<void> {
       },
     );
   }
+
+  if (options.playbooks) registerPlaybooks(server, playbookServiceFor(options));
 
   server.registerTool(
     'status',

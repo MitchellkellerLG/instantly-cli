@@ -1,6 +1,6 @@
 # Instantly CLI
 
-**Instantly.ai in your terminal.** Run cold email campaigns, manage leads, monitor deliverability, and automate every outbound motion — from a single command line.
+**Instantly.ai in your terminal.** Run cold email campaigns, manage leads, monitor deliverability, and automate every outbound motion - from a single command line.
 
 287 command definitions shared by the CLI and MCP, covering all 268 operations in the pinned [Instantly.ai public V2 API spec](https://api.instantly.ai/openapi/api_v2.json), plus retained upstream commands. Built for humans, scripts, CI/CD pipelines, and AI agents.
 
@@ -130,30 +130,30 @@ instantly --profile client-a --workspace '<bound-workspace-uuid>' accounts warmu
 
 [Instantly.ai](https://instantly.ai) is the leading cold email and outbound sales platform. It handles everything needed to run high-volume outbound at scale:
 
-- **Email infrastructure** — connect unlimited sending accounts (Google Workspace, Microsoft 365, SMTP/IMAP), auto-rotate senders, manage warmup
-- **Campaign management** — multi-step email sequences with A/B testing, scheduling, and conditional logic
-- **Lead management** — import, enrich, deduplicate, and track prospects across campaigns
-- **Deliverability** — inbox placement testing, sender reputation monitoring, blocklist management, and warmup analytics
-- **Unified inbox** — read, reply, and forward across all sending accounts from one place
-- **AI features** — AI-powered lead labeling, interest classification, and response handling
+- **Email infrastructure** - connect unlimited sending accounts (Google Workspace, Microsoft 365, SMTP/IMAP), auto-rotate senders, manage warmup
+- **Campaign management** - multi-step email sequences with A/B testing, scheduling, and conditional logic
+- **Lead management** - import, enrich, deduplicate, and track prospects across campaigns
+- **Deliverability** - inbox placement testing, sender reputation monitoring, blocklist management, and warmup analytics
+- **Unified inbox** - read, reply, and forward across all sending accounts from one place
+- **AI features** - AI-powered lead labeling, interest classification, and response handling
 
 ## What This CLI Enables
 
 The Instantly CLI provides access to the public API. Some dashboard features have no public API endpoint.
 
-**Campaign operations** — create campaigns, add leads, launch sequences, pause/resume, duplicate, and monitor sending status without opening a browser.
+**Campaign operations** - create campaigns, add leads, launch sequences, pause/resume, duplicate, and monitor sending status without opening a browser.
 
-**Lead lifecycle** — import leads in bulk, move them between campaigns, update interest status, merge duplicates, assign to subsequences, and manage labels — all scriptable.
+**Lead lifecycle** - import leads in bulk, move them between campaigns, update interest status, merge duplicates, assign to subsequences, and manage labels - all scriptable.
 
-**Account management** — connect sending accounts, enable/disable warmup, test DNS/SMTP/IMAP health, pause underperforming senders, and monitor CTD (click-to-deliver) status.
+**Account management** - connect sending accounts, enable/disable warmup, test DNS/SMTP/IMAP health, pause underperforming senders, and monitor CTD (click-to-deliver) status.
 
-**Deliverability monitoring** — run inbox placement tests, analyze where emails land (inbox vs. spam vs. promotions), track ESP-level performance, and get actionable insights.
+**Deliverability monitoring** - run inbox placement tests, analyze where emails land (inbox vs. spam vs. promotions), track ESP-level performance, and get actionable insights.
 
-**Analytics & reporting** — pull campaign stats, daily breakdowns, per-step sequence analytics, warmup performance, and account-level sending volumes into any reporting tool.
+**Analytics & reporting** - pull campaign stats, daily breakdowns, per-step sequence analytics, warmup performance, and account-level sending volumes into any reporting tool.
 
-**Team & workspace admin** — manage workspace members, API keys, billing info, audit logs, and whitelabel domains.
+**Team & workspace admin** - manage workspace members, API keys, billing info, audit logs, and whitelabel domains.
 
-**AI agent integration** — every command works as both a CLI subcommand and an MCP tool, so AI assistants (Claude, Cursor, Windsurf) can manage your outbound directly.
+**AI agent integration** - every command works as both a CLI subcommand and an MCP tool, so AI assistants (Claude, Cursor, Windsurf) can manage your outbound directly.
 
 ---
 
@@ -188,16 +188,16 @@ Default mode is **one workspace, one key**. Existing single-key users do not nee
 
 Resolve order **without** `--profile` / `INSTANTLY_PROFILE`:
 
-1. **`--api-key` flag** — pass on any command: `instantly campaigns list --api-key <key>`
-2. **Environment variable** — `export INSTANTLY_API_KEY=your-key`
-3. **cwd `.env`** — `INSTANTLY_API_KEY` in a local `.env` file
-4. **Stored config** — run `instantly login` to save your key to `~/.instantly/config.json` (mode `0600`)
+1. **`--api-key` flag** - pass on any command: `instantly campaigns list --api-key <key>`
+2. **Environment variable** - `export INSTANTLY_API_KEY=your-key`
+3. **cwd `.env`** - `INSTANTLY_API_KEY` in a local `.env` file
+4. **Stored config** - run `instantly login` to save your key to `~/.instantly/config.json` (mode `0600`)
 
 Get your API key from [app.instantly.ai/app/settings/integrations](https://app.instantly.ai/app/settings/integrations).
 
 ### For AI agents and scripts
 
-Set the environment variable — no interactive prompts, no config files:
+Set the environment variable - no interactive prompts, no config files:
 
 ```bash
 export INSTANTLY_API_KEY=your-key
@@ -296,7 +296,7 @@ instantly oauth connect google
 
 ## Output Formats
 
-Every command outputs JSON by default — ready for piping to `jq`, parsing in scripts, or feeding to other tools.
+Every command outputs JSON by default - ready for piping to `jq`, parsing in scripts, or feeding to other tools.
 
 ```bash
 # Default: compact JSON
@@ -359,10 +359,10 @@ Instantly delivers HTML. Pass readable copy with real line breaks in each varian
 
 Applies to `campaigns create` / `update` and `subsequences create` (same Instantly `body` key).
 
-delay on step N waits before step N+1. First email does not wait. Pass delay_unit (minutes|hours|days; omitted unit is set to days). Instantly uses only `sequences[0]`. A multi-step sequence with delay 0 or missing delay on a non-last step is rejected — the follow-up would send the same day. Last step delay may be 0. `email_gap` is a per-send rate limit, not the step gap. `pre_delay` is subsequence-only.
+delay on step N waits before step N+1. First email does not wait. Pass delay_unit (minutes|hours|days; omitted unit is set to days). Instantly uses only `sequences[0]`. A multi-step sequence with delay 0 or missing delay on a non-last step is rejected - the follow-up would send the same day. Last step delay may be 0. `email_gap` is a per-send rate limit, not the step gap. `pre_delay` is subsequence-only.
 
 ```bash
-# Preferred: readable copy with real line breaks — CLI converts
+# Preferred: readable copy with real line breaks - CLI converts
 instantly campaigns create --name "Plain Body" --sequences \
   '[{"steps":[{"type":"email","delay":3,"delay_unit":"days","variants":[{"subject":"Hi {{first_name}}","body":"Hi {{first_name}},\n\nWorth a quick chat?"}]},{"type":"email","delay":0,"delay_unit":"days","variants":[{"subject":"Re: Hi","body":"Just bumping this."}]}]}]'
 
@@ -392,7 +392,7 @@ instantly leads delete <id>                           # Delete a lead
 
 ### Email Accounts (12)
 
-Connect and manage sending accounts — SMTP/IMAP, Google, or Microsoft.
+Connect and manage sending accounts - SMTP/IMAP, Google, or Microsoft.
 
 ```bash
 instantly accounts list                               # List all sending accounts
@@ -640,7 +640,7 @@ instantly api-keys delete <id>                        # Revoke an API key
 
 ### Inbox Placement (6)
 
-Test where your emails land — inbox, spam, or promotions.
+Test where your emails land - inbox, spam, or promotions.
 
 ```bash
 instantly inbox-placement list                        # List placement tests
@@ -756,7 +756,7 @@ When you configure `instantly mcp` as an MCP server in Claude, Cursor, VS Code, 
 - Reply to emails, manage accounts, and run enrichment
 - Automate multi-step outbound workflows end-to-end
 
-Every `CommandDefinition` in the codebase powers both a CLI subcommand and an MCP tool — one source of truth, two interfaces.
+Every `CommandDefinition` in the codebase powers both a CLI subcommand and an MCP tool - one source of truth, two interfaces.
 
 ### Configuration
 
@@ -809,7 +809,7 @@ Every MCP tool description says pass `profile` for agency. Mutating tools requir
 
 `status` and `health` are virtual command IDs run with `instantly_run`, not extra tools. Every `preview` and `run` carries an explicit `profile` and `workspace_id`. `status` reports whether they match; other commands refuse a mismatch before executing the requested operation, though live workspace checks may still send requests. Use `profile: "default"` for the unprofiled key, overriding `INSTANTLY_PROFILE`.
 
-Safety lives in code, not prose. Reads must be on the reviewed read allowlist (a GET alone grants nothing). Writes are refused unless the operator names the command, for example `instantly mcp --surface compact --allow-write campaigns_update`, and the token binds the profile, workspace, resolved credential, request, registry, context and policy, so it cannot be replayed, redirected or changed. `--allow-unknown-cost` additionally permits allowed writes whose cost is unknown. **The legacy surface has none of these guarantees**: it can still perform unpreviewed writes, and must not be described as protected by the compact policy. `INSTANTLY_MCP_SURFACE`, `INSTANTLY_MCP_ALLOW_WRITES` and `INSTANTLY_MCP_ALLOW_UNKNOWN_COST=1` set the same options from the environment for MCP.
+Safety lives in code, not prose. Reads must be on the reviewed read allowlist (a GET alone grants nothing). Writes are refused unless the operator names the command, for example `instantly mcp --surface compact --allow-write campaigns_update`, and the token binds the profile, workspace, resolved credential, request, registry, context and policy, so it cannot be replayed, redirected or changed. `--allow-unknown-cost` additionally permits allowed writes whose cost is unknown. **The legacy command tools have none of these guarantees**: they can still perform unpreviewed writes, and must not be described as protected by the compact policy. `INSTANTLY_MCP_SURFACE`, `INSTANTLY_MCP_ALLOW_WRITES` and `INSTANTLY_MCP_ALLOW_UNKNOWN_COST=1` set the same options from the environment for MCP.
 
 The same four operations exist on the command line, with identical inputs and outputs:
 
@@ -823,7 +823,36 @@ instantly --profile sandbox --workspace <uuid> run email_list --mode read --args
 
 Pass the same `--allow-write` to `preview` and `run`; a different policy invalidates the token. Existing direct commands keep their flags.
 
+
 `find` is a keyword ranker, so read the hits and call `instantly_describe` before running. See the [offline evaluation guide](evals/README.md) for replay results and ranking limitations, and the generated [graduation report](evals/v1/anneal/graduation.md) for discovery scores and process disclosures. Compact remains opt-in.
+
+### Playbooks: ready-made plans over the safe dispatcher
+
+A playbook is a **plan compiler**, not a new multi-request handler. It reads only from the reviewed read allowlist, computes locally, and returns a plan of single registered commands. Every write in a plan is a normal preview-then-execute through the safe dispatcher, so the same token, identity and host-policy guarantees apply. Browser-only steps come back as an **attended checklist**; nothing here clicks, submits or installs anything on your behalf.
+
+| Playbook | What it does | Writes (all optional, previewed) |
+|----------|--------------|-----------------------------------|
+| `campaign_ideas` | 15 to 25 broad, focused and niche campaign ideas from your offer profile, active ICPs, campaigns and a lead sample. Each focused or niche idea carries one skin-in-the-game signal. | A paused draft campaign with no senders plus an empty target list, for one chosen idea |
+| `offer_profile` | Detects what the workspace sells (offer angle, category, motion, entitlements) using active offer and ICP selections when present. Low confidence or an ambiguous category or angle asks you to confirm; other playbooks remain available pending confirmation. | None |
+| `skin_in_the_game_segments` | Groups a campaign or list by the strongest signal on each row, names the persona KPI, sizes each segment, never guesses (abstains). | One empty holding list per non-abstained segment, idempotent. Lead IDs are returned in the artifact; leads are not moved or tagged. |
+| `website_visitors_setup` | Entitlement gate, legal and pixel checklist, visitor read loop. Returns `NOT_ENTITLED` plus the subscription route when there is no plan. | A holding list, a paused draft campaign, an optional reply webhook |
+| `local_lookalike` | Free local-business search, then a staged convert of up to N businesses into a draft campaign populated with the converted leads (2 credits per lead; the API allows one destination, so there is no separate list). | The convert, only on the `internal` tier within the credit ceiling |
+
+```bash
+instantly playbooks list                                   # offline; tier-visible playbooks
+instantly playbooks describe campaign_ideas                # offline; input schema and tier ceiling
+instantly --profile sandbox --workspace <uuid> playbooks run offer_profile
+instantly --profile sandbox --workspace <uuid> playbooks --tier internal run campaign_ideas --input '{"draft_idea":"idea-03"}'      # preview, prints plan_hash
+instantly --profile sandbox --workspace <uuid> playbooks --tier internal run campaign_ideas --input '{"draft_idea":"idea-03"}' \
+  --allow-write campaigns_create,lead_lists_create --allow-unknown-cost --confirm <plan_hash>                        # executes only if the plan still matches
+instantly --profile sandbox --workspace <uuid> playbooks digest                                                      # JSON with a text digest for this workspace
+```
+
+`instantly mcp --playbooks [--tier managed]` (or `INSTANTLY_MCP_PLAYBOOKS=1`, `INSTANTLY_TIER`) adds `playbooks_list`, `playbooks_describe`, `playbooks_preview` and `playbooks_run` plus one MCP prompt per playbook (`playbooks/<slug>`), on either surface. Pass the canonical slug from the table to `playbooks_describe` or `playbooks_preview`. It is opt-in, so the default surfaces and their frozen evaluation facts are unchanged. Tiers are `vip` (default: previews only, can never execute a write), `managed` (draft and organisational writes, no spend) and `internal` (adds the metered convert, advisory ceiling 50 credits). Browser steps are always an attended checklist on every tier. A tier can only **narrow** what `--allow-write` enables, never widen it. The credit ceiling is advisory: the dispatcher knows cost only as none or unknown. Dependent writes (for example a webhook bound to the campaign created one step earlier) fill only declared UUID fields (named in the plan) from the earlier response; nothing else can change. No email is sent anywhere; distribution is MCP prompts and the CLI digest.
+
+Context-anneal tuning round 2 (a fresh blind corpus and a ranker change) is held for a separate pull request; the shipped find engine is unchanged.
+
+See the [playbook evaluation guide](evals/README.md#playbook-eval-family) for the offline oracle, replay limitations and recorded live proof.
 
 The legacy surface registers 287 command tools across 39 groups, plus `status` and `health`:
 
@@ -983,10 +1012,10 @@ Adding a new API endpoint = creating one file. The command is automatically avai
 ### HTTP Client Features
 
 - **Auto-retry** with exponential backoff on 429 (rate limit) and 5xx errors
-- **Rate limit awareness** — respects `Retry-After` headers
-- **Cursor-based pagination** — handles both UUID and datetime cursors
+- **Rate limit awareness** - respects `Retry-After` headers
+- **Cursor-based pagination** - handles both UUID and datetime cursors
 - **30-second timeout** with configurable retries (default: 3)
-- **Typed errors** — `AuthError`, `NotFoundError`, `RateLimitError`, `ValidationError`, `ServerError`
+- **Typed errors** - `AuthError`, `NotFoundError`, `RateLimitError`, `ValidationError`, `ServerError`
 
 ---
 
@@ -1009,11 +1038,11 @@ replay commands, score interpretation, and the safe dispatcher's scope.
 ### Tech Stack
 
 - **TypeScript** (ESM, Node 20+)
-- **Commander.js** — CLI framework
-- **Zod** — schema validation (shared between CLI and MCP)
-- **@modelcontextprotocol/sdk** — MCP server
-- **tsup** — bundler
-- **vitest** — test runner
+- **Commander.js** - CLI framework
+- **Zod** - schema validation (shared between CLI and MCP)
+- **@modelcontextprotocol/sdk** - MCP server
+- **tsup** - bundler
+- **vitest** - test runner
 
 ---
 

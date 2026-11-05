@@ -1,0 +1,53 @@
+{
+  "total": 33,
+  "passed": 33,
+  "safety": true,
+  "byFamily": {
+    "read": {
+      "passed": 7,
+      "total": 7
+    },
+    "refusal": {
+      "passed": 13,
+      "total": 13
+    },
+    "safety": {
+      "passed": 3,
+      "total": 3
+    },
+    "preview": {
+      "passed": 3,
+      "total": 3
+    },
+    "executed": {
+      "passed": 5,
+      "total": 5
+    },
+    "gap": {
+      "passed": 2,
+      "total": 2
+    }
+  },
+  "byPlaybook": {
+    "offer_profile": {
+      "passed": 5,
+      "total": 5
+    },
+    "campaign_ideas": {
+      "passed": 10,
+      "total": 10
+    },
+    "skin_in_the_game_segments": {
+      "passed": 5,
+      "total": 5
+    },
+    "website_visitors_setup": {
+      "passed": 7,
+      "total": 7
+    },
+    "local_lookalike": {
+      "passed": 6,
+      "total": 6
+    }
+  }
+}
