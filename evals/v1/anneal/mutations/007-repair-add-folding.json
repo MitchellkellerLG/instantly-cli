@@ -1,0 +1,11 @@
+{
+  "id": "007-repair-add-folding",
+  "kind": "subtract",
+  "hypothesis": "Rescue after three consecutive rejections. The group-alias rounds tripped the safety gate, so this round adds no group vocabulary. It repairs one stemmer defect instead (adding and added fold to ad and lose the add verb) and subtracts the add-means-create synonym that pulled add requests toward create commands.",
+  "addresses": ["instantly-011"],
+  "set": {
+    "synonyms.adding": ["add"],
+    "synonyms.added": ["add"],
+    "synonyms.add": null
+  }
+}

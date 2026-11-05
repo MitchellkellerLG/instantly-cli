@@ -45,7 +45,7 @@ export class FilePreviewStore implements PreviewStore {
   constructor(private directory: string) {
     mkdirSync(directory, { recursive: true, mode: 0o700 });
     const st = lstatSync(directory);
-    if (!st.isDirectory() || (st.mode & 0o077) !== 0 || st.uid !== process.getuid?.()) {
+    if (!st.isDirectory() || (process.platform !== 'win32' && ((st.mode & 0o077) !== 0 || st.uid !== process.getuid?.()))) {
       throw new Error('INSECURE_PREVIEW_STORE');
     }
   }
@@ -58,9 +58,11 @@ export class FilePreviewStore implements PreviewStore {
   peek(token: string): PreviewRecord {
     let fd: number | undefined;
     try {
-      fd = openSync(this.path(token), constants.O_RDONLY | constants.O_NOFOLLOW);
+      const path = this.path(token);
+      if (!lstatSync(path).isFile()) throw new Error('INSECURE_PREVIEW');
+      fd = openSync(path, constants.O_RDONLY | constants.O_NOFOLLOW);
       const st = fstatSync(fd);
-      if (!st.isFile() || (st.mode & 0o077) !== 0 || st.uid !== process.getuid?.()) throw new Error('INSECURE_PREVIEW');
+      if (!st.isFile() || (process.platform !== 'win32' && ((st.mode & 0o077) !== 0 || st.uid !== process.getuid?.()))) throw new Error('INSECURE_PREVIEW');
       return JSON.parse(readFileSync(fd, 'utf8'));
     } catch { throw new Error('INVALID_PREVIEW'); }
     finally { if (fd !== undefined) closeSync(fd); }

@@ -8,6 +8,9 @@ import { createCommandContext } from '../core/command-context.js';
 import { isMutatingCommand } from '../core/mutating.js';
 import { boundWorkspaceOf, displayProfileSlug, resolveCredentials } from '../core/auth.js';
 import { fetchLiveWorkspace } from '../core/workspace.js';
+import { startCompactMcpServer, type McpOptions } from './compact.js';
+
+export type { McpOptions };
 
 const MCP_AGENCY_READ_HINT =
   ' Agency: pass profile (client slug). Confirm status (profile, workspace_id, workspace_name) first. One process, one profile.';
@@ -44,7 +47,9 @@ function isolationFromArgs(args: Record<string, unknown>): {
   };
 }
 
-export async function startMcpServer(): Promise<void> {
+export async function startMcpServer(options: McpOptions = {}): Promise<void> {
+  // Legacy stays the default. Compact registers four tools and reads no credentials at startup.
+  if (options.surface === 'compact') return startCompactMcpServer(options);
   // Fail fast if no default credential source exists. Per-call `profile`
   // can still select a named workspace; we never iterate profiles here.
   await resolveCredentials();

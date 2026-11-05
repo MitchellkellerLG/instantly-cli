@@ -1,0 +1,51 @@
+{
+  "version": "v001",
+  "instructions": "Instantly compact surface: four tools. 1) instantly_find: describe what you want in plain words; get ranked command IDs. 2) instantly_describe: load the full input schema for one command ID. 3) instantly_preview: for any write, validate and plan it without sending anything; returns a one-use token. 4) instantly_run: mode read runs a read command; mode write takes only the preview token. Always confirm the workspace first with instantly_run command_id=status. Pass the same profile and workspace_id on every call; one process serves one profile. Writes are refused unless the host enabled them. Features marked unavailable have no supported command; say so instead of guessing.",
+  "tools": {
+    "find": "Search Instantly commands by plain-language intent. Returns ranked command IDs with effect and availability. Needs no credentials. Start here, then call instantly_describe.",
+    "describe": "Return the full input schema, examples, effect, cost and CLI flags for one command ID from instantly_find. Needs no credentials.",
+    "preview": "Validate a command and show the exact request it would send, without sending it. Returns a one-use preview token valid for five minutes. Never mutates.",
+    "run": "Execute. mode read: run a read command by ID with arguments. mode write: pass only the preview_token from instantly_preview; arguments cannot change. Use command_id status first to confirm profile and workspace."
+  },
+  "groupAliases": {
+    "email": ["unibox"],
+    "accounts": ["sender"],
+    "inbox-placement": ["deliverability", "placement"],
+    "enrichment": ["supersearch"]
+  },
+  "synonyms": {
+    "show": ["list", "get"],
+    "view": ["list", "get"],
+    "display": ["list", "get"],
+    "remove": ["delete"],
+    "change": ["update"],
+    "edit": ["update"]
+  },
+  "aliases": {},
+  "features": [
+    {
+      "id": "crm_pipeline",
+      "title": "CRM pipeline: opportunities, tasks, calls and SMS history",
+      "keywords": ["crm", "opportunity", "pipeline", "deal", "qualified", "sms", "call"],
+      "reason": "No public API operation for CRM opportunities, tasks or call/SMS history is in the pinned spec. Browser mapping has not been performed."
+    },
+    {
+      "id": "voice_agent",
+      "title": "Voice Agent configuration",
+      "keywords": ["voice", "agent", "phone"],
+      "reason": "Voice Agent configuration has no public API operation and has not been mapped."
+    },
+    {
+      "id": "website_visitors",
+      "title": "Website Visitors pixel and analytics",
+      "keywords": ["website", "visitor", "pixel"],
+      "reason": "Website Visitors has no public API operation and has not been mapped."
+    },
+    {
+      "id": "agent_presets",
+      "title": "Specialty AI agent presets (recruiting, investment, research, partnership)",
+      "keywords": ["recruiting", "partnership", "investment", "research", "preset"],
+      "reason": "Specialty agent presets have no documented public operation and have not been mapped."
+    }
+  ]
+}

@@ -12,7 +12,7 @@ export interface Job {
   fixture: { profile: string; workspace_id: string; provided_workspace_id?: string };
 }
 export interface Trace {
-  version: 1; id: string; surface: 'legacy' | 'safe'; provenance: 'synthetic';
+  version: 1; id: string; surface: 'legacy' | 'safe' | 'compact'; provenance: 'synthetic';
   driver: string; registryHash: string; fixtureHash: string; oracleHash: string;
   identity: { profile: string; workspace: string; verified: boolean };
   identityRequests: { request: Request; matched: boolean; responseHash: string }[];
@@ -22,6 +22,8 @@ export interface Trace {
   result?: unknown;
   outcome: string; refusal?: string; explanation?: string;
   elapsedMs: number; modelTokens: null; discoveryCandidates: string[];
+  /** Compact surface only: the four-tool calls in order, with typed error codes. */
+  toolCalls?: { tool: string; error?: string }[];
 }
 export interface OutcomeOracle {
   outcome: string;

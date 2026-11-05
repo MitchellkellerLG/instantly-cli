@@ -1,6 +1,6 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { z } from 'zod';
-import { mkdtempSync, rmSync, statSync } from 'node:fs';
+import { mkdtempSync, rmSync, statSync, chmodSync, symlinkSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { allCommands } from '../../src/commands/index.js';
@@ -250,12 +250,54 @@ describe('safe shared dispatcher', () => {
       const first = new FilePreviewStore(directory);
       const record = { expires: 1, binding: 'b', command: 'c', args: {}, planHash: 'h' };
       const token = first.issue(record);
-      expect(statSync(join(directory, token + '.json')).mode & 0o777).toBe(0o600);
+      if (process.platform !== 'win32') expect(statSync(join(directory, token + '.json')).mode & 0o777).toBe(0o600);
       const second = new FilePreviewStore(directory);
       expect(second.peek(token)).toEqual(record);
       first.consume(token);
       expect(() => second.consume(token)).toThrow('INVALID_PREVIEW');
       expect(() => second.peek('../escape')).toThrow('INVALID_PREVIEW');
     } finally { rmSync(directory, { recursive: true }); }
+  });
+});
+
+describe('preview store platform permissions', () => {
+  const record = { expires: 1, binding: 'b', command: 'c', args: {}, planHash: 'h' };
+  it('hands off tokens without POSIX uid or mode support on Windows', () => {
+    const directory = mkdtempSync(join(process.cwd(), '.preview-windows-test-'));
+    try {
+      chmodSync(directory, 0o777);
+      vi.stubGlobal('process', Object.create(process, { platform: { value: 'win32' }, getuid: { value: undefined } }));
+      const first = new FilePreviewStore(directory);
+      const token = first.issue(record);
+      chmodSync(join(directory, token + '.json'), 0o666);
+      const second = new FilePreviewStore(directory);
+      expect(second.peek(token)).toEqual(record);
+      second.consume(token);
+      expect(() => first.peek(token)).toThrow('INVALID_PREVIEW');
+    } finally { vi.unstubAllGlobals(); rmSync(directory, { recursive: true, force: true }); }
+  });
+  it.skipIf(process.platform === 'win32')('still rejects public POSIX directories and tokens', () => {
+    const directory = mkdtempSync(join(process.cwd(), '.preview-permissions-test-'));
+    try {
+      chmodSync(directory, 0o777);
+      expect(() => new FilePreviewStore(directory)).toThrow('INSECURE_PREVIEW_STORE');
+      chmodSync(directory, 0o700);
+      const store = new FilePreviewStore(directory);
+      const token = store.issue(record);
+      chmodSync(join(directory, token + '.json'), 0o666);
+      expect(() => store.peek(token)).toThrow('INVALID_PREVIEW');
+    } finally { rmSync(directory, { recursive: true, force: true }); }
+  });
+  it.skipIf(process.platform === 'win32')('rejects symlinked tokens when POSIX checks are unavailable', () => {
+    const directory = mkdtempSync(join(process.cwd(), '.preview-symlink-test-'));
+    try {
+      const target = join(directory, 'target.json');
+      writeFileSync(target, JSON.stringify(record));
+      const token = 'a'.repeat(64);
+      symlinkSync(target, join(directory, token + '.json'));
+      vi.stubGlobal('process', Object.create(process, { platform: { value: 'win32' }, getuid: { value: undefined } }));
+      const store = new FilePreviewStore(directory);
+      expect(() => store.peek(token)).toThrow('INVALID_PREVIEW');
+    } finally { vi.unstubAllGlobals(); rmSync(directory, { recursive: true, force: true }); }
   });
 });

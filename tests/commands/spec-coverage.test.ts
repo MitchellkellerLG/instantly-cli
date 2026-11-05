@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, afterEach } from 'vitest';
 import { readFileSync, mkdtempSync, writeFileSync, rmSync } from 'node:fs';
-import { spawnSync } from 'node:child_process';
+import { execFile } from 'node:child_process';
+import { promisify } from 'node:util';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { z } from 'zod';
@@ -11,6 +12,8 @@ import { InstantlyClient } from '../../src/core/client.js';
 import { isMutatingCommand } from '../../src/core/mutating.js';
 import { commandSpec, coverage, operations, resolve, operationKey } from '../../scripts/openapi.js';
 import { Command } from 'commander';
+
+const exec = promisify(execFile);
 
 const spec = JSON.parse(readFileSync(new URL('../../spec/api_v2.json', import.meta.url), 'utf8'));
 const uuid = '01a1891e-6582-72d0-81dd-79c45db816ca';
@@ -46,13 +49,13 @@ describe('public API coverage and generator', () => {
     expect(coverage(spec, allCommands.filter(c => c.endpoint.method !== 'PUT')).missing).toEqual(['PUT /domains/{}/forwarding']);
   });
 
-  it('the drift-check executable exits nonzero for a newly added operation', () => {
+  it('the drift-check executable exits nonzero for a newly added operation', async () => {
     const directory = mkdtempSync(join(tmpdir(), 'instantly-drift-'));
     try {
       const file = join(directory, 'spec.json');
       writeFileSync(file, JSON.stringify({ openapi: '3.0.0', paths: { '/api/v2/new-resource': { get: { operationId: 'newResource' } } } }));
-      const result = spawnSync(process.execPath, ['--import', 'tsx', 'scripts/spec-drift.ts', file], { encoding: 'utf8' });
-      expect(result.status, result.stderr).toBe(1);
+      const result = await exec(process.execPath, ['--import', 'tsx', 'scripts/spec-drift.ts', file], { encoding: 'utf8' }).catch(error => error);
+      expect(result.code, result.stderr).toBe(1);
       expect(JSON.parse(result.stdout).missing).toEqual(['GET /new-resource']);
     } finally { rmSync(directory, { recursive: true, force: true }); }
   });

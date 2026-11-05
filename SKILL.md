@@ -110,9 +110,15 @@ One MCP server process per profile. Set `INSTANTLY_PROFILE=client-a` (or `INSTAN
 }
 ```
 
+### Compact MCP surface (opt-in)
+
+See [the compact surface guide](README.md#compact-surface-four-tools-instead-of-289) for tool inputs, credentials and write policy. Flow: find an ID, describe it, then run a read or preview a write. Always run `status` first (`instantly_run` with `mode: read`, `command_id: status`, `profile` and `workspace_id`). Pass the same scope on every preview and run; find and describe do not accept scope fields. Features reported as unavailable have no supported command: say so, do not guess an endpoint. Hosts must load this skill themselves; the server only sends short instructions.
+
 ## Discover commands
 
 ```bash
+instantly find "list campaigns" --effect read
+instantly describe email_list
 instantly --help
 instantly campaigns --help
 instantly campaigns create --help

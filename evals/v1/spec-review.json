@@ -1,0 +1,23 @@
+{
+  "reviewed": "2026-11-04",
+  "pinnedSha256": "6c4bb9e065b63d0c85e1a96cbe31ff29c7cf35c640bb51ca125bc9d98cdc1c97",
+  "candidateSha256": "e2724904b28a026beb0b6459fe251c6ce51232fc4975702650d26f27e3d628a0",
+  "candidateSource": "saved copy supplied on the command line",
+  "operations": {
+    "pinned": 268,
+    "candidate": 268
+  },
+  "addedOperations": [],
+  "removedOperations": [],
+  "operationsChangedIncludingProse": 171,
+  "operationsChangedSemantically": [],
+  "schemasAdded": [],
+  "schemasRemoved": [],
+  "schemasChangedSemantically": [],
+  "coverageAgainstCandidate": {
+    "total": 268,
+    "covered": 268,
+    "missing": []
+  },
+  "conclusion": "No documented gap beyond the pinned spec. Byte differences are prose or generated examples only. The pin is unchanged."
+}

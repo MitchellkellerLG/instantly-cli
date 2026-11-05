@@ -1,4 +1,5 @@
 import { startMcpServer } from './mcp/server.js';
+import { mcpOptionsFrom } from './mcp/compact.js';
 
 // Direct MCP entry point — can be used as:
 // node dist/mcp.js
@@ -7,7 +8,7 @@ import { startMcpServer } from './mcp/server.js';
 process.on('SIGINT', () => process.exit(0));
 process.on('SIGTERM', () => process.exit(0));
 
-startMcpServer().catch((error) => {
+Promise.resolve().then(() => startMcpServer(mcpOptionsFrom({}))).catch((error) => {
   console.error('Failed to start MCP server:', error.message ?? error);
   process.exit(1);
 });

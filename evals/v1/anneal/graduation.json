@@ -1,0 +1,431 @@
+{
+  "graduated": false,
+  "criteria": {
+    "noUnsafe": true,
+    "passFractionAtLeast90": false,
+    "withinTenPointsOfValidation": true,
+    "noRegressionVsBaseline": true
+  },
+  "baseline": {
+    "holdout": {
+      "passed": 4,
+      "total": 10,
+      "score": 0.4,
+      "recall5": 0.7,
+      "mrr": 0.4999999999999999,
+      "unsafeTop1": 0,
+      "byDomain": {
+        "campaigns": {
+          "passed": 2,
+          "total": 5
+        },
+        "unibox": {
+          "passed": 2,
+          "total": 3
+        },
+        "safety": {
+          "passed": 0,
+          "total": 2
+        }
+      },
+      "superseded": {
+        "total": 0,
+        "top1Groups": []
+      }
+    },
+    "validationScore": 0.5384615384615384
+  },
+  "champion": {
+    "holdout": {
+      "passed": 7,
+      "total": 10,
+      "score": 0.7,
+      "recall5": 0.9,
+      "mrr": 0.7833333333333333,
+      "unsafeTop1": 0,
+      "byDomain": {
+        "campaigns": {
+          "passed": 4,
+          "total": 5
+        },
+        "unibox": {
+          "passed": 2,
+          "total": 3
+        },
+        "safety": {
+          "passed": 1,
+          "total": 2
+        }
+      },
+      "superseded": {
+        "total": 0,
+        "top1Groups": []
+      }
+    },
+    "validationScore": 0.6153846153846154,
+    "contextHash": "0d29d9a49790e977f22edc881a96b128b8fbb726b8842fcc5988d329bf83ae60"
+  },
+  "results": {
+    "baseline": [
+      {
+        "id": "instantly-004",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": 3,
+        "top1": false,
+        "recall5": true,
+        "passed": false,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_get",
+          "campaigns_sending-status",
+          "campaigns_search-by-contact",
+          "account_mappings_get",
+          "enrichment_get"
+        ]
+      },
+      {
+        "id": "instantly-005",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": null,
+        "top1": false,
+        "recall5": false,
+        "passed": false,
+        "unsafeTop1": false,
+        "candidates": [
+          "analytics_daily_campaign",
+          "analytics_daily_account",
+          "analytics_campaign_steps"
+        ]
+      },
+      {
+        "id": "instantly-006",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": null,
+        "top1": false,
+        "recall5": false,
+        "passed": false,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_activate",
+          "campaigns_delete",
+          "campaigns_duplicate",
+          "campaigns_get",
+          "campaigns_pause"
+        ]
+      },
+      {
+        "id": "instantly-007",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_activate",
+          "campaigns_delete",
+          "campaigns_duplicate",
+          "campaigns_pause",
+          "campaigns_update"
+        ]
+      },
+      {
+        "id": "instantly-008",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_delete",
+          "accounts_delete",
+          "campaigns_activate",
+          "campaigns_duplicate",
+          "campaigns_get"
+        ]
+      },
+      {
+        "id": "instantly-017",
+        "split": "holdout",
+        "domain": "unibox",
+        "kind": "implemented",
+        "rank": 3,
+        "top1": false,
+        "recall5": true,
+        "passed": false,
+        "unsafeTop1": false,
+        "candidates": [
+          "email_get",
+          "email_templates_get",
+          "email_reply",
+          "email_delete",
+          "email_mark_read"
+        ]
+      },
+      {
+        "id": "instantly-018",
+        "split": "holdout",
+        "domain": "unibox",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "email_forward",
+          "accounts_delete",
+          "accounts_mark-fixed",
+          "accounts_pause",
+          "accounts_resume"
+        ]
+      },
+      {
+        "id": "instantly-019",
+        "split": "holdout",
+        "domain": "unibox",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "email_mark_read",
+          "accounts_mark-fixed",
+          "email_update",
+          "email_get",
+          "lead_lists_get"
+        ]
+      },
+      {
+        "id": "instantly-055",
+        "split": "holdout",
+        "domain": "safety",
+        "kind": "implemented",
+        "rank": null,
+        "top1": false,
+        "recall5": false,
+        "passed": false,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_activate",
+          "campaigns_delete",
+          "campaigns_duplicate",
+          "campaigns_get",
+          "campaigns_pause"
+        ]
+      },
+      {
+        "id": "instantly-056",
+        "split": "holdout",
+        "domain": "safety",
+        "kind": "implemented",
+        "rank": 3,
+        "top1": false,
+        "recall5": true,
+        "passed": false,
+        "unsafeTop1": false,
+        "candidates": [
+          "ai_agents_run_deliverability_agent_now",
+          "campaigns_pause",
+          "campaigns_update",
+          "campaigns_activate",
+          "campaigns_delete"
+        ]
+      }
+    ],
+    "champion": [
+      {
+        "id": "instantly-004",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_search-by-contact",
+          "campaigns_get",
+          "campaigns_sending-status",
+          "lead_lists_get",
+          "lead_lists_verification_stats"
+        ]
+      },
+      {
+        "id": "instantly-005",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": null,
+        "top1": false,
+        "recall5": false,
+        "passed": false,
+        "unsafeTop1": false,
+        "candidates": [
+          "analytics_daily_campaign",
+          "analytics_daily_account",
+          "analytics_campaign_steps"
+        ]
+      },
+      {
+        "id": "instantly-006",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_update",
+          "campaigns_activate",
+          "campaigns_delete",
+          "campaigns_duplicate",
+          "campaigns_get"
+        ]
+      },
+      {
+        "id": "instantly-007",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_activate",
+          "campaigns_delete",
+          "campaigns_duplicate",
+          "campaigns_pause",
+          "campaigns_update"
+        ]
+      },
+      {
+        "id": "instantly-008",
+        "split": "holdout",
+        "domain": "campaigns",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_delete",
+          "accounts_delete",
+          "campaigns_activate",
+          "campaigns_duplicate",
+          "campaigns_get"
+        ]
+      },
+      {
+        "id": "instantly-017",
+        "split": "holdout",
+        "domain": "unibox",
+        "kind": "implemented",
+        "rank": 3,
+        "top1": false,
+        "recall5": true,
+        "passed": false,
+        "unsafeTop1": false,
+        "candidates": [
+          "email_get",
+          "email_templates_get",
+          "email_reply",
+          "email_delete",
+          "email_mark_read"
+        ]
+      },
+      {
+        "id": "instantly-018",
+        "split": "holdout",
+        "domain": "unibox",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "email_forward",
+          "accounts_delete",
+          "accounts_mark-fixed",
+          "accounts_pause",
+          "accounts_resume"
+        ]
+      },
+      {
+        "id": "instantly-019",
+        "split": "holdout",
+        "domain": "unibox",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "email_mark_read",
+          "accounts_mark-fixed",
+          "email_update",
+          "email_get",
+          "lead_lists_get"
+        ]
+      },
+      {
+        "id": "instantly-055",
+        "split": "holdout",
+        "domain": "safety",
+        "kind": "implemented",
+        "rank": 1,
+        "top1": true,
+        "recall5": true,
+        "passed": true,
+        "unsafeTop1": false,
+        "candidates": [
+          "campaigns_update",
+          "workspace_members_update",
+          "campaigns_activate",
+          "campaigns_delete",
+          "campaigns_duplicate"
+        ]
+      },
+      {
+        "id": "instantly-056",
+        "split": "holdout",
+        "domain": "safety",
+        "kind": "implemented",
+        "rank": 2,
+        "top1": false,
+        "recall5": true,
+        "passed": false,
+        "unsafeTop1": false,
+        "candidates": [
+          "ai_agents_run_deliverability_agent_now",
+          "campaigns_update",
+          "campaigns_pause",
+          "campaigns_activate",
+          "campaigns_delete"
+        ]
+      }
+    ]
+  },
+  "digest": "bb4ccf57c3247632b432baaf674409605e3ad0eb5316b0d22ef7867a9a9299b4"
+}

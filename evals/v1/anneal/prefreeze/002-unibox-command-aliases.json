@@ -1,0 +1,14 @@
+{
+  "id": "002-unibox-command-aliases",
+  "kind": "add-alias",
+  "hypothesis": "Round 1 flooded the email group with single words and let unread-count win. Naming the Unibox operations by how people phrase them (read an email, list inbound replies, mark read) separates reading from replying and marking.",
+  "addresses": ["instantly-014", "instantly-016"],
+  "set": {
+    "aliases.email_list": ["unread replies", "inbound replies", "inbox messages", "list emails"],
+    "aliases.email_get": ["read email", "open email", "email thread"],
+    "aliases.email_reply": ["reply to email", "respond to email"],
+    "aliases.email_forward": ["forward email", "forward reply"],
+    "aliases.email_mark_read": ["mark read", "mark as read"],
+    "aliases.email_unread_count": ["unread count", "how many unread"]
+  }
+}

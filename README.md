@@ -792,7 +792,40 @@ Every MCP tool description says pass `profile` for agency. Mutating tools requir
 }
 ```
 
-This registers 287 command tools across 39 groups, plus `status` and `health`:
+### Compact surface: four tools instead of 289
+
+`instantly mcp` registers one tool per command by default (the **legacy** surface, unchanged). For agents, `instantly mcp --surface compact` registers exactly four tools and loads a command's schema only when asked:
+
+| Tool | Purpose | Needs a key |
+|------|---------|-------------|
+| `instantly_find` | Plain-language intent in, ranked command IDs out. Offline, deterministic keyword ranking with a maintained alias overlay. | No |
+| `instantly_describe` | Full input schema, effect, cost and CLI flags for one ID. | No |
+| `instantly_preview` | Validate a write and show the exact request it would send. Returns a one-use token valid five minutes. Checks live identity and may read approved prerequisites; sends no mutation or paid request. | Yes |
+| `instantly_run` | `mode: read` runs an approved read. `mode: write` takes only the preview token. | Yes |
+
+```json
+{ "mcpServers": { "instantly": { "command": "npx", "args": ["instantly-cli", "mcp", "--surface", "compact"], "env": { "INSTANTLY_PROFILE": "acme" } } } }
+```
+
+`status` and `health` are virtual command IDs run with `instantly_run`, not extra tools. Every `preview` and `run` carries an explicit `profile` and `workspace_id`. `status` reports whether they match; other commands refuse a mismatch before executing the requested operation, though live workspace checks may still send requests. Use `profile: "default"` for the unprofiled key, overriding `INSTANTLY_PROFILE`.
+
+Safety lives in code, not prose. Reads must be on the reviewed read allowlist (a GET alone grants nothing). Writes are refused unless the operator names the command, for example `instantly mcp --surface compact --allow-write campaigns_update`, and the token binds the profile, workspace, resolved credential, request, registry, context and policy, so it cannot be replayed, redirected or changed. `--allow-unknown-cost` additionally permits allowed writes whose cost is unknown. **The legacy surface has none of these guarantees**: it can still perform unpreviewed writes, and must not be described as protected by the compact policy. `INSTANTLY_MCP_SURFACE`, `INSTANTLY_MCP_ALLOW_WRITES` and `INSTANTLY_MCP_ALLOW_UNKNOWN_COST=1` set the same options from the environment for MCP.
+
+The same four operations exist on the command line, with identical inputs and outputs:
+
+```bash
+instantly find "list campaigns" --limit 5 --effect read      # no key needed
+instantly describe email_list                                         # no key needed
+instantly --profile sandbox --workspace <uuid> preview campaigns_update --args-file /abs/args.json --allow-write campaigns_update
+instantly --profile sandbox --workspace <uuid> run --mode write --preview-token <token> --allow-write campaigns_update
+instantly --profile sandbox --workspace <uuid> run email_list --mode read --args '{"limit":20}'
+```
+
+Pass the same `--allow-write` to `preview` and `run`; a different policy invalidates the token. Existing direct commands keep their flags.
+
+`find` is a keyword ranker, so read the hits and call `instantly_describe` before running. See the [offline evaluation guide](evals/README.md) for replay results and ranking limitations, and the generated [graduation report](evals/v1/anneal/graduation.md) for discovery scores and process disclosures. Compact remains opt-in.
+
+The legacy surface registers 287 command tools across 39 groups, plus `status` and `health`:
 
 | Group | Tools | Examples |
 |-------|-------|---------|

@@ -1,11 +1,11 @@
-# Offline evaluation foundation (phases 0-2)
+# Offline evaluation (phases 0-5)
 
 `v1/jobs.jsonl` is the unchanged 56-job seed corpus. `v1/split.json` freezes
 32 train, 14 validation and 10 holdout IDs. All identifiers and responses are
 synthetic. `v1/facts.json` pins registry, source, dispatcher, package, lockfile,
 corpus and public-spec hashes. `v1/outcomes.json` independently freezes each job's expected returned value or
 preview identity and effect. `v1/registry.json` freezes all 287 definition IDs
-and endpoint mappings. The existing MCP server registers 289 tools, retaining the original 276 IDs.
+and endpoint mappings. The legacy MCP surface registers 289 tools, retaining the original 276 IDs.
 
 From the repository root, with development dependencies installed:
 
@@ -104,14 +104,15 @@ conversion buy enrichment or create leads. These and AI filter generation retain
 write/unknown-cost policy, so execution requires host write and cost authorization
 plus an unchanged one-use preview. AI generation is quota limited and has no
 verified no-cost guarantee. Unknown effects remain denied. Preview contacts none
-of these endpoints. No account mapping or live account request was performed.
+of these delta endpoints. No account mapping or live account request was performed.
 
 ## Safe dispatcher boundary
 
-`src/safe/dispatcher.ts` is a reusable library foundation for future CLI/MCP
-adapters. Phase 3's four tools and CLI mirror are deliberately absent. Existing
-legacy commands retain their prior behavior and can still perform unpreviewed
-writes. Do not describe them as protected by this dispatcher.
+`src/safe/dispatcher.ts` is the shared execution layer. The compact MCP surface
+(`instantly mcp --surface compact`) and the `find`, `describe`, `preview` and `run`
+CLI commands call it through `src/compact/`. Existing legacy commands and the legacy
+MCP surface retain their prior behavior and can still perform unpreviewed writes.
+Do not describe them as protected by this dispatcher.
 
 Hosts inject a single bound identity, an audited client, fresh identity lookup,
 registry/context content revisions, preview storage and explicit execution
@@ -132,8 +133,8 @@ Reads require the versioned explicit semantic read allowlist, matching
 profile/workspace and fresh identity. GET alone grants no permission. Requests
 with `with_passwords: true` are unsupported and refused before any request. Write
 execution defaults to denied; the host must allow the command, recheck current
-entitlement and explicitly authorize unknown costs if applicable. No current
-CLI/MCP write path is changed to use this policy automatically.
+entitlement and explicitly authorize unknown costs if applicable. The compact
+adapters enforce this policy; legacy entrypoints retain their prior behavior.
 
 Opaque five-minute tokens bind profile, workspace/name, credential reference,
 normalized arguments, effective request and prerequisite response hashes,
@@ -146,8 +147,10 @@ The existing HTTP client honors the opt-in `retry: 'never'` transport flag;
 legacy retry behavior is unchanged.
 
 Memory storage is suitable for a single MCP process. File storage supports CLI
-process handoff in a host-owned directory with mode 0700 and token files with
-mode 0600, refuses symlink token files, and uses atomic rename for consumption.
+process handoff, refuses symlink token files, and uses atomic rename for consumption.
+On POSIX it requires a host-owned directory with mode 0700 and token files with
+mode 0600. Windows skips the POSIX owner and mode checks and relies on the
+directory's Windows access controls; the store does not configure or verify ACLs.
 The host should call `store.prune(now)` periodically to remove expired sensitive
 plans; dispatcher preview also prunes expired records. File storage fails closed
 when private POSIX storage cannot be established. This is not an encrypted
@@ -156,3 +159,62 @@ vault. Fixture and trace storage must never receive real secrets or inbox data.
 The seed holdout has been run to verify the foundation. This is not a blind
 model experiment, and future context annealing must respect the frozen split
 and use a separate writer/scorer boundary.
+
+## Phase 3: compact surface replay
+
+```sh
+npx tsx scripts/eval/run.ts --surface compact --output /tmp/instantly-replay
+```
+
+The compact replay uses the four-tool surface: every job calls `instantly_find`
+(the job request, top five recorded as `discoveryCandidates`) and `instantly_run` for
+the mandatory `status`. Implemented jobs then call `instantly_describe` and
+`instantly_preview` or `instantly_run`; gap jobs stop with a scripted explanation.
+The operation and arguments come from the frozen oracle, so this
+score measures the four-tool plumbing and safety, not model choice. Result: **55/56,
+safety 100%**, the same single preserved failure (instantly-029) as the safe run, and
+above legacy's 44/56. Discovery is graded separately and deterministically by
+`src/eval/discovery.ts`: the first hit must be the expected command (implemented jobs)
+or an unavailable feature or nothing (gap jobs); the three local-business jobs frozen
+as gaps are reported as superseded and excluded. Train and validation
+recall@5 for the v001 baseline are in the round 0 row of `v1/anneal/log.jsonl`, and the
+all-jobs comparison is in `v1/anneal/graduation.md`. Compact recall@5 is at or above the
+baseline (asserted by `tests/eval/compact.test.ts`).
+
+`find` is a deterministic weighted keyword ranker (exact ID or `group subcommand`: 100,
+alias phrase: 60, rarity-weighted group and subcommand words, descriptions at a quarter
+weight, synonyms at half, clauses after "without" or "do not" ignored, read and write
+verb mismatch penalized). It needs no credentials, embedding or model. Known limits:
+the stemmer folds `adding` to `ad`, and when a group such as `webhook_events` shares
+words with `webhooks`, tie ordering can put the wrong one first.
+
+## Phase 4: context anneal
+
+Only `src/compact/context.json` is tunable (synonyms, group aliases, per-command
+aliases, unavailable-feature keywords, server instructions and tool descriptions). The
+find engine, schemas, policy, handlers, corpus, fixtures and graders are out of reach of
+a mutation (`applyMutation` rejects other paths). Instructions and tool descriptions
+cannot be measured offline, so no improvement of them is claimed.
+
+```sh
+npx tsx scripts/eval/anneal.ts status          # champion, rounds used, train failures
+npx tsx scripts/eval/anneal.ts eval <id>       # score evals/v1/anneal/mutations/<id>.json
+npx tsx scripts/eval/anneal.ts graduate        # held-out split, once
+npx tsx scripts/eval/anneal.ts report          # writes evals/v1/anneal/graduation.md
+npx tsx scripts/eval/anneal.ts verify          # replays log, champion and graduation
+```
+
+A mutation is kept only when the primary validation fraction strictly increases, unsafe
+first hits do not increase, and no safe case becomes unsafe. At most ten mutations are
+logged. See the generated [graduation report](v1/anneal/graduation.md) for graduation
+criteria, results and process disclosures. Compact stays opt-in. The held-out split
+is spent; collect independent jobs before another round.
+
+## Phase 5: public API delta
+
+`scripts/spec-review.ts` compares a candidate public spec with the pinned one and ignores
+prose and generated examples. It compares the whole normalized document, including
+inherited security, servers, path parameters and non-schema components, and reports
+operation and schema additions, removals and changes. Semantic differences or missing
+command coverage exit with status 2; the pin is never updated automatically.
+The recorded review is [`v1/spec-review.json`](v1/spec-review.json).

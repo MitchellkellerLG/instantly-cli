@@ -1,0 +1,10 @@
+{
+  "id": "006-leads-prospect-vocabulary",
+  "kind": "add-group-alias",
+  "hypothesis": "Requests about adding prospects never contain the word lead once the address is removed, and the stemmer folds adding to ad so the add verb is lost. One group alias (prospect means leads) and one synonym (adding means add, bulk) restore the leads group for add and import requests.",
+  "addresses": ["instantly-011"],
+  "set": {
+    "groupAliases.leads": ["prospect"],
+    "synonyms.adding": ["add", "bulk"]
+  }
+}
