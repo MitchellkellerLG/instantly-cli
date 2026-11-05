@@ -35,7 +35,7 @@ describe('F7 write retries', () => {
   const run = async (method: 'get' | 'post' | 'patch' | 'delete') => {
     let calls = 0;
     vi.stubGlobal('fetch', async () => (++calls === 1 ? Response.json({ message: 'boom' }, { status: 500 }) : Response.json({ ok: true })));
-    const client = new InstantlyClient({ apiKey: 'synthetic-marker-1234', maxRetries: 1 });
+    const client = new InstantlyClient({ apiKey: 'synthetic-0001', maxRetries: 1 });
     const result = await client[method]('/x').catch((e: Error) => e);
     return { calls, result };
   };
