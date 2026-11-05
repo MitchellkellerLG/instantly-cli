@@ -56,7 +56,7 @@ Or per command: `--profile client-a`.
 - One process, one profile. No `--all-profiles`. No `WORKSPACE_KEYS`. Do not iterate `~/.instantly/profiles`.
 - When a profile is selected, it wins over a leftover cwd `.env` `INSTANTLY_API_KEY`.
 - Reads and writes under `--profile` re-fetch the live workspace. If live id ≠ bound id, abort.
-- Writes also require `--workspace <uuid>` matching the bound id (CLI) or `workspace_id` (MCP).
+- CLI writes also require `--workspace <uuid>` matching the bound id. For MCP scope requirements, see [README configuration](README.md#configuration).
 - When `--workspace` is passed on any path (default or profile), live id must match or abort.
 - `profile list` / `status` / `whoami` always return `profile` (slug or `default`), `workspace_id`, `workspace_name`, `source`. They never print the API key (no prefix).
 
@@ -96,7 +96,7 @@ The same convert-for-you path applies to `email reply`, `email forward`, and `le
 
 ## MCP
 
-One MCP server process per profile. Set `INSTANTLY_PROFILE=client-a` (or `INSTANTLY_API_KEY` for the default single-key workspace). Every tool description says pass `profile` for agency. Mutating tools require `profile` + `workspace_id` matching the bound pair. Call `status` first. There is no “run across all profiles” tool.
+Follow [README configuration](README.md#configuration) for startup profile binding, operator permissions and required write scope. Call `status` first. Use MCP `tools/list` to discover the tools exposed by the configured server.
 
 ```json
 {
