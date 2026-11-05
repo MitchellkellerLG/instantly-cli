@@ -4,6 +4,8 @@ import { join, resolve } from 'node:path';
 import { spawnSync } from 'node:child_process';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { DEFAULT_POLICY, isExposed, policyFrom } from '../src/mcp/policy.js';
+import { directCommands } from '../src/commands/active.js';
 import { allCommands } from '../src/commands/index.js';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
@@ -70,15 +72,31 @@ try {
     if (command.mutating) assert.ok(cli(invocation, false).error);
   }
   console.log('PASS built CLI: all 13 new public operations and conservative POST workspace guards');
+  const mcpEnv = Object.fromEntries(Object.entries(env).filter((entry): entry is [string, string] => entry[1] !== undefined));
+  const defaultClient = new Client({ name: 'coverage-default-policy', version: '1.0.0' });
+  try {
+    await defaultClient.connect(new StdioClientTransport({ command: process.execPath,
+      args: ['--import', loader, resolve('dist/mcp.js')],
+      env: { ...mcpEnv, INSTANTLY_MCP_ALLOW_WRITES: '', INSTANTLY_MCP_ALLOW_SENSITIVE: '' } }));
+    const { tools } = await defaultClient.listTools();
+    assert.deepEqual(tools.map(t => t.name).sort(), [...directCommands().filter(c => isExposed(c, DEFAULT_POLICY)).map(c => c.name), 'status', 'health'].sort());
+    assert.ok(!tools.some(t => t.name === 'domains_update_domain_forwarding'));
+    const denied = await defaultClient.callTool({ name: 'domains_update_domain_forwarding',
+      arguments: { workspace_id: workspace, domain: 'example.com', body: { forwarding_domain: 'destination.com' } } });
+    assert.equal(denied.isError, true);
+    console.log('PASS built MCP: default policy hides and refuses writes');
+  } finally { await defaultClient.close(); }
+  const allowWrites = [...new Set(['domains_update_domain_forwarding', 'webhooks_create', 'accounts_warmup_enable', 'accounts_create',
+    ...delta.map((fixture: any) => fixture.context.command)])];
   const client = new Client({ name: 'coverage-smoke', version: '1.0.0' });
-  const transport = new StdioClientTransport({ command: process.execPath, args: ['--import', loader, resolve('dist/mcp.js')], env: Object.fromEntries(Object.entries(env).filter((entry): entry is [string, string] => entry[1] !== undefined)) });
+  const transport = new StdioClientTransport({ command: process.execPath, args: ['--import', loader, resolve('dist/mcp.js')], env: { ...mcpEnv, INSTANTLY_MCP_ALLOW_WRITES: allowWrites.join(','), INSTANTLY_MCP_ALLOW_SENSITIVE: '' } });
   try {
     await client.connect(transport);
     const { tools } = await client.listTools();
     assert.ok(tools.some(t => t.name === 'domains_update_domain_forwarding'));
     assert.ok(tools.some(t => t.name === 'saved_searches_list_saved_searches'));
     console.log(`PASS built MCP: lists ${tools.length} tools including generated commands`);
-    assert.equal(tools.length, 289);
+    assert.deepEqual(tools.map(t => t.name).sort(), [...directCommands().filter(c => isExposed(c, policyFrom(allowWrites))).map(c => c.name), 'status', 'health'].sort());
     for (const fixture of delta) {
       assert.ok(tools.some(t => t.name === fixture.context.command));
       const response = await client.callTool({ name: fixture.context.command,

@@ -10,12 +10,13 @@ vi.mock('@modelcontextprotocol/sdk/server/mcp.js', () => ({
 vi.mock('@modelcontextprotocol/sdk/server/stdio.js', () => ({ StdioServerTransport: class {} }));
 const PINNED = 'synthetic-pinned-0001';
 vi.mock('../src/core/auth.js', () => ({
-  resolveCredentials: async (o: { profile?: string } = {}) => o.profile
+  resolveCredentials: vi.fn(async (o: { profile?: string } = {}) => o.profile
     ? { apiKey: PINNED, source: `profile (${o.profile})`, profile: { slug: o.profile, workspace_id: 'ws-a', workspace_name: 'A', api_key: PINNED }, boundWorkspace: { id: 'ws-a', name: 'A' } }
-    : { apiKey: PINNED, source: 'env' },
+    : { apiKey: PINNED, source: 'env' }),
   boundWorkspaceOf: (c: any) => c.boundWorkspace,
   displayProfileSlug: (c: any) => c.profile?.slug ?? 'default',
 }));
+import { resolveCredentials } from '../src/core/auth.js';
 import { startMcpServer } from '../src/mcp/server.js';
 
 const calls: string[] = [];
@@ -26,12 +27,13 @@ beforeEach(() => {
     calls.push(`${init.method} ${path}`);
     if (path.endsWith('/workspaces/current')) return Response.json({ id: 'ws-a', name: 'A' });
     if (path.includes('/dfy-email-account-orders/accounts')) return Response.json({ items: [{ password: 'pw-marker' }] });
+    if (path.endsWith('/api-keys')) return Response.json({ key: 'new-credential-marker' });
     if (path.endsWith('/campaigns/c1/activate')) return Response.json({ id: 'c1' });
     if (path.endsWith('/campaigns')) return Response.json({ items: [], echoed: PINNED });
     return Response.json({ message: `bad ${PINNED}` }, { status: 400 });
   });
 });
-afterEach(() => vi.unstubAllGlobals());
+afterEach(() => { vi.unstubAllGlobals(); vi.mocked(resolveCredentials).mockReset(); });
 const call = (name: string, args: Record<string, unknown> = {}) => (handlers.get(name) as Handler)(args);
 
 it('F2: refuses a per-call profile that differs from the pinned one', async () => {
@@ -84,4 +86,43 @@ it('F8: the active key never appears in results or errors', async () => {
   await startMcpServer();
   expect(JSON.stringify(await call('campaigns_list'))).not.toContain(PINNED);
   expect(JSON.stringify(await call('campaigns_get', { id: 'nope' }))).not.toContain(PINNED);
+});
+
+it.each(['default', 'client-a'])('keeps startup credentials for %s across direct tools, status and health', async profile => {
+  const pinned = profile === 'default'
+    ? { apiKey: PINNED, source: 'stored config', boundWorkspace: { id: 'ws-a', name: 'A' } }
+    : { apiKey: PINNED, source: 'profile', profile: { slug: profile, api_key: PINNED, workspace_id: 'ws-a', workspace_name: 'A' } };
+  vi.mocked(resolveCredentials).mockResolvedValueOnce(pinned);
+  await startMcpServer({ profile });
+  vi.mocked(resolveCredentials).mockRejectedValue(new Error('credential source changed after startup'));
+  expect((await call('campaigns_list')).isError).toBeUndefined();
+  const status = await call('status');
+  expect(status.isError).toBe(false);
+  expect(JSON.parse(status.content[0].text)).toMatchObject({ profile, workspace_id: 'ws-a', source: pinned.source });
+  const health = await call('health');
+  expect(health.isError).toBeUndefined();
+  expect(JSON.parse(health.content[0].text)).toMatchObject({ profile, workspace_id: 'ws-a', source: pinned.source });
+  expect(resolveCredentials).toHaveBeenCalledTimes(1);
+});
+
+it('refuses a changed live workspace for a pinned default binding', async () => {
+  vi.mocked(resolveCredentials).mockResolvedValueOnce({ apiKey: PINNED, source: 'stored config', boundWorkspace: { id: 'ws-other', name: 'Other' } });
+  await startMcpServer({ profile: 'default' });
+  expect((await call('campaigns_list')).isError).toBe(true);
+  expect(calls).not.toContain('GET /api/v2/campaigns');
+  expect((await call('status')).isError).toBe(true);
+  expect((await call('health')).isError).toBe(true);
+});
+
+it('masks APIKey response keys unless the operator permits sensitive output', async () => {
+  await startMcpServer({ allowWrites: ['api_keys_create'] });
+  const args = { name: 'test-key', scopes: 'all:read', workspace_id: 'ws-a' };
+  const masked = await call('api_keys_create', args);
+  expect(masked.isError).toBeUndefined();
+  expect(JSON.parse(masked.content[0].text)).toEqual({ key: '[REDACTED]' });
+  handlers.clear();
+  await startMcpServer({ allowWrites: ['api_keys_create'], allowSensitive: ['api_keys_create'] });
+  const allowed = await call('api_keys_create', args);
+  expect(allowed.isError).toBeUndefined();
+  expect(JSON.parse(allowed.content[0].text)).toEqual({ key: 'new-credential-marker' });
 });

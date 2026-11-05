@@ -70,9 +70,11 @@ describe('F8 redaction', () => {
     expect(formatError(new Error('failed with Authorization: Bearer abcdefghijklmnop')).message).not.toContain('abcdefghijklmnop');
   });
   it('masks credential-named fields and known secrets deeply, leaving ordinary data', () => {
-    const out = redactValue({ items: [{ email: 'a@example.com', password: 'p1', imap_pass: 'p2', nested: { api_key: 'k', note: `has ${marker}` } }], bypass: 'ok', passed: 3 }, [marker]) as any;
+    const out = redactValue({ items: [{ email: 'a@example.com', password: 'p1', imap_pass: 'p2', nested: { key: 'new-api-credential', api_key: 'k', note: `has ${marker}` } }], bypass: 'ok', passed: 3 }, [marker]) as any;
     expect(out.items[0].password).toBe(REDACTED);
     expect(out.items[0].imap_pass).toBe(REDACTED);
+    expect(out.items[0].nested.key).toBe(REDACTED);
+    expect(redactValue({ key: ['credential-a', 'credential-b'] })).toEqual({ key: [REDACTED, REDACTED] });
     expect(out.items[0].nested.api_key).toBe(REDACTED);
     expect(out.items[0].nested.note).toBe(`has ${REDACTED}`);
     expect(out.items[0].email).toBe('a@example.com');

@@ -12,6 +12,7 @@ import {
 
 export interface CommandContextOptions {
   apiKey?: string;
+  credentials?: ResolvedCredentials;
   profile?: string;
   workspace?: string;
   mutating: boolean;
@@ -45,7 +46,7 @@ export async function createCommandContext(opts: CommandContextOptions): Promise
 async function createApiContext(
   opts: CommandContextOptions,
 ): Promise<CommandContext> {
-  const credentials = await resolveCredentials({
+  const credentials = opts.credentials ?? await resolveCredentials({
     apiKey: opts.apiKey,
     profile: opts.profile,
   });
@@ -63,15 +64,14 @@ async function createApiContext(
     return { client, credentials, liveWorkspace };
   }
 
-  // Default single-key path: --workspace is optional. Omitted = today's behavior.
-  if (!workspaceFlag) {
-    if (opts.mutating && opts.requireWriteWorkspace) {
-      throw new ValidationError('Write tools require workspace_id matching the workspace shown by status.');
-    }
-    return { client, credentials };
+  const bound = opts.credentials?.boundWorkspace;
+  if (opts.mutating && opts.requireWriteWorkspace && !workspaceFlag) {
+    throw new ValidationError('Write tools require workspace_id matching the workspace shown by status.');
   }
+  if (!workspaceFlag && !bound) return { client, credentials };
 
   const liveWorkspace = await fetchLiveWorkspace(client);
-  assertWorkspaceMatchesLive(liveWorkspace, workspaceFlag);
+  if (bound) assertWorkspaceMatchesLive(liveWorkspace, bound.id);
+  if (workspaceFlag) assertWorkspaceMatchesLive(liveWorkspace, workspaceFlag);
   return { client, credentials, liveWorkspace };
 }

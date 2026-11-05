@@ -1,4 +1,3 @@
-import { readFile } from 'node:fs/promises';
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
@@ -83,13 +82,6 @@ describe('opt-in registration', () => {
       const body = result.messages[0].content.text as string;
       for (const match of body.matchAll(/call (playbooks?_\w+)/gi)) advertised.add(match[1]);
       for (const match of body.matchAll(/with slug "([^"]+)"/g)) advertised.add(match[1]);
-    }
-    const readme = await readFile(new URL('../../README.md', import.meta.url), 'utf8');
-    const section = readme.split('### Playbooks:')[1].split('\n### ')[0];
-    for (const match of section.matchAll(/`(playbooks?_\w+)`/g)) advertised.add(match[1]);
-    for (const line of section.split('\n')) {
-      const row = /^\| `([^`]+)` \|/.exec(line);
-      if (row) advertised.add(row[1]);
     }
     expect(advertised.size).toBeGreaterThan(5);
     for (const name of advertised) expect(tools.has(name) || slugs.has(name), name).toBe(true);

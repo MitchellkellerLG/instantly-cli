@@ -82,10 +82,6 @@ export async function startMcpServer(options: McpOptions = {}): Promise<void> {
   const pinned = await resolveCredentials({ profile: options.profile });
   const pinnedSlug = pinned.profile?.slug;
   const secrets = [pinned.apiKey];
-  const asProfile = (requested: string | undefined) => {
-    assertPinnedProfile(requested, pinnedSlug);
-    return pinnedSlug;
-  };
 
   const server = new McpServer({
     name: 'instantly',
@@ -115,14 +111,14 @@ export async function startMcpServer(options: McpOptions = {}): Promise<void> {
       async (args: Record<string, unknown>) => {
         try {
           const { profile, workspace_id, input } = isolationFromArgs(args);
-          const slug = asProfile(profile);
+          assertPinnedProfile(profile, pinnedSlug);
           if (requestsCredentials(cmdDef, input) && !keepCredentialFields) {
             throw new ValidationError(
               `${cmdDef.name} with credentials is disabled. The operator must opt in with --allow-sensitive ${cmdDef.name}.`,
             );
           }
           const { client } = await createCommandContext({
-            profile: slug,
+            credentials: pinned,
             workspace: workspace_id,
             mutating,
             requireWriteWorkspace: true,
@@ -150,7 +146,8 @@ export async function startMcpServer(options: McpOptions = {}): Promise<void> {
     async (args: Record<string, unknown>) => {
       try {
         const { profile } = isolationFromArgs(args);
-        const result = await buildAuthStatus({ profile: asProfile(profile) });
+        assertPinnedProfile(profile, pinnedSlug);
+        const result = await buildAuthStatus({ credentials: pinned });
         return {
           content: [toolText(result, secrets, false)],
           isError: result.authenticated === false,
@@ -172,8 +169,9 @@ export async function startMcpServer(options: McpOptions = {}): Promise<void> {
     async (args: Record<string, unknown>) => {
       try {
         const { profile, workspace_id } = isolationFromArgs(args);
+        assertPinnedProfile(profile, pinnedSlug);
         const ctx = await createCommandContext({
-          profile: asProfile(profile),
+          credentials: pinned,
           workspace: workspace_id,
           mutating: false,
         });

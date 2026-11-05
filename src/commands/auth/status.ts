@@ -1,6 +1,6 @@
 import { Command } from 'commander';
 import { InstantlyClient } from '../../core/client.js';
-import { boundWorkspaceOf, displayProfileSlug, resolveCredentials } from '../../core/auth.js';
+import { boundWorkspaceOf, displayProfileSlug, resolveCredentials, type ResolvedCredentials } from '../../core/auth.js';
 import { fetchLiveWorkspace } from '../../core/workspace.js';
 import { AuthError, WorkspaceMismatchError } from '../../core/errors.js';
 import { output, outputError } from '../../core/output.js';
@@ -8,11 +8,12 @@ import type { GlobalOptions } from '../../core/types.js';
 
 export async function buildAuthStatus(opts: {
   apiKey?: string;
+  credentials?: ResolvedCredentials;
   profile?: string;
 }): Promise<Record<string, unknown>> {
   let credentials;
   try {
-    credentials = await resolveCredentials({
+    credentials = opts.credentials ?? await resolveCredentials({
       apiKey: opts.apiKey,
       profile: opts.profile,
     });

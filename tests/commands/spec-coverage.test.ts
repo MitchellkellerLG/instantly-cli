@@ -113,10 +113,13 @@ describe('generated requests use mocked HTTP only', () => {
     const cmd = command(id);
     await cmd.handler(input, client());
     const [url, request] = fetchMock.mock.calls[0];
-    expect(request.method).toBe(cmd.endpoint.method);
-    let expected = cmd.endpoint.path;
+    const [path, pathItem] = Object.entries(spec.paths).find(([, item]) =>
+      Object.values(item as Record<string, any>).some(operation => operation.operationId === id))!;
+    const [method] = Object.entries(pathItem as Record<string, any>).find(([, operation]) => operation.operationId === id)!;
+    expect(request.method).toBe(method.toUpperCase());
+    let expected = path;
     for (const [key, value] of Object.entries(input)) expected = expected.replace(`{${key}}`, encodeURIComponent(String(value)));
-    expect(new URL(url).pathname).toBe(`/api/v2${expected}`);
+    expect(new URL(url).pathname).toBe(expected);
     if ('body' in input) expect(JSON.parse(request.body)).toEqual(input.body);
   });
 

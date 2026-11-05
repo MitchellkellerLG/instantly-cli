@@ -4,7 +4,7 @@
  */
 export const REDACTED = '[REDACTED]';
 
-const SENSITIVE_FIELD = /passw(?:or)?d|(?:^|[_-])pass(?:$|[_-])|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|id[_-]?token|auth[_-]?token|\btoken\b|authorization|cookie|credential|private[_-]?key|smtp_pass|imap_pass/i;
+const SENSITIVE_FIELD = /^key$|passw(?:or)?d|(?:^|[_-])pass(?:$|[_-])|secret|api[_-]?key|access[_-]?token|refresh[_-]?token|id[_-]?token|auth[_-]?token|\btoken\b|authorization|cookie|credential|private[_-]?key|smtp_pass|imap_pass/i;
 const BEARER = /\bBearer\s+[\w.~+/=-]{8,}/gi;
 const AUTH_HEADER = /\b(authorization|x-org-auth|cookie|set-cookie)\s*[:=]\s*[^\s,;"']+/gi;
 

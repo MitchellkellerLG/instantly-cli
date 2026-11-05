@@ -23,7 +23,7 @@
     "test:watch": "vitest",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
     "spec:generate": "tsx scripts/generate-commands.ts",
     "spec:generated-check": "tsx scripts/generate-commands.ts --check",
     "spec:check": "tsx scripts/spec-drift.ts",
