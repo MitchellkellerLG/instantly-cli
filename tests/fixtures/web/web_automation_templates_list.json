@@ -1,0 +1,250 @@
+{
+  "id": "web_automation_templates_list",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "id": "<string>",
+        "name": "<string>",
+        "category": "deliverability",
+        "is_active": true,
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "description": "<string>",
+        "long_description": null,
+        "preview_steps": [
+          {
+            "app_id": "<string>",
+            "app_name": "<string>"
+          },
+          {
+            "app_id": "<string>",
+            "app_name": "<string>"
+          }
+        ],
+        "flow": {
+          "edges": [
+            {
+              "id": "<string>",
+              "source": "trigger",
+              "target": "<string>"
+            },
+            {
+              "id": "<string>",
+              "source": "<string>",
+              "target": "<string>"
+            }
+          ],
+          "nodes": [
+            {
+              "id": "trigger",
+              "type": "trigger",
+              "position": {
+                "x": 0,
+                "y": 0
+              },
+              "data": {
+                "app": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "name": "<string>",
+                "type": "trigger",
+                "event": {
+                  "id": "<string>",
+                  "type": "schedule"
+                },
+                "input": {
+                  "timezone": "<string>",
+                  "frequency": "<string>",
+                  "cronExpression": "<string>"
+                },
+                "meta": {}
+              }
+            },
+            {
+              "id": "<string>",
+              "type": "action",
+              "position": {
+                "x": 288,
+                "y": 0
+              },
+              "data": {
+                "app": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "name": "<string>",
+                "type": "action",
+                "event": {
+                  "id": "<string>",
+                  "type": "<string>"
+                },
+                "input": {
+                  "format": "year_month_day_time",
+                  "timezone": "<string>",
+                  "days_offset": -14
+                },
+                "meta": {}
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "id": "<string>",
+              "type": "sticky_note",
+              "position": {
+                "x": -48,
+                "y": -560
+              },
+              "width": 520,
+              "height": 380,
+              "content": "<string>",
+              "color": "blue"
+            },
+            {
+              "id": "<string>",
+              "type": "sticky_note",
+              "position": {
+                "x": -48,
+                "y": 320
+              },
+              "width": 520,
+              "height": 440,
+              "content": "<string>",
+              "color": "yellow"
+            }
+          ]
+        },
+        "origin": "official",
+        "visibility": "public",
+        "organization_id": null,
+        "created_by": null,
+        "install_count": 0
+      },
+      {
+        "id": "<string>",
+        "name": "<string>",
+        "category": "deliverability",
+        "is_active": true,
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "description": "<string>",
+        "long_description": null,
+        "preview_steps": [
+          {
+            "app_id": "<string>",
+            "app_name": "<string>"
+          },
+          {
+            "app_id": "<string>",
+            "app_name": "<string>"
+          }
+        ],
+        "flow": {
+          "edges": [
+            {
+              "id": "<string>",
+              "data": {},
+              "source": "trigger",
+              "target": "getcampaign"
+            },
+            {
+              "id": "<string>",
+              "data": {},
+              "source": "getcampaign",
+              "target": "status"
+            }
+          ],
+          "nodes": [
+            {
+              "id": "trigger",
+              "type": "trigger",
+              "position": {
+                "x": 0,
+                "y": 48
+              },
+              "data": {
+                "app": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "name": "<string>",
+                "type": "trigger",
+                "event": {
+                  "id": "<string>",
+                  "type": "schedule"
+                },
+                "input": {
+                  "time": "<string>",
+                  "interval": 1,
+                  "timezone": "<string>",
+                  "frequency": "<string>",
+                  "timezone_label": "<string>",
+                  "run_only_on_weekdays": false
+                },
+                "meta": {}
+              }
+            },
+            {
+              "id": "getcampaign",
+              "type": "action",
+              "position": {
+                "x": 288,
+                "y": 48
+              },
+              "data": {
+                "app": {
+                  "id": "<string>",
+                  "name": "<string>"
+                },
+                "name": "<string>",
+                "type": "action",
+                "event": {
+                  "id": "<string>",
+                  "type": "<string>"
+                },
+                "input": {
+                  "campaign_id": "<string>",
+                  "campaign_id_label": "<string>"
+                },
+                "meta": {}
+              }
+            }
+          ],
+          "annotations": [
+            {
+              "id": "<string>",
+              "type": "sticky_note",
+              "position": {
+                "x": -304,
+                "y": -272
+              },
+              "width": 440,
+              "height": 300,
+              "content": "<string>",
+              "color": "blue"
+            },
+            {
+              "id": "<string>",
+              "type": "sticky_note",
+              "position": {
+                "x": -304,
+                "y": 224
+              },
+              "width": 448,
+              "height": 352,
+              "content": "<string>",
+              "color": "yellow"
+            }
+          ]
+        },
+        "origin": "official",
+        "visibility": "public",
+        "organization_id": null,
+        "created_by": null,
+        "install_count": 58
+      }
+    ]
+  }
+}

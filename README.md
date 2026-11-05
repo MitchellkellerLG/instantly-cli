@@ -2,7 +2,7 @@
 
 **Instantly.ai in your terminal.** Run cold email campaigns, manage leads, monitor deliverability, and automate every outbound motion - from a single command line.
 
-287 command definitions shared by the CLI and MCP, covering all 268 operations in the pinned [Instantly.ai public V2 API spec](https://api.instantly.ai/openapi/api_v2.json), plus retained upstream commands. Built for humans, scripts, CI/CD pipelines, and AI agents.
+287 API command definitions shared by the CLI and MCP, covering all 268 operations in the pinned [Instantly.ai public V2 API spec](https://api.instantly.ai/openapi/api_v2.json), plus retained upstream commands. Optional [web-app support](#web-app-routes-and-attended-browser-actions) adds browser reads and attended actions. Built for humans, scripts, CI/CD pipelines, and AI agents.
 
 ```bash
 npm install -g instantly-cli
@@ -139,7 +139,7 @@ instantly --profile client-a --workspace '<bound-workspace-uuid>' accounts warmu
 
 ## What This CLI Enables
 
-The Instantly CLI provides access to the public API. Some dashboard features have no public API endpoint.
+The Instantly CLI provides access to the public API and optional [web-app routes and attended browser actions](#web-app-routes-and-attended-browser-actions) for dashboard tasks.
 
 **Campaign operations** - create campaigns, add leads, launch sequences, pause/resume, duplicate, and monitor sending status without opening a browser.
 
@@ -153,7 +153,7 @@ The Instantly CLI provides access to the public API. Some dashboard features hav
 
 **Team & workspace admin** - manage workspace members, API keys, billing info, audit logs, and whitelabel domains.
 
-**AI agent integration** - every command works as both a CLI subcommand and an MCP tool, so AI assistants (Claude, Cursor, Windsurf) can manage your outbound directly.
+**AI agent integration** - API commands work as both CLI subcommands and MCP tools, so AI assistants (Claude, Cursor, Windsurf) can manage your outbound directly. Browser action availability is described in [web-app support](#web-app-routes-and-attended-browser-actions).
 
 ---
 
@@ -741,7 +741,7 @@ instantly oauth status <session-id>                   # Check connection status
 
 ## MCP Server
 
-The CLI doubles as an [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server, giving AI assistants direct access to all 287 Instantly command tools as native function calls.
+The CLI doubles as an [MCP (Model Context Protocol)](https://modelcontextprotocol.io/) server, giving AI assistants direct access to the API command tools as native function calls. Optional browser tools are described in [web-app support](#web-app-routes-and-attended-browser-actions).
 
 ```bash
 instantly mcp
@@ -794,7 +794,7 @@ Every MCP tool description says pass `profile` for agency. Mutating tools requir
 
 ### Compact surface: four tools instead of 289
 
-`instantly mcp` registers one tool per command by default (the **legacy** surface, unchanged). For agents, `instantly mcp --surface compact` registers exactly four tools and loads a command's schema only when asked:
+`instantly mcp` registers one tool per direct command by default (the **legacy** surface). For agents, `instantly mcp --surface compact` registers exactly four tools and loads a command's schema only when asked:
 
 | Tool | Purpose | Needs a key |
 |------|---------|-------------|
@@ -848,13 +848,24 @@ instantly --profile sandbox --workspace <uuid> playbooks --tier internal run cam
 instantly --profile sandbox --workspace <uuid> playbooks digest                                                      # JSON with a text digest for this workspace
 ```
 
-`instantly mcp --playbooks [--tier managed]` (or `INSTANTLY_MCP_PLAYBOOKS=1`, `INSTANTLY_TIER`) adds `playbooks_list`, `playbooks_describe`, `playbooks_preview` and `playbooks_run` plus one MCP prompt per playbook (`playbooks/<slug>`), on either surface. Pass the canonical slug from the table to `playbooks_describe` or `playbooks_preview`. It is opt-in, so the default surfaces and their frozen evaluation facts are unchanged. Tiers are `vip` (default: previews only, can never execute a write), `managed` (draft and organisational writes, no spend) and `internal` (adds the metered convert, advisory ceiling 50 credits). Browser steps are always an attended checklist on every tier. A tier can only **narrow** what `--allow-write` enables, never widen it. The credit ceiling is advisory: the dispatcher knows cost only as none or unknown. Dependent writes (for example a webhook bound to the campaign created one step earlier) fill only declared UUID fields (named in the plan) from the earlier response; nothing else can change. No email is sent anywhere; distribution is MCP prompts and the CLI digest.
+`instantly mcp --playbooks [--tier managed]` (or `INSTANTLY_MCP_PLAYBOOKS=1`, `INSTANTLY_TIER`) adds `playbooks_list`, `playbooks_describe`, `playbooks_preview` and `playbooks_run` plus one MCP prompt per playbook (`playbooks/<slug>`), on either surface. Pass the canonical slug from the table to `playbooks_describe` or `playbooks_preview`. It is opt-in, so the default surfaces and their frozen evaluation facts are unchanged. Tiers are `vip` (default: previews only, can never execute a write), `managed` (draft and organisational writes, no spend) and `internal` (also permits attended browser actions and the metered convert, advisory ceiling 50 credits). Browser steps are always an attended checklist on every tier. A tier can only **narrow** what `--allow-write` enables, never widen it. The credit ceiling is advisory: the dispatcher knows cost only as none or unknown. Dependent writes (for example a webhook bound to the campaign created one step earlier) fill only declared UUID fields (named in the plan) from the earlier response; nothing else can change. No email is sent anywhere; distribution is MCP prompts and the CLI digest.
 
 Context-anneal tuning round 2 (a fresh blind corpus and a ranker change) is held for a separate pull request; the shipped find engine is unchanged.
 
 See the [playbook evaluation guide](evals/README.md#playbook-eval-family) for the offline oracle, replay limitations and recorded live proof.
 
-The legacy surface registers 287 command tools across 39 groups, plus `status` and `health`:
+## Web-app routes and attended browser actions
+
+Alongside the public API commands, optional browser support reaches mapped private web routes for CRM opportunities, website visitor setup, voice agent suppressions and phone numbers, AI agent feeds, automations, Copilot, Lead Finder history, credits and plan. It uses **your own signed-in browser**. The injected script reads the workspace session token inside the page and attaches it to requests there; browser credentials are not returned to the CLI or saved by it. You sign in yourself; the tool never asks for your password.
+
+1. Use Node.js 22 or newer for web commands. Run Chrome yourself with a dedicated, non-default user data directory (`--user-data-dir=<dedicated-profile-directory>`) and a local debugging port (`--remote-debugging-port=9222`), then sign in to Instantly. The tool accepts only a loopback HTTP debugging address and attaches to an existing Instantly app tab; it never launches Chrome.
+2. `export INSTANTLY_WEB_BROWSER_URL=http://127.0.0.1:9222` and use a normal API key or profile. The API key proves the workspace; the browser session must be on the same workspace or nothing is sent.
+3. Mapped read commands appear in the CLI and legacy MCP (`instantly web-crm opportunities`, `instantly web-billing credits`, `instantly web-voice suppressions`, ...), and in compact discovery and read execution. All are read-only and cost nothing. Each checks its declared top-level response shape; a mismatch fails closed with `WEB_SHAPE_DRIFT`. Use command `--help` or compact `describe` for pagination parameters: depending on the route, continuation uses `skip`, `offset`, or `starting_after`.
+4. Two attended browser actions (`web_action_open_screen`, `web_action_agent_prefill`) open a screen or type a request into the Agents box. They are available only through the compact MCP tools or CLI `preview` and `run`, never as direct CLI subcommands or legacy MCP tools. They require preview, then a host-enabled write (`--allow-write`), and never click or submit: you press the final button. Typing may trigger the app's own search.
+
+Without `INSTANTLY_WEB_BROWSER_URL` none of this exists in the registry, discovery, or the legacy MCP. Private routes can change without notice.
+
+With browser support disabled, the legacy surface registers 287 API command tools across 39 groups, plus `status` and `health`:
 
 | Group | Tools | Examples |
 |-------|-------|---------|

@@ -1,0 +1,12 @@
+{
+  "id": "web_payment_status_get",
+  "args": {},
+  "body": {
+    "status": "current",
+    "failed_subscription_count": 0,
+    "amount_due_in_dollars": null,
+    "currency": null,
+    "next_attempt_at": null,
+    "invoice_url": null
+  }
+}

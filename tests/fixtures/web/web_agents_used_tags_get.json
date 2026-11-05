@@ -1,0 +1,9 @@
+{
+  "id": "web_agents_used_tags_get",
+  "args": {},
+  "body": {
+    "isDefaultAlreadyUsed": false,
+    "usedTags": [],
+    "usedTagAgentNameMap": {}
+  }
+}

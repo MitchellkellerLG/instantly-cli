@@ -1,0 +1,11 @@
+{
+  "id": "web_crm_opportunities_list",
+  "args": {
+    "limit": 5
+  },
+  "body": {
+    "data": [],
+    "limit": 5,
+    "skip": 0
+  }
+}

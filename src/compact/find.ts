@@ -11,7 +11,7 @@ export interface Hit {
   summary: string;
   group?: string;
   effect: 'read' | 'write' | 'unknown' | 'unavailable';
-  availability: 'public' | 'undocumented' | 'virtual' | 'unavailable';
+  availability: 'public' | 'undocumented' | 'virtual' | 'web' | 'unavailable';
   runnable: boolean;
   score: number;
   matched: string[];

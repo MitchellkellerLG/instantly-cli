@@ -19,6 +19,8 @@ export interface DispatcherOptions {
   /** Must re-fetch the live identity, not echo caller arguments. */
   identity: () => Promise<Identity>;
   client: InstantlyClient;
+  /** Attended-browser client for origin 'web' commands. Absent means web commands are refused. */
+  webClient?: InstantlyClient;
   store: PreviewStore;
   registryRevision: string;
   contextRevision: string;
@@ -72,6 +74,11 @@ export class SafeDispatcher {
   private emit(type: DispatchEvent['type'], detail: unknown, command?: string): void {
     this.options.event?.({ type, detail: clone(detail), command });
   }
+  private clientFor(command: CommandDefinition): InstantlyClient {
+    if (command.origin !== 'web') return this.options.client;
+    if (!this.options.webClient) throw new Error('WEB_BROWSER_UNAVAILABLE');
+    return this.options.webClient;
+  }
   private async identity(scope: Scope): Promise<Identity> {
     if (!scope || Object.keys(scope).some(k => !['profile', 'workspace'].includes(k))) throw new Error('INVALID_SCOPE');
     if (!scope.profile || !z.uuid().safeParse(scope.workspace).success ||
@@ -101,7 +108,7 @@ export class SafeDispatcher {
         if (request.method === 'GET' && this.options.prerequisiteAllowed?.(command.name, request)) {
           // Never allow reads after a planned write; their result cannot be known at preview time.
           if (requests.length) { captureFailure = true; throw new Error('UNSUPPORTED_MULTI_REQUEST'); }
-          const response = await this.options.client.request(request);
+          const response = await this.clientFor(command).request(request);
           prerequisites.push({ request: clone(request), responseHash: digest(response ?? null) });
           responses.push(structuredClone(response));
           return response as T;
@@ -132,7 +139,7 @@ export class SafeDispatcher {
           const expected = position < prerequisites.length ? prerequisites[position].request : requests[position - prerequisites.length];
           if (!expected || canonical(request) !== canonical(expected)) throw new Error('CHANGED_REQUEST_PLAN');
           if (position < prerequisites.length) return structuredClone(responses[position]) as T;
-          return await this.send(request, command.name) as T;
+          return await this.send(request, command) as T;
         } catch (error) { failure = error; throw error; }
       });
       const result = await command.handler(clone(args), client);
@@ -163,10 +170,10 @@ export class SafeDispatcher {
     const prepared = await this.prepare(command, args, this.options.bound);
     return prepared.execute();
   }
-  private async send(request: Request, id: string): Promise<unknown> {
+  private async send(request: Request, command: CommandDefinition): Promise<unknown> {
     assertLocalPath(request);
-    this.emit('request', request, id);
-    return this.options.client.request({ ...clone(request), retry: 'never' });
+    this.emit('request', request, command.name);
+    return this.clientFor(command).request({ ...clone(request), retry: 'never' });
   }
   async write(token: string, scope: Scope, envelope?: never): Promise<unknown> {
     if (envelope !== undefined) throw new Error('CHANGED_ARGUMENTS');

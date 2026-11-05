@@ -17,6 +17,12 @@ export interface CommandDefinition<TInput extends z.ZodObject<any> = z.ZodObject
   /** Generated from the pinned public OpenAPI document. */
   generated?: boolean;
 
+  /**
+   * 'web' marks a private web-app route, reached only through the operator's own signed-in browser.
+   * Default 'api' is the public API with a bearer key.
+   */
+  origin?: 'api' | 'web';
+
   /** Unique identifier, used as MCP tool name. e.g., "campaigns_list" */
   name: string;
 

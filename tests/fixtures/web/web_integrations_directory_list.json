@@ -1,0 +1,49 @@
+{
+  "id": "web_integrations_directory_list",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "app_id": "<string>",
+        "name": "<string>",
+        "description": "<string>",
+        "source": "marketplace",
+        "logo_url": "<string>",
+        "developer_name": "<string>",
+        "connector_provider_id": "<string>",
+        "connector_status": "live",
+        "connector_is_draft": false,
+        "connector_version": "<string>",
+        "connector_slug": "act",
+        "connector_has_actions": true,
+        "connector_has_triggers": true,
+        "authentication": {
+          "instantly-connect": {
+            "provider": "<string>"
+          }
+        }
+      },
+      {
+        "app_id": "<string>",
+        "name": "<string>",
+        "description": "<string>",
+        "source": "marketplace",
+        "logo_url": "<string>",
+        "developer_name": "<string>",
+        "connector_provider_id": "<string>",
+        "connector_status": "live",
+        "connector_is_draft": false,
+        "connector_version": "<string>",
+        "connector_slug": "activecampaign",
+        "connector_has_actions": true,
+        "connector_has_triggers": true,
+        "authentication": {
+          "instantly-connect": {
+            "provider": "<string>"
+          }
+        }
+      }
+    ],
+    "next_starting_after": "<string>"
+  }
+}

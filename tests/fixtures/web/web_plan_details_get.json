@@ -1,0 +1,112 @@
+{
+  "id": "web_plan_details_get",
+  "args": {},
+  "body": {
+    "organization_id": "<string>",
+    "organization_name": "<string>",
+    "subscriptions": {
+      "outreach": {
+        "plan_name": "<string>",
+        "addons_qty": 0,
+        "total_lead_limit": 25000,
+        "current_lead_count": 10,
+        "base_lead_limit": 25000,
+        "interval": "month",
+        "current_period_end": 1795673564,
+        "cancel_at_time": null,
+        "price_in_dollars": 107,
+        "product_id": "<string>"
+      },
+      "credits": {
+        "plan_name": "<string>",
+        "total_credits": 1000,
+        "available_credits": 49986,
+        "interval": null,
+        "current_period_end": null,
+        "cancel_at_time": null,
+        "price_in_dollars": null,
+        "product_id": "pid_free",
+        "price_option_id": null
+      },
+      "bundle": {
+        "plan_name": null,
+        "total_lead_limit": 0,
+        "current_lead_count": 10,
+        "base_lead_limit": 0,
+        "interval": null,
+        "current_period_end": null,
+        "cancel_at_time": null,
+        "price_in_dollars": null,
+        "product_id": null
+      },
+      "crm": {
+        "plan_name": null,
+        "interval": null,
+        "current_period_end": null,
+        "cancel_at_time": null,
+        "price_in_dollars": null,
+        "product_id": null,
+        "available_credits": null,
+        "plan_limit": null
+      },
+      "website_visitors": {
+        "plan_name": null,
+        "interval": null,
+        "current_period_end": null,
+        "cancel_at_time": null,
+        "price_in_dollars": null,
+        "product_id": null,
+        "available_credits": null,
+        "plan_limit": null
+      },
+      "inbox_placement": {
+        "plan_name": null,
+        "interval": null,
+        "current_period_end": null,
+        "cancel_at_time": null,
+        "price_in_dollars": null,
+        "product_id": null,
+        "available_credits": null,
+        "plan_limit": null,
+        "included_with_crm": false
+      }
+    },
+    "addons": {
+      "outreach": {
+        "product_id": "<string>",
+        "unit_lead_limit": 25000,
+        "existing_quantity": 0,
+        "max_quantity": 20,
+        "interval": null,
+        "can_purchase": true,
+        "purchase_blocked_reason": null,
+        "annual_discount_percent": 20,
+        "monthly_pricing_tiers": [
+          {
+            "from_quantity": 1,
+            "to_quantity": 5,
+            "price_in_dollars": 87
+          },
+          {
+            "from_quantity": 6,
+            "to_quantity": 20,
+            "price_in_dollars": 80
+          }
+        ]
+      },
+      "credits": {
+        "product_id": "<string>",
+        "annual_product_id": "<string>",
+        "unit_credits": 50000,
+        "annual_unit_credits": 600000,
+        "existing_quantity": 0,
+        "max_quantity": 10,
+        "interval": null,
+        "can_purchase": false,
+        "purchase_blocked_reason": "<string>",
+        "monthly_price_in_dollars": 425,
+        "annual_price_in_dollars": 5100
+      }
+    }
+  }
+}

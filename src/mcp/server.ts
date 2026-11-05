@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
-import { allCommands } from '../commands/index.js';
+import { directCommands } from '../commands/active.js';
 import { buildAuthStatus } from '../commands/auth/status.js';
 import { runHealth } from '../commands/health/index.js';
 import { createCommandContext } from '../core/command-context.js';
@@ -60,7 +60,8 @@ export async function startMcpServer(options: McpOptions = {}): Promise<void> {
     version: '0.1.22',
   });
 
-  for (const cmdDef of allCommands) {
+  const commands = directCommands();
+  for (const cmdDef of commands) {
     const shape = { ...cmdDef.inputSchema.shape, ...isolationShape };
 
     server.registerTool(
@@ -76,6 +77,7 @@ export async function startMcpServer(options: McpOptions = {}): Promise<void> {
             profile,
             workspace: workspace_id,
             mutating: isMutatingCommand(cmdDef),
+            origin: cmdDef.origin,
           });
           const result = await cmdDef.handler(input, client);
           return {
@@ -204,5 +206,5 @@ export async function startMcpServer(options: McpOptions = {}): Promise<void> {
   const transport = new StdioServerTransport();
   await server.connect(transport);
 
-  console.error('Instantly MCP server started. Tools registered:', allCommands.length + 2);
+  console.error('Instantly MCP server started. Tools registered:', commands.length + 2);
 }

@@ -1,0 +1,21 @@
+{
+  "id": "web_analytics_sales_agent",
+  "args": {
+    "start_date": "2026-10-01T00:00:00.000Z",
+    "end_date": "2026-11-05T23:59:59.999Z"
+  },
+  "body": {
+    "total_email_activity_per_day": [],
+    "replies_per_day": [],
+    "leads_found_per_day": [],
+    "opportunities_per_day": [],
+    "totals": {
+      "total_sent": 0,
+      "replies": 0,
+      "opportunities": 0,
+      "opportunities_amount": 0,
+      "total_email_activity": 0,
+      "leads_found": 0
+    }
+  }
+}

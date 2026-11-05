@@ -1,5 +1,5 @@
 import type { CommandDefinition } from '../core/types.js';
-import { allCommands } from '../commands/index.js';
+import { activeCommands } from '../commands/active.js';
 import { effectPolicy, type EffectPolicy } from '../safe/policy.js';
 import { digest } from '../safe/canonical.js';
 import { foldedWords } from './text.js';
@@ -17,7 +17,7 @@ export interface Context {
 export const defaultContext: Context = context as Context;
 export const contextRevision = (ctx: Context = defaultContext): string => digest(ctx);
 
-export type Availability = 'public' | 'undocumented' | 'virtual';
+export type Availability = 'public' | 'undocumented' | 'virtual' | 'web';
 export interface CatalogEntry {
   kind: 'command';
   id: string;
@@ -60,7 +60,7 @@ function needsIdField(definition: CommandDefinition): boolean {
   return required.some(f => f === 'id' || f.endsWith('_id') || f.endsWith('_uuid') || f === 'email' || f === 'uuid');
 }
 
-export function buildCatalog(commands: CommandDefinition[] = allCommands): CatalogEntry[] {
+export function buildCatalog(commands: CommandDefinition[] = activeCommands()): CatalogEntry[] {
   const entries: CatalogEntry[] = commands.map(definition => ({
     kind: 'command',
     id: definition.name,
@@ -69,7 +69,7 @@ export function buildCatalog(commands: CommandDefinition[] = allCommands): Catal
     summary: summarize(definition.description),
     description: definition.description,
     effect: effectPolicy(definition),
-    availability: definition.description.includes('[Undocumented API]') ? 'undocumented' : 'public',
+    availability: definition.origin === 'web' ? 'web' : definition.description.includes('[Undocumented API]') ? 'undocumented' : 'public',
     definition,
     idTokens: foldedWords(definition.name),
     groupTokens: foldedWords(definition.group),
@@ -93,7 +93,7 @@ export function buildFeatures(ctx: Context = defaultContext): FeatureEntry[] {
 }
 
 /** Content hash of the executable registry, matching the frozen evals registry hash. */
-export function registryRevision(commands: CommandDefinition[] = allCommands): string {
+export function registryRevision(commands: CommandDefinition[] = activeCommands()): string {
   return digest(commands.map(c => ({ id: c.name, group: c.group, subcommand: c.subcommand,
     endpoint: c.endpoint, fieldMappings: c.fieldMappings, generated: !!c.generated })));
 }

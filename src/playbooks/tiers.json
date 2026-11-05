@@ -15,7 +15,7 @@
   },
   "internal": {
     "description": "The LeadGrow team on a LeadGrow or test workspace with the owner signed in.",
-    "allowedWrites": ["campaigns_create", "campaigns_add_variables", "lead_lists_create", "custom_tags_create", "custom_tags_toggle", "leads_move", "webhooks_create", "local_business_search_convert_local_businesses"],
+    "allowedWrites": ["campaigns_create", "campaigns_add_variables", "lead_lists_create", "custom_tags_create", "custom_tags_toggle", "leads_move", "webhooks_create", "local_business_search_convert_local_businesses", "web_action_open_screen", "web_action_agent_prefill"],
     "allowUnknownCost": true,
     "creditCeiling": 50,
     "forbiddenRequires": []

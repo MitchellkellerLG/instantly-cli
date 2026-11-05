@@ -1,0 +1,7 @@
+{
+  "id": "web_crm_stats",
+  "args": {
+    "include": "opportunities"
+  },
+  "body": {}
+}

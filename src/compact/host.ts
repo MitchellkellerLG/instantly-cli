@@ -4,7 +4,7 @@ import { assertProfileWorkspace, fetchLiveWorkspace } from '../core/workspace.js
 import { WorkspaceMismatchError } from '../core/errors.js';
 import { buildAuthStatus } from '../commands/auth/status.js';
 import { runHealth } from '../commands/health/index.js';
-import { allCommands } from '../commands/index.js';
+import { activeCommands } from '../commands/active.js';
 import { digest } from '../safe/canonical.js';
 import { SafeDispatcher, type Identity, type Scope } from '../safe/dispatcher.js';
 import type { PreviewStore } from '../safe/preview-store.js';
@@ -12,6 +12,7 @@ import type { Request } from '../safe/transport.js';
 import type { InstantlyClient as ClientShape } from '../core/types.js';
 import { contextRevision, defaultContext, registryRevision, type Context } from './catalog.js';
 import type { CompactHost } from './surface.js';
+import { webClientFor } from '../web/browser-client.js';
 
 /** Only reply and forward read the original message to resolve recipients. */
 export function prerequisiteAllowed(command: string, request: Request): boolean {
@@ -79,7 +80,8 @@ export function createLiveHost(options: LiveHostOptions): CompactHost {
     async dispatcher(count) {
       const { bound, live, client } = await ensure();
       return new SafeDispatcher({
-        commands: allCommands, bound, identity: live, client, store: options.store,
+        commands: activeCommands(), bound, identity: live, client, store: options.store,
+        webClient: webClientFor(bound.workspace),
         registryRevision: registryRevision(), contextRevision: contextRevision(options.context ?? defaultContext),
         allowedWrites, allowUnknownCost, authorizeWrite: async command => allowedWrites.includes(command),
         prerequisiteAllowed, event: event => { if (event.type === 'request') count(); },

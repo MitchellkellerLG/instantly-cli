@@ -1,0 +1,8 @@
+{
+  "id": "web_analytics_inbox_manager_by_date",
+  "args": {
+    "from": "2026-10-01",
+    "to": "2026-11-05"
+  },
+  "body": []
+}

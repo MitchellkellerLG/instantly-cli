@@ -1,0 +1,369 @@
+{
+  "id": "web_agents_sales_list",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "id": "<string>",
+        "workspace_id": "<string>",
+        "name": "<string>",
+        "status": 1,
+        "initial_scrape_ready": true,
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "type": "website",
+        "input": "<string>",
+        "config": {
+          "memory": {
+            "icps": [
+              {
+                "usp": "<string>",
+                "name": "<string>",
+                "benefits": [
+                  "<string>",
+                  "<string>"
+                ],
+                "industry": [
+                  "<string>",
+                  "<string>"
+                ],
+                "keywords": {
+                  "exclude": "<string>",
+                  "include": "<string>"
+                },
+                "location": {
+                  "exclude": [],
+                  "include": [
+                    {
+                      "label": "<string>",
+                      "value": "<string>",
+                      "placeId": "<string>"
+                    }
+                  ]
+                },
+                "job_title": {
+                  "exclude": [
+                    "<string>",
+                    "<string>"
+                  ],
+                  "include": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "company_size": [
+                  "<string>",
+                  "<string>"
+                ],
+                "customer_goals": [
+                  "<string>",
+                  "<string>"
+                ],
+                "problems_solved": [
+                  "<string>",
+                  "<string>"
+                ],
+                "success_stories": "<string>"
+              },
+              {
+                "usp": "<string>",
+                "name": "<string>",
+                "benefits": [
+                  "<string>",
+                  "<string>"
+                ],
+                "industry": [
+                  "<string>",
+                  "<string>"
+                ],
+                "keywords": {
+                  "exclude": "<string>",
+                  "include": "<string>"
+                },
+                "location": {
+                  "exclude": [],
+                  "include": [
+                    {
+                      "label": "<string>",
+                      "value": "<string>",
+                      "placeId": "<string>"
+                    },
+                    {
+                      "label": "<string>",
+                      "value": "<string>",
+                      "placeId": "<string>"
+                    }
+                  ]
+                },
+                "job_title": {
+                  "exclude": [
+                    "<string>",
+                    "<string>"
+                  ],
+                  "include": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "company_size": [
+                  "<string>",
+                  "<string>"
+                ],
+                "customer_goals": [
+                  "<string>",
+                  "<string>"
+                ],
+                "problems_solved": [
+                  "<string>",
+                  "<string>"
+                ],
+                "success_stories": "<string>"
+              }
+            ],
+            "company": "<string>",
+            "language": "<string>",
+            "business_offers": [
+              "<string>",
+              "<string>"
+            ],
+            "active_icps_indexes": [
+              0,
+              1
+            ],
+            "business_description": "<string>",
+            "active_business_offers_indexes": [
+              0,
+              1
+            ]
+          },
+          "position_details": "<string>",
+          "enrichment_settings": {
+            "enrichment_limit_per_run": 10
+          },
+          "outreach_settings": {
+            "opt_out_settings": {
+              "text_opt_out_enabled": true
+            },
+            "email_list": [],
+            "daily_limit": 10,
+            "open_tracking": false,
+            "stop_on_reply": true,
+            "email_tag_list": [],
+            "match_lead_esp": true,
+            "campaign_schedule": {
+              "schedules": [
+                {
+                  "days": {
+                    "0": false,
+                    "1": true,
+                    "2": true,
+                    "3": true,
+                    "4": true,
+                    "5": true,
+                    "6": false
+                  },
+                  "name": "<string>",
+                  "timing": {
+                    "to": "<string>",
+                    "from": "<string>"
+                  },
+                  "timezone": "<string>"
+                }
+              ]
+            },
+            "prioritize_new_leads": true,
+            "first_email_text_only": true
+          },
+          "autonomy_settings": {
+            "autopilot_mode": false,
+            "auto_reply_to_responses": true
+          }
+        },
+        "created_by": "<string>",
+        "master_lead_list_id": "<string>",
+        "agent_type": 7,
+        "self_improvement": true,
+        "timestamp_last_decision": "<string>",
+        "next_decision_time": "<string>"
+      },
+      {
+        "id": "<string>",
+        "workspace_id": "<string>",
+        "name": "<string>",
+        "status": 0,
+        "initial_scrape_ready": true,
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "type": "website",
+        "input": "<string>",
+        "config": {
+          "memory": {
+            "icps": [
+              {
+                "usp": "<string>",
+                "name": "<string>",
+                "benefits": [
+                  "<string>",
+                  "<string>"
+                ],
+                "industry": [
+                  "<string>",
+                  "<string>"
+                ],
+                "keywords": {
+                  "exclude": "<string>",
+                  "include": "<string>"
+                },
+                "location": {
+                  "exclude": [],
+                  "include": [
+                    {
+                      "label": "<string>",
+                      "placeId": "<string>"
+                    }
+                  ]
+                },
+                "job_title": {
+                  "exclude": [
+                    "<string>",
+                    "<string>"
+                  ],
+                  "include": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "company_size": [
+                  "<string>",
+                  "<string>"
+                ],
+                "customer_goals": [
+                  "<string>",
+                  "<string>"
+                ],
+                "problems_solved": [
+                  "<string>",
+                  "<string>"
+                ],
+                "success_stories": "<string>"
+              },
+              {
+                "usp": "<string>",
+                "name": "<string>",
+                "benefits": [
+                  "<string>",
+                  "<string>"
+                ],
+                "industry": [
+                  "<string>",
+                  "<string>"
+                ],
+                "keywords": {
+                  "exclude": "<string>",
+                  "include": "<string>"
+                },
+                "location": {
+                  "exclude": [],
+                  "include": [
+                    {
+                      "label": "<string>",
+                      "placeId": "<string>"
+                    },
+                    {
+                      "label": "<string>",
+                      "placeId": "<string>"
+                    }
+                  ]
+                },
+                "job_title": {
+                  "exclude": [
+                    "<string>",
+                    "<string>"
+                  ],
+                  "include": [
+                    "<string>",
+                    "<string>"
+                  ]
+                },
+                "company_size": [
+                  "<string>",
+                  "<string>"
+                ],
+                "customer_goals": [
+                  "<string>",
+                  "<string>"
+                ],
+                "problems_solved": [
+                  "<string>",
+                  "<string>"
+                ],
+                "success_stories": "<string>"
+              }
+            ],
+            "company": "<string>",
+            "language": "<string>",
+            "business_offers": [
+              "<string>",
+              "<string>"
+            ],
+            "active_icps_indexes": [
+              0,
+              1
+            ],
+            "business_description": "<string>",
+            "active_business_offers_indexes": [
+              0,
+              1
+            ]
+          },
+          "enrichment_settings": {
+            "enrichment_limit_per_run": 10
+          },
+          "outreach_settings": {
+            "opt_out_settings": {
+              "text_opt_out_enabled": true
+            },
+            "email_list": [],
+            "daily_limit": 10,
+            "open_tracking": false,
+            "stop_on_reply": true,
+            "email_tag_list": [],
+            "match_lead_esp": true,
+            "campaign_schedule": {
+              "schedules": [
+                {
+                  "days": {
+                    "0": false,
+                    "1": true,
+                    "2": true,
+                    "3": true,
+                    "4": true,
+                    "5": true,
+                    "6": false
+                  },
+                  "name": "<string>",
+                  "timing": {
+                    "to": "<string>",
+                    "from": "<string>"
+                  },
+                  "timezone": "<string>"
+                }
+              ]
+            },
+            "prioritize_new_leads": true,
+            "first_email_text_only": true
+          },
+          "autonomy_settings": {
+            "autopilot_mode": false,
+            "auto_reply_to_responses": true
+          }
+        },
+        "created_by": "<string>",
+        "master_lead_list_id": "<string>",
+        "agent_type": 2,
+        "self_improvement": false,
+        "next_decision_time": "<string>"
+      }
+    ]
+  }
+}
