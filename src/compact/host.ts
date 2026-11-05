@@ -1,5 +1,5 @@
 import { InstantlyClient } from '../core/client.js';
-import { boundWorkspaceOf, displayProfileSlug, resolveCredentials } from '../core/auth.js';
+import { boundWorkspaceOf, displayProfileSlug, resolveCredentials, type ResolvedCredentials } from '../core/auth.js';
 import { assertProfileWorkspace, fetchLiveWorkspace } from '../core/workspace.js';
 import { WorkspaceMismatchError } from '../core/errors.js';
 import { buildAuthStatus } from '../commands/auth/status.js';
@@ -45,6 +45,7 @@ export function healthClient(client: ClientShape, count: () => void): InstantlyC
 export interface LiveHostOptions {
   profile?: string;
   apiKey?: string;
+  credentials?: ResolvedCredentials;
   store: PreviewStore;
   allowedWrites?: string[];
   allowUnknownCost?: boolean;
@@ -58,13 +59,13 @@ export interface LiveHostOptions {
 export function createLiveHost(options: LiveHostOptions): CompactHost {
   const allowedWrites = [...(options.allowedWrites ?? [])];
   const allowUnknownCost = options.allowUnknownCost === true;
-  let ready: Promise<{ bound: Identity; slug: string; client: ClientShape; live: () => Promise<Identity> }> | undefined;
+  let ready: Promise<{ bound: Identity; slug: string; client: ClientShape; credentials: ResolvedCredentials; live: () => Promise<Identity> }> | undefined;
 
   const ensure = () => ready ??= (async () => {
-    const credentials = await resolveCredentials({ apiKey: options.apiKey, profile: options.profile });
+    const credentials = options.credentials ?? await resolveCredentials({ apiKey: options.apiKey, profile: options.profile });
     const client = new InstantlyClient({ apiKey: credentials.apiKey });
     const slug = displayProfileSlug(credentials);
-    const bound = boundWorkspaceOf(credentials);
+    let bound = boundWorkspaceOf(credentials);
     const credentialRef = digest({ source: credentials.source, profile: slug, apiKey: credentials.apiKey });
     const live = async (): Promise<Identity> => {
       const workspace = credentials.profile ? await assertProfileWorkspace(client, credentials.profile) : await fetchLiveWorkspace(client);
@@ -72,7 +73,8 @@ export function createLiveHost(options: LiveHostOptions): CompactHost {
       return { profile: slug, workspace: workspace.id, workspaceName: workspace.name, credentialRef };
     };
     const first = await live();
-    return { bound: first, slug, client, live };
+    bound ??= { id: first.workspace, name: first.workspaceName ?? '' };
+    return { bound: first, slug, client, live, credentials: { ...credentials, boundWorkspace: bound } };
   })().catch(error => { ready = undefined; throw error; });
 
   return {
@@ -88,7 +90,8 @@ export function createLiveHost(options: LiveHostOptions): CompactHost {
       });
     },
     async status(scope: Scope) {
-      const status = await buildAuthStatus({ apiKey: options.apiKey, profile: options.profile });
+      const { credentials } = await ensure();
+      const status = await buildAuthStatus({ credentials });
       const matches = status.authenticated === true && status.profile === scope.profile && status.workspace_id === scope.workspace;
       return { ...status, expected: { profile: scope.profile, workspace_id: scope.workspace }, matches_expected: matches,
         ...(matches ? {} : { warning: 'Expected profile/workspace does not match. Do not run writes. Ask the user to confirm the workspace.' }) };

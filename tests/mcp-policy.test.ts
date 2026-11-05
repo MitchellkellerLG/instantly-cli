@@ -4,6 +4,8 @@ const handlers = vi.hoisted(() => new Map<string, unknown>());
 vi.mock('@modelcontextprotocol/sdk/server/mcp.js', () => ({
   McpServer: class {
     registerTool(name: string, _config: unknown, handler: unknown) { handlers.set(name, handler); }
+    registerPrompt() {}
+    server = { setRequestHandler() {} };
     async connect() {}
   },
 }));
@@ -125,4 +127,30 @@ it('masks APIKey response keys unless the operator permits sensitive output', as
   const allowed = await call('api_keys_create', args);
   expect(allowed.isError).toBeUndefined();
   expect(JSON.parse(allowed.content[0].text)).toEqual({ key: 'new-credential-marker' });
+});
+
+
+it.each(['api_keys_create', 'campaigns_activate', 'accounts_delete', 'campaigns_update', 'domains_update_domain_forwarding'])('sensitive-output permission alone does not expose %s', async command => {
+  await startMcpServer({ allowSensitive: [command] });
+  expect(handlers.has(command)).toBe(false);
+  expect(calls).toEqual([]);
+});
+
+it('legacy playbooks retain the same default credentials as direct tools', async () => {
+  const workspace = '11111111-1111-4111-8111-111111111111';
+  const other = '22222222-2222-4222-8222-222222222222';
+  vi.mocked(resolveCredentials).mockResolvedValueOnce({ apiKey: PINNED, source: 'stored config', boundWorkspace: { id: workspace, name: 'A' } });
+  await startMcpServer({ profile: 'default', playbooks: true });
+  vi.mocked(resolveCredentials).mockResolvedValue({ apiKey: 'synthetic-rebound', source: 'stored config', boundWorkspace: { id: other, name: 'B' } });
+  const keys: unknown[] = [];
+  vi.stubGlobal('fetch', async (_url: string, init: any) => {
+    keys.push(init.headers.Authorization);
+    return Response.json({ id: init.headers.Authorization === `Bearer ${PINNED}` ? workspace : other, name: 'Synthetic' });
+  });
+  const result = await call('playbooks_list', { profile: 'default', workspace_id: other });
+  expect(JSON.parse(result.content[0].text)).toMatchObject({ error: { code: 'WORKSPACE_MISMATCH' } });
+  expect((await call('status')).isError).toBe(false);
+  expect(resolveCredentials).toHaveBeenCalledTimes(1);
+  expect(keys.length).toBeGreaterThan(0);
+  expect(keys.every(key => key === `Bearer ${PINNED}`)).toBe(true);
 });

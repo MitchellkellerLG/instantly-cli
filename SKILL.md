@@ -5,7 +5,7 @@ description: Use the Instantly CLI and MCP server for cold email campaigns, lead
 
 # Instantly CLI - agent skill
 
-Public CLI (`npm i -g instantly-cli`). JSON on stdout. Node.js 18+.
+Community-maintained CLI (`npm install -g github:MitchellkellerLG/instantly-cli`). JSON on stdout. Node.js 18+.
 
 **Name every client as a profile.** Confirm `status` / `whoami` (`profile`, `workspace_id`, `workspace_name`, `source`) before campaigns, health, or writes. One process, one profile. Never print or commit raw API keys.
 

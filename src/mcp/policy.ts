@@ -1,5 +1,6 @@
 import type { CommandDefinition } from '../core/types.js';
 import { effectPolicy } from '../safe/policy.js';
+import { isMutatingCommand } from '../core/mutating.js';
 import { ValidationError } from '../core/errors.js';
 
 /**
@@ -36,7 +37,7 @@ export function requestsCredentials(command: CommandDefinition, input: Record<st
 }
 
 export function isExposed(command: CommandDefinition, policy: McpPolicy): boolean {
-  return isReviewedRead(command) || policy.allowWrites.has(command.name) || policy.allowSensitive.has(command.name);
+  return isReviewedRead(command) || policy.allowWrites.has(command.name) || (!isMutatingCommand(command) && policy.allowSensitive.has(command.name));
 }
 
 /** A typo in an operator allowance fails at startup rather than silently doing nothing. */

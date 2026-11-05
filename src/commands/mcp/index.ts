@@ -13,21 +13,8 @@ export function registerMcpCommand(program: Command): void {
     .addHelpText('after', `
 MCP Configuration:
 
+  Install this copy with npm install -g github:MitchellkellerLG/instantly-cli.
   For Claude Desktop / Cursor / VS Code, add to your MCP config:
-
-  {
-    "mcpServers": {
-      "instantly": {
-        "command": "npx",
-        "args": ["instantly-cli", "mcp"],
-        "env": {
-          "INSTANTLY_API_KEY": "your-api-key"
-        }
-      }
-    }
-  }
-
-  Or if installed globally:
 
   {
     "mcpServers": {

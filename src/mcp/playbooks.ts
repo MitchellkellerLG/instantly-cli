@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import type { ResolvedCredentials } from '../core/auth.js';
 import type { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { ErrorCode, GetPromptRequestSchema, McpError } from '@modelcontextprotocol/sdk/types.js';
 import { isCompactError, type CompactHost } from '../compact/surface.js';
@@ -12,8 +13,8 @@ const workspace = z.uuid().describe('Workspace UUID you expect. A mismatch sends
 const reply = (result: unknown) => ({ content: [{ type: 'text' as const, text: JSON.stringify(result) }], ...((isCompactError(result) || isPlaybookFailure(result)) ? { isError: true } : {}) });
 
 /** Shares the compact host when there is one, otherwise builds a lazy live host. Credentials resolve on first use. */
-export function playbookServiceFor(options: { allowWrites?: string[]; allowUnknownCost?: boolean; profile?: string; tier?: string }, shared?: CompactHost): PlaybookService {
-  const host = shared ?? createLiveHost({ profile: options.profile, store: new MemoryPreviewStore(), allowedWrites: options.allowWrites, allowUnknownCost: options.allowUnknownCost });
+export function playbookServiceFor(options: { allowWrites?: string[]; allowUnknownCost?: boolean; profile?: string; tier?: string; credentials?: ResolvedCredentials }, shared?: CompactHost): PlaybookService {
+  const host = shared ?? createLiveHost({ profile: options.profile, credentials: options.credentials, store: new MemoryPreviewStore(), allowedWrites: options.allowWrites, allowUnknownCost: options.allowUnknownCost });
   return new PlaybookService({ host: () => host, tier: resolveTier(options.tier, process.env.INSTANTLY_TIER) });
 }
 

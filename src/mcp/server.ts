@@ -133,7 +133,7 @@ export async function startMcpServer(options: McpOptions = {}): Promise<void> {
     );
   }
 
-  if (options.playbooks) registerPlaybooks(server, playbookServiceFor(options));
+  if (options.playbooks) registerPlaybooks(server, playbookServiceFor({ ...options, credentials: pinned }));
 
   server.registerTool(
     'status',

@@ -42,8 +42,8 @@ export async function buildAuthStatus(opts: {
         authenticated: false,
         source: credentials.source,
         profile,
-        workspace_id: workspace.id,
-        workspace_name: workspace.name,
+        workspace_id: bound.id,
+        workspace_name: bound.name,
         bound_workspace_id: bound.id,
         bound_workspace_name: bound.name,
         error:
