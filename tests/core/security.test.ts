@@ -79,5 +79,7 @@ describe('F8 redaction', () => {
     expect(out.bypass).toBe('ok');
     expect(out.passed).toBe(3);
     expect(redactText('nothing here')).toBe('nothing here');
+    // The compact surface hands this back to the model to run a previewed write; it must survive.
+    expect((redactValue({ preview_token: 'a'.repeat(64) }) as any).preview_token).toBe('a'.repeat(64));
   });
 });

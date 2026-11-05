@@ -7,6 +7,7 @@ import { createLiveHost } from '../compact/host.js';
 import { defaultContext, type Context } from '../compact/catalog.js';
 import { Finder } from '../compact/find.js';
 import { describeShape, findShape, previewShape, runShape } from '../compact/tools.js';
+import { redactValue } from '../core/redact.js';
 import { resolveTier } from '../playbooks/tiers.js';
 import { registerPlaybooks, playbookServiceFor } from './playbooks.js';
 
@@ -24,7 +25,8 @@ export interface McpOptions {
 }
 
 const reply = (result: unknown) => ({
-  content: [{ type: 'text' as const, text: JSON.stringify(result) }],
+  // Credential-named fields never reach the model; the compact surface has no credential-export opt-in.
+  content: [{ type: 'text' as const, text: JSON.stringify(isCompactError(result) ? result : redactValue(result)) }],
   ...(isCompactError(result) ? { isError: true } : {}),
 });
 
