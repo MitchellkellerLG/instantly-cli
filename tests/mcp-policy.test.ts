@@ -31,6 +31,8 @@ beforeEach(() => {
     if (path.includes('/dfy-email-account-orders/accounts')) return Response.json({ items: [{ password: 'pw-marker' }] });
     if (path.endsWith('/api-keys')) return Response.json({ key: 'new-credential-marker' });
     if (path.endsWith('/campaigns/c1/activate')) return Response.json({ id: 'c1' });
+    if (path.endsWith('/accounts')) return Response.json({ items: [] });
+    if (path.endsWith('/campaigns/analytics/overview')) return Response.json({});
     if (path.endsWith('/campaigns')) return Response.json({ items: [], echoed: PINNED });
     return Response.json({ message: `bad ${PINNED}` }, { status: 400 });
   });

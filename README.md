@@ -85,7 +85,7 @@ npm run spec:generate
 npm run spec:generated-check
 npm run spec:check
 npm run typecheck
-npm test -- --maxWorkers=2 --minWorkers=1
+npm test -- --maxWorkers=2
 npm run build
 npm run smoke:coverage
 ```
