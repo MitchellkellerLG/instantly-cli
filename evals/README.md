@@ -5,7 +5,8 @@
 synthetic. `v1/facts.json` pins registry, source, dispatcher, package, lockfile,
 corpus and public-spec hashes. `v1/outcomes.json` independently freezes each job's expected returned value or
 preview identity and effect. `v1/registry.json` freezes all 287 definition IDs
-and endpoint mappings. The legacy MCP surface registers 289 tools, retaining the original 276 IDs.
+and endpoint mappings. For current MCP exposure and operator policy, see the
+[MCP configuration guide](../README.md#configuration).
 
 From the repository root, with development dependencies installed:
 
@@ -113,8 +114,9 @@ of these delta endpoints. No account mapping or live account request was perform
 `src/safe/dispatcher.ts` is the shared execution layer. The compact MCP surface
 (`instantly mcp --surface compact`) and the `find`, `describe`, `preview` and `run`
 CLI commands call it through `src/compact/`. Existing legacy commands and the legacy
-MCP surface retain their prior behavior and can still perform unpreviewed writes.
-Do not describe them as protected by this dispatcher.
+MCP surface bypass this dispatcher and can perform unpreviewed writes. Legacy
+MCP requires the separate [operator policy](../README.md#configuration).
+Do not describe direct legacy tools as protected by this dispatcher.
 
 Hosts inject a single bound identity, an audited client, fresh identity lookup,
 registry/context content revisions, preview storage and explicit execution
@@ -136,7 +138,7 @@ profile/workspace and fresh identity. GET alone grants no permission. Requests
 with `with_passwords: true` are unsupported and refused before any request. Write
 execution defaults to denied; the host must allow the command, recheck current
 entitlement and explicitly authorize unknown costs if applicable. The compact
-adapters enforce this policy; legacy entrypoints retain their prior behavior.
+adapters enforce this policy; direct legacy tools use the separate policy linked above.
 
 Opaque five-minute tokens bind profile, workspace/name, credential reference,
 normalized arguments, effective request and prerequisite response hashes,
@@ -145,8 +147,8 @@ and scope, never replacement arguments. It refreshes identity, entitlement and
 prerequisites, rechecks expiry, and atomically consumes the token before one
 transport attempt. A failed mutation returns unknown execution status with a
 read-only reconciliation instruction; it never retries or reuses the token.
-The existing HTTP client honors the opt-in `retry: 'never'` transport flag;
-legacy retry behavior is unchanged.
+The HTTP client honors the opt-in `retry: 'never'` transport flag; see
+[HTTP client features](../README.md#http-client-features) for the direct-command retry policy.
 
 Memory storage is suitable for a single MCP process. File storage supports CLI
 process handoff, refuses symlink token files, and uses atomic rename for consumption.

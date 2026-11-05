@@ -728,7 +728,7 @@ instantly email-templates delete <id>                 # Delete template
 
 ### OAuth (connect email accounts)
 
-Connect Google Workspace and Microsoft 365 accounts without SMTP credentials.
+Connect Google Workspace and Microsoft 365 accounts without SMTP credentials. Automatic browser opening accepts only HTTPS URLs on approved OAuth provider hosts; other URLs are left for manual review. Use `--no-open` to skip opening the browser.
 
 ```bash
 instantly oauth connect google                        # Opens browser for Google OAuth
@@ -748,14 +748,14 @@ instantly mcp
 
 ### What this means
 
-When you configure `instantly mcp` as an MCP server in Claude, Cursor, VS Code, or Windsurf, your AI assistant can:
+When you configure `instantly mcp` as an MCP server in Claude, Cursor, VS Code, or Windsurf, your AI assistant can use reviewed reads by default. With the appropriate operator write allowances, it can also:
 
 - Create and launch campaigns mid-conversation
 - Look up lead data and analytics on demand
 - Reply to emails, manage accounts, and run enrichment
 - Automate multi-step outbound workflows end-to-end
 
-Every `CommandDefinition` in the codebase powers both a CLI subcommand and an MCP tool - one source of truth, two interfaces.
+API command definitions power both CLI subcommands and MCP tools; operator policy determines which tools are exposed.
 
 ### Configuration
 
@@ -780,11 +780,11 @@ Add to your MCP settings (Claude Desktop, Cursor, VS Code, Windsurf):
 | Setting | Effect |
 |---|---|
 | `--allow-write <ids>` or `INSTANTLY_MCP_ALLOW_WRITES` | Registers the named write commands. Each call must also carry `workspace_id` equal to the live workspace. |
-| `--allow-sensitive <ids>` or `INSTANTLY_MCP_ALLOW_SENSITIVE` | Lets the named commands return credential material, for example `dfy_orders_list_accounts` with `with_passwords`, or `api_keys_list`. Without it, those requests are refused and credential-named fields are masked. |
+| `--allow-sensitive <ids>` or `INSTANTLY_MCP_ALLOW_SENSITIVE` | Legacy only: exposes named credential reads and permits credential fields in their results, for example `dfy_orders_list_accounts` with `with_passwords`, or `api_keys_list`. Mutations such as `api_keys_create` independently require `--allow-write`. Without sensitive permission, credential-export requests are refused and credential-named result fields are masked. |
 
-Unknown ids fail at startup. Local CLI commands are unaffected by these settings.
+Unknown ids fail at legacy startup. Compact MCP has no credential-export opt-in. Local CLI commands are unaffected by these settings.
 
-**One process, one profile.** The server resolves a single profile (`INSTANTLY_PROFILE` or `--profile`) or key at startup and stays bound to it. A tool call that names a different `profile` is refused, so run one server per client. Call `status` first. Errors and results are scrubbed of the active API key and of credential-named fields.
+**One process, one profile.** Select the profile with `INSTANTLY_PROFILE` or `--profile`; `--profile default` explicitly selects the unprofiled key even when `INSTANTLY_PROFILE` is set. Legacy MCP resolves credentials at startup; compact MCP resolves and binds them on first execution, so discovery needs no key. Once resolved, credentials stay fixed for the process, including status and playbooks. A tool call cannot switch the selected profile, so run one server per client. Call `status` first. Legacy errors and results scrub the active API key, and result credential fields are masked unless the operator permits them with `--allow-sensitive`.
 
 ```json
 {
@@ -800,9 +800,11 @@ Unknown ids fail at startup. Local CLI commands are unaffected by these settings
 }
 ```
 
-### Compact surface: four tools instead of 289
+<a id="compact-surface-four-tools-instead-of-289"></a>
 
-`instantly mcp` registers one tool per direct command by default (the **legacy** surface). For agents, `instantly mcp --surface compact` registers exactly four tools and loads a command's schema only when asked:
+### Compact surface: four discovery tools
+
+`instantly mcp` registers one tool per exposed direct command (the **legacy** surface), subject to the [operator policy above](#configuration). For agents, `instantly mcp --surface compact` registers exactly four tools and loads a command's schema only when asked:
 
 | Tool | Purpose | Needs a key |
 |------|---------|-------------|
@@ -815,7 +817,7 @@ Unknown ids fail at startup. Local CLI commands are unaffected by these settings
 { "mcpServers": { "instantly": { "command": "node", "args": ["/absolute/path/to/instantly-cli/dist/index.js", "mcp", "--surface", "compact"], "env": { "INSTANTLY_PROFILE": "acme" } } } }
 ```
 
-`status` and `health` are virtual command IDs run with `instantly_run`, not extra tools. Every `preview` and `run` carries an explicit `profile` and `workspace_id`. `status` reports whether they match; other commands refuse a mismatch before executing the requested operation, though live workspace checks may still send requests. Use `profile: "default"` for the unprofiled key, overriding `INSTANTLY_PROFILE`.
+`status` and `health` are virtual command IDs run with `instantly_run`, not extra tools. Every `preview` and `run` carries an explicit `profile` and `workspace_id`. `status` reports whether they match; other commands refuse a mismatch before executing the requested operation, though live workspace checks may still send requests. Use `profile: "default"` only for a server configured for the unprofiled key; tool arguments cannot override `INSTANTLY_PROFILE`.
 
 Safety lives in code, not prose. Reads must be on the reviewed read allowlist (a GET alone grants nothing). Writes are refused unless the operator names the command, for example `instantly mcp --surface compact --allow-write campaigns_update`, and the token binds the profile, workspace, resolved credential, request, registry, context and policy, so it cannot be replayed, redirected or changed. `--allow-unknown-cost` additionally permits allowed writes whose cost is unknown. **The legacy command tools do not preview**: once the operator allows a write with `--allow-write`, a call with the right `workspace_id` executes directly, so prefer the compact surface for writes. `INSTANTLY_MCP_SURFACE`, `INSTANTLY_MCP_ALLOW_WRITES` and `INSTANTLY_MCP_ALLOW_UNKNOWN_COST=1` set the same options from the environment for MCP.
 
@@ -873,9 +875,9 @@ Alongside the public API commands, optional browser support reaches mapped priva
 
 Without `INSTANTLY_WEB_BROWSER_URL` none of this exists in the registry, discovery, or the legacy MCP. Private routes can change without notice.
 
-With browser support disabled, the legacy surface registers 287 API command tools across 39 groups, plus `status` and `health`:
+The API registry contains the following command groups. Legacy MCP exposure is filtered by [operator policy](#configuration); this inventory includes commands unavailable by default. Browser commands are additional and require the setup above.
 
-| Group | Tools | Examples |
+| Group | Commands | Examples |
 |-------|-------|---------|
 | accounts | 14 | `accounts_pause_accounts`, `accounts_move_accounts` |
 | agent-items | 2 | `agent_items_list_agent_items`, `agent_items_bulk_delete_agent_items` |
@@ -1023,17 +1025,17 @@ src/
 │   ├── accounts/      # 12 commands
 │   └── ...            # 28 more groups
 └── mcp/
-    └── server.ts      # MCP server (auto-registers all commands as tools)
+    └── server.ts      # MCP server (registers tools allowed by operator policy)
 ```
 
-Adding a new API endpoint = creating one file. The command is automatically available in both CLI and MCP.
+Register new hand-written API definitions in `src/commands/index.ts`; generate spec-backed additions with `npm run spec:generate`. MCP availability also depends on operator policy.
 
 ### HTTP Client Features
 
-- **Auto-retry** with exponential backoff on 429 (rate limit) and 5xx errors
+- **Auto-retry** with exponential backoff on 429 (rate limit); GET requests also retry 5xx errors and timeouts. Non-GET requests never retry 5xx errors or timeouts. `retry: 'never'` disables all retries.
 - **Rate limit awareness** - respects `Retry-After` headers
 - **Cursor-based pagination** - handles both UUID and datetime cursors
-- **30-second timeout** with configurable retries (default: 3)
+- **30-second read timeout**, capped at 15 seconds for non-GET requests, with configurable retries (default: 3)
 - **Typed errors** - `AuthError`, `NotFoundError`, `RateLimitError`, `ValidationError`, `ServerError`
 
 ---

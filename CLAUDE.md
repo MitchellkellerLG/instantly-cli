@@ -10,7 +10,7 @@ This is a community CLI and MCP server for the [Instantly.ai](https://instantly.
 
 ### CommandDefinition Pattern
 
-Every API endpoint lives in one file under `src/commands/<group>/<subcommand>.ts` and exports a single `CommandDefinition` object:
+Hand-written API endpoints live under `src/commands/<group>/<subcommand>.ts`; generated endpoints live under `src/commands/generated/`. Each exports a `CommandDefinition` object:
 
 ```typescript
 interface CommandDefinition {
@@ -38,7 +38,7 @@ interface CommandDefinition {
 - `src/core/errors.ts` — Typed error classes
 - `src/core/config.ts` — ~/.instantly/config.json manager (`api_key` + `workspace_id` + `workspace_name`)
 - `src/commands/index.ts` — Command registry, auto-registration, input validation
-- `src/mcp/server.ts` — MCP server (registers all CommandDefinitions as tools)
+- `src/mcp/server.ts` - MCP server (see [README.md](README.md#configuration) for tool exposure)
 - `src/index.ts` — CLI entry point
 - `src/mcp.ts` — Direct MCP entry point
 
@@ -59,20 +59,20 @@ src/
 ├── commands/
 │   ├── index.ts             # Registry + registerAllCommands()
 │   ├── auth/                # login, logout, oauth (special commands)
-│   ├── campaigns/           # 11 commands
-│   ├── leads/               # 12 commands
-│   ├── accounts/            # 12 commands
-│   ├── email/               # 8 commands
+│   ├── campaigns/
+│   ├── leads/
+│   ├── accounts/
+│   ├── email/
 │   ├── analytics/           # 6 commands
 │   ├── webhooks/            # 8 commands
 │   ├── lead-lists/          # 6 commands
-│   ├── enrichment/          # 10 commands
-│   ├── blocklist/           # 5 commands
-│   ├── custom-tags/         # 6 commands
+│   ├── enrichment/
+│   ├── blocklist/
+│   ├── custom-tags/
 │   ├── lead-labels/         # 6 commands
-│   ├── workspace/           # 6 commands
+│   ├── workspace/
 │   ├── subsequences/        # 8 commands
-│   └── ... (16 more groups)
+│   └── ...
 └── mcp/
     └── server.ts
 ```
