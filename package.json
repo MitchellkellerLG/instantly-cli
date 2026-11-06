@@ -1,13 +1,14 @@
 {
   "name": "instantly-cli",
   "version": "0.1.22",
-  "description": "CLI and MCP server for the Instantly.ai cold email platform",
+  "description": "Community-maintained CLI and MCP server for the Instantly.ai cold email platform",
   "type": "module",
   "bin": {
     "instantly": "./dist/index.js"
   },
   "files": [
     "dist",
+    "LICENSE",
     "install.sh",
     "gemini-extension.json",
     "INSTANTLY.md",
@@ -22,7 +23,11 @@
     "test:watch": "vitest",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepare": "npm run build",
+    "spec:generate": "tsx scripts/generate-commands.ts",
+    "spec:generated-check": "tsx scripts/generate-commands.ts --check",
+    "spec:check": "tsx scripts/spec-drift.ts",
+    "smoke:coverage": "tsx scripts/smoke-api-coverage.ts"
   },
   "keywords": [
     "instantly",
@@ -43,15 +48,28 @@
   },
   "dependencies": {
     "@inquirer/prompts": "^8.3.0",
-    "@modelcontextprotocol/sdk": "^1.27.1",
+    "@modelcontextprotocol/sdk": "^1.32.2",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
     "commander": "^14.0.3",
-    "zod": "^4.3.6"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/node": "^25.3.3",
     "tsup": "^8.5.1",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^3.2.4"
+    "vitest": "^5.1.0"
+  },
+  "overrides": {
+    "esbuild": "^0.28.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MitchellkellerLG/instantly-cli.git"
+  },
+  "homepage": "https://github.com/MitchellkellerLG/instantly-cli#readme",
+  "bugs": {
+    "url": "https://github.com/MitchellkellerLG/instantly-cli/issues"
   }
 }

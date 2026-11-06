@@ -28,7 +28,7 @@ export const enrichmentCreateCommand: CommandDefinition = {
     limit: z.coerce.number().optional().describe('Maximum number of leads to enrich'),
     // The backend requires this to be an array. Accept a JSON string (CLI) or array (MCP).
     filters: z
-      .union([z.string(), z.array(z.record(z.unknown()))])
+      .union([z.string(), z.array(z.record(z.string(), z.unknown()))])
       .optional()
       .describe(
         'Filters as a JSON ARRAY (not an object). ' +

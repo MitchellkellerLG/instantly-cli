@@ -1,0 +1,41 @@
+name: API coverage
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '23 9 * * 1'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run spec:generated-check
+      - run: npx tsx scripts/eval/freeze.ts
+      - run: npx tsx scripts/eval/run.ts --surface legacy --output /tmp/instantly-offline
+      - run: npx tsx scripts/eval/run.ts --surface safe --output /tmp/instantly-offline
+      - run: npx tsx scripts/eval/run.ts --surface compact --output /tmp/instantly-offline
+      - run: npx tsx scripts/eval/anneal.ts verify
+      - run: npm run spec:check
+      - run: npm run typecheck
+      - run: npm test -- --maxWorkers=2
+      - run: npm run build
+      - run: npm run smoke:coverage
+  live-drift:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run spec:check -- --live

@@ -1,0 +1,21 @@
+{
+  "id": "web_engage_items_list",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "resource_id": "<string>",
+        "type": "campaign",
+        "workspace_id": "<string>",
+        "name": "<string>",
+        "status": "<string>",
+        "metadata": {
+          "original_status": 0
+        },
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "tags": []
+      }
+    ]
+  }
+}

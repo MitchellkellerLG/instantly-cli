@@ -1,0 +1,24 @@
+{
+  "id": "web_analytics_inbox_manager",
+  "args": {
+    "from": "2026-10-01",
+    "to": "2026-11-05"
+  },
+  "body": {
+    "total_actions": 0,
+    "replies_count": 0,
+    "follow_ups_count": 0,
+    "human_intervention": 0,
+    "info_requested": 0,
+    "unique_conversations": 0,
+    "time_saved": 0,
+    "average_confidence_score": 0,
+    "involvement_rate": 0,
+    "resolution_rate": 0,
+    "no_show_follow_ups_generated": 0,
+    "no_show_total_leads_recovered": 0,
+    "no_show_total_revenue_recovered": 0,
+    "no_show_time_saved": 0,
+    "no_show_recovery_rate": 0
+  }
+}

@@ -6,7 +6,7 @@ export const salesFlowUpdateCommand: CommandDefinition = {
   name: 'sales_flow_update',
   group: 'sales-flow',
   subcommand: 'update',
-  description: 'Update a sales flow.',
+  description: '[Undocumented API] Update a sales flow.',
   examples: ['instantly sales-flow update <flow-id> --name "Updated Flow Name"'],
 
   inputSchema: z.object({

@@ -1,0 +1,43 @@
+{
+  "id": "web_automation_apps_list",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "id": "<string>",
+        "name": "<string>",
+        "logo_url": "<string>",
+        "developer_name": "<string>",
+        "short_description": "<string>",
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "is_approved": true,
+        "has_triggers": true,
+        "has_actions": true,
+        "authentication": {
+          "nango": {
+            "authentication_provider_id": "salesforce"
+          }
+        }
+      },
+      {
+        "id": "<string>",
+        "name": "<string>",
+        "logo_url": "<string>",
+        "developer_name": "<string>",
+        "short_description": "<string>",
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "is_approved": true,
+        "has_triggers": true,
+        "has_actions": true,
+        "authentication": {
+          "nango": {
+            "authentication_provider_id": "pipedrive"
+          }
+        }
+      }
+    ],
+    "next_starting_after": "<string>"
+  }
+}

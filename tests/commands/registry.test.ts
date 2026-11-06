@@ -30,7 +30,7 @@ describe('Command Registry', () => {
   });
 
   it('should use valid HTTP methods', () => {
-    const validMethods = ['GET', 'POST', 'PATCH', 'DELETE'];
+    const validMethods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'];
     for (const cmd of allCommands) {
       expect(validMethods, `${cmd.name} uses invalid method ${cmd.endpoint.method}`)
         .toContain(cmd.endpoint.method);

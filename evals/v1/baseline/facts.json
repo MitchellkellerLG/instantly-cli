@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "runRevision": "95b1ec93dbf6279d11bf7e4edf7949f99687a479",
+  "inputs": {
+    "facts": "evals/v1/facts.json at runRevision",
+    "corpus": "evals/v1/jobs.jsonl at runRevision",
+    "split": "evals/v1/split.json at runRevision",
+    "fixtures": "evals/v1/fixtures.json at runRevision",
+    "registry": "evals/v1/registry.json at runRevision",
+    "legacyTrace": "evals/v1/baseline/legacy-traces.jsonl",
+    "safeTrace": "evals/v1/baseline/safe-traces.jsonl"
+  },
+  "definitions": 274,
+  "legacyTools": 276,
+  "registryHash": "9214ac5fb0fd4f79c00f1bd74cba9cc202f8f1de1e64546172ac8c6c9a036598",
+  "registrySourceHash": "8b5e292ab4dc9698103cc43259262847d115a63227a8080d245d1f9b49e707ff",
+  "dispatcherSourceHash": "66afecc34fe0914cae92fe70e1b993ba6e9c125e849f27f40b434cf9e830fc97",
+  "pinnedSpecSha256": "3446b8f3a8074331d523a0ad7974729c856b021072199b45c079770fb184828f",
+  "packageSha256": "675daf277ba0d5e861d5d4d228abd94f09420775f3df149a13011ce6883f0aec",
+  "lockSha256": "03b3c5993fb3d94016ab7bee590b1ca293eff3e983c41ac4f62f2218de763c3a",
+  "corpusSha256": "6c16509336103deeceb2f0d4fcfa7deac267c1bbdfad16aa608bbeced34e28fb",
+  "coverage": {
+    "total": 255,
+    "covered": 255,
+    "missing": [],
+    "undocumented": [
+      "DELETE /custom-prompt-templates/{}",
+      "DELETE /email-templates/{}",
+      "DELETE /sales-flow/{}",
+      "GET /custom-prompt-templates",
+      "GET /custom-prompt-templates/{}",
+      "GET /email-templates",
+      "GET /email-templates/{}",
+      "GET /sales-flow",
+      "GET /sales-flow/{}",
+      "PATCH /custom-prompt-templates/{}",
+      "PATCH /email-templates/{}",
+      "PATCH /sales-flow/{}",
+      "POST /custom-prompt-templates",
+      "POST /email-templates",
+      "POST /sales-flow"
+    ]
+  }
+}

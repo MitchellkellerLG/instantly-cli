@@ -14,6 +14,15 @@ export interface CliMapping {
 }
 
 export interface CommandDefinition<TInput extends z.ZodObject<any> = z.ZodObject<any>> {
+  /** Generated from the pinned public OpenAPI document. */
+  generated?: boolean;
+
+  /**
+   * 'web' marks a private web-app route, reached only through the operator's own signed-in browser.
+   * Default 'api' is the public API with a bearer key.
+   */
+  origin?: 'api' | 'web';
+
   /** Unique identifier, used as MCP tool name. e.g., "campaigns_list" */
   name: string;
 
@@ -37,7 +46,7 @@ export interface CommandDefinition<TInput extends z.ZodObject<any> = z.ZodObject
 
   /** HTTP method and path template */
   endpoint: {
-    method: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+    method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
     path: string;
   };
 
@@ -48,7 +57,7 @@ export interface CommandDefinition<TInput extends z.ZodObject<any> = z.ZodObject
   paginated?: boolean;
 
   /** The handler function */
-  handler: (input: z.infer<TInput>, client: InstantlyClient) => Promise<unknown>;
+  handler: (input: z.infer<TInput> & Record<string, any>, client: InstantlyClient) => Promise<unknown>;
 
   /**
    * When true, profiled invocations require `--workspace` / `workspace_id`
@@ -60,10 +69,13 @@ export interface CommandDefinition<TInput extends z.ZodObject<any> = z.ZodObject
 
 export interface InstantlyClient {
   request<T>(options: {
-    method: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+    method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
     path: string;
-    query?: Record<string, string | number | boolean | undefined>;
+    query?: Record<string, string | number | boolean | (string | number | boolean)[] | undefined>;
     body?: unknown;
+    responseType?: 'text';
+    /** Safe dispatch consumes a preview before a single mutation attempt. */
+    retry?: 'never';
   }): Promise<T>;
 
   get<T>(path: string, query?: Record<string, any>): Promise<T>;

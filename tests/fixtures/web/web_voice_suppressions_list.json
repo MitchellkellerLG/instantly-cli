@@ -1,0 +1,11 @@
+{
+  "id": "web_voice_suppressions_list",
+  "args": {
+    "limit": 5
+  },
+  "body": {
+    "items": [],
+    "total": 0,
+    "has_more": false
+  }
+}

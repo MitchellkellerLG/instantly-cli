@@ -6,7 +6,7 @@ export const customPromptTemplatesListCommand: CommandDefinition = {
   name: 'custom_prompt_templates_list',
   group: 'custom-prompt-templates',
   subcommand: 'list',
-  description: 'List custom prompt templates.',
+  description: '[Undocumented API] List custom prompt templates.',
   examples: ['instantly custom-prompt-templates list', 'instantly custom-prompt-templates list --limit 20'],
 
   inputSchema: z.object({

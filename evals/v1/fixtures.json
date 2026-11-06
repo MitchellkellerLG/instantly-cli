@@ -1,0 +1,1102 @@
+{
+  "schemaVersion": 1,
+  "provenance": "synthetic",
+  "fixtures": [
+    {
+      "context": {
+        "command": "status",
+        "arguments": {},
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "11111111-1111-4111-8111-111111111111",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "192a33875fb8a109a63469743fb3da28ae05821dc0484d0aa1881a1e66095810"
+    },
+    {
+      "context": {
+        "command": "campaigns_list",
+        "arguments": {
+          "limit": 20
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/campaigns",
+        "query": {
+          "limit": 20
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "campaigns_get",
+        "arguments": {
+          "id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/campaigns/22222222-2222-4222-8222-222222222222"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "campaigns_sending-status",
+        "arguments": {
+          "id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/campaigns/22222222-2222-4222-8222-222222222222/sending-status"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "campaigns_search-by-contact",
+        "arguments": {
+          "search": "lead@example.com"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/campaigns/search-by-contact",
+        "query": {
+          "search": "lead@example.com"
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "leads_list",
+        "arguments": {
+          "search": "lead@example.com"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "body": {
+          "limit": 10,
+          "search": "lead@example.com"
+        },
+        "method": "POST",
+        "path": "/leads/list"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "leads_list",
+        "arguments": {
+          "campaign_id": "22222222-2222-4222-8222-222222222222",
+          "limit": 50
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "body": {
+          "campaign": "22222222-2222-4222-8222-222222222222",
+          "limit": 50
+        },
+        "method": "POST",
+        "path": "/leads/list"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "background_jobs_get",
+        "arguments": {
+          "id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/background-jobs/22222222-2222-4222-8222-222222222222"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "email_list",
+        "arguments": {
+          "email_type": "reply",
+          "is_read": "false",
+          "limit": 20
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/emails",
+        "query": {
+          "email_type": "received",
+          "is_read": "false",
+          "limit": 20
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "email_unread_count",
+        "arguments": {},
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/emails/unread/count"
+      },
+      "response": {
+        "count": 0
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "038cbd0f7ce0bb1937239d7eae9309a47b61bfca27fc60ca77b5cbdb7bed6f06"
+    },
+    {
+      "context": {
+        "command": "email_get",
+        "arguments": {
+          "id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/emails/22222222-2222-4222-8222-222222222222"
+      },
+      "response": {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "from_address_email": "lead@example.com",
+        "lead_email": "lead@example.com",
+        "to_address_email_list": "sender@example.com",
+        "i_sent": false
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "60142778d2353a0248bd55830c1b9c56b3201729b46d3802bcac806d8c8c2b71"
+    },
+    {
+      "context": {
+        "command": "email_reply",
+        "arguments": {
+          "reply_to_uuid": "22222222-2222-4222-8222-222222222222",
+          "eaccount": "sender@example.com",
+          "to": "lead@example.com",
+          "subject": "Re: Hello",
+          "body_text": "Hi Jane,\n\nTuesday works.\n\nMitch"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/emails/22222222-2222-4222-8222-222222222222"
+      },
+      "response": {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "from_address_email": "lead@example.com",
+        "lead_email": "lead@example.com",
+        "to_address_email_list": "sender@example.com",
+        "i_sent": false
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "60142778d2353a0248bd55830c1b9c56b3201729b46d3802bcac806d8c8c2b71"
+    },
+    {
+      "context": {
+        "command": "email_forward",
+        "arguments": {
+          "forward_uuid": "22222222-2222-4222-8222-222222222222",
+          "eaccount": "sender@example.com",
+          "to": "owner@example.com",
+          "subject": "Fwd: Hello",
+          "expect_from": "lead@example.com"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/emails/22222222-2222-4222-8222-222222222222"
+      },
+      "response": {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "from_address_email": "lead@example.com",
+        "lead_email": "lead@example.com",
+        "to_address_email_list": "sender@example.com",
+        "i_sent": false
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "60142778d2353a0248bd55830c1b9c56b3201729b46d3802bcac806d8c8c2b71"
+    },
+    {
+      "context": {
+        "command": "accounts_list",
+        "arguments": {
+          "limit": 20
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/accounts",
+        "query": {
+          "limit": 20
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "accounts_get",
+        "arguments": {
+          "id": "sender@example.com"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/accounts/sender%40example.com"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "analytics_warmup",
+        "arguments": {
+          "emails": "sender@example.com"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "body": {
+          "emails": [
+            "sender@example.com"
+          ]
+        },
+        "method": "POST",
+        "path": "/accounts/warmup-analytics"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "inbox_placement_list",
+        "arguments": {
+          "limit": 10
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/inbox-placement-tests",
+        "query": {
+          "limit": 10
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "inbox_placement_reports_list",
+        "arguments": {
+          "test_id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/inbox-placement-reports",
+        "query": {
+          "limit": 10,
+          "test_id": "22222222-2222-4222-8222-222222222222"
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "inbox_placement_analytics_stats_by_test",
+        "arguments": {
+          "test_ids": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "body": {
+          "test_ids": [
+            "22222222-2222-4222-8222-222222222222"
+          ]
+        },
+        "method": "POST",
+        "path": "/inbox-placement-analytics/stats-by-test-id"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "enrichment_count",
+        "arguments": {
+          "search_filters": {
+            "domains": [
+              "example.com"
+            ],
+            "title": {
+              "include": [
+                "CEO",
+                "Founder"
+              ]
+            }
+          }
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "body": {
+          "search_filters": {
+            "domains": [
+              "example.com"
+            ],
+            "title": {
+              "include": [
+                "CEO",
+                "Founder"
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/supersearch-enrichment/count-leads-from-supersearch"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "enrichment_preview",
+        "arguments": {
+          "search_filters": {
+            "title": {
+              "include": [
+                "VP Sales"
+              ]
+            },
+            "employee_count": [
+              "25 - 100"
+            ]
+          }
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "body": {
+          "search_filters": {
+            "employee_count": [
+              "25 - 100"
+            ],
+            "title": {
+              "include": [
+                "VP Sales"
+              ]
+            }
+          }
+        },
+        "method": "POST",
+        "path": "/supersearch-enrichment/preview-leads-from-supersearch"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "company_lists_list_company_lists",
+        "arguments": {},
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/supersearch-enrichment/company-lists"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "ai_agents_list_sales_agents",
+        "arguments": {},
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/ai-agents/sales"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "ai_agents_get_sales_agent_analytics",
+        "arguments": {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "start_date": "2026-10-01T00:00:00Z",
+          "end_date": "2026-10-31T23:59:59Z"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/ai-agents/sales/22222222-2222-4222-8222-222222222222/analytics",
+        "query": {
+          "end_date": "2026-10-31T23:59:59Z",
+          "start_date": "2026-10-01T00:00:00Z"
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "ai_agents_list_inbox_manager_replies",
+        "arguments": {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "requires_hitl": true
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/ai-agents/inbox-manager/22222222-2222-4222-8222-222222222222/replies",
+        "query": {
+          "requires_hitl": true
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "ai_agents_get_deliverability_agent_state",
+        "arguments": {},
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/ai-agents/deliverability/state"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "ai_agents_get_lead_finder_agent_stats",
+        "arguments": {
+          "id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/ai-agents/lead-finder/22222222-2222-4222-8222-222222222222/stats"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "webhooks_event_types",
+        "arguments": {},
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/webhooks/event-types"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "webhooks_list",
+        "arguments": {},
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/webhooks",
+        "query": {
+          "limit": 10
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "webhook_events_list",
+        "arguments": {
+          "success": false,
+          "from": "2026-10-01",
+          "to": "2026-10-31"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/webhook-events",
+        "query": {
+          "from": "2026-10-01",
+          "limit": 10,
+          "success": false,
+          "to": "2026-10-31"
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "analytics_campaign_overview",
+        "arguments": {
+          "start_date": "2026-10-01",
+          "end_date": "2026-10-31"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/campaigns/analytics/overview",
+        "query": {
+          "end_date": "2026-10-31",
+          "start_date": "2026-10-01"
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "analytics_daily_campaign",
+        "arguments": {
+          "campaign_id": "22222222-2222-4222-8222-222222222222",
+          "start_date": "2026-10-01",
+          "end_date": "2026-10-31"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/campaigns/analytics/daily",
+        "query": {
+          "campaign_id": "22222222-2222-4222-8222-222222222222",
+          "end_date": "2026-10-31",
+          "start_date": "2026-10-01"
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "analytics_campaign_steps",
+        "arguments": {
+          "campaign_id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/campaigns/analytics/steps",
+        "query": {
+          "campaign_id": "22222222-2222-4222-8222-222222222222"
+        }
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    },
+    {
+      "context": {
+        "command": "company_lists_get_company_list",
+        "arguments": {
+          "company_list_id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/supersearch-enrichment/company-lists/22222222-2222-4222-8222-222222222222"
+      },
+      "response": {
+        "items": [],
+        "next_starting_after": null,
+        "count": 0,
+        "status": "synthetic",
+        "name": "Synthetic sandbox"
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-03",
+      "schemaVersion": 1,
+      "responseHash": "5c0caae19d2f9386e43b9834aee3231b0cd7deaed8e22be426a4fa8be8e358d2"
+    }
+  ],
+  "plans": {
+    "instantly-005": [
+      {
+        "body": {
+          "campaign_schedule": {
+            "schedules": [
+              {
+                "days": {
+                  "0": false,
+                  "1": true,
+                  "2": true,
+                  "3": true,
+                  "4": true,
+                  "5": true,
+                  "6": false
+                },
+                "name": "Default schedule",
+                "timezone": "America/Detroit",
+                "timing": {
+                  "from": "09:00",
+                  "to": "17:00"
+                }
+              }
+            ]
+          },
+          "daily_limit": 25,
+          "name": "Toronto founders"
+        },
+        "method": "POST",
+        "path": "/campaigns"
+      }
+    ],
+    "instantly-006": [
+      {
+        "body": {
+          "name": "November pilot"
+        },
+        "method": "PATCH",
+        "path": "/campaigns/22222222-2222-4222-8222-222222222222"
+      }
+    ],
+    "instantly-007": [
+      {
+        "method": "POST",
+        "path": "/campaigns/22222222-2222-4222-8222-222222222222/activate"
+      }
+    ],
+    "instantly-008": [
+      {
+        "method": "DELETE",
+        "path": "/campaigns/22222222-2222-4222-8222-222222222222"
+      }
+    ],
+    "instantly-011": [
+      {
+        "body": {
+          "campaign_id": "22222222-2222-4222-8222-222222222222",
+          "leads": [
+            {
+              "email": "lead@example.com",
+              "first_name": "Jane"
+            }
+          ]
+        },
+        "method": "POST",
+        "path": "/leads/add"
+      }
+    ],
+    "instantly-012": [
+      {
+        "body": {
+          "lt_interest_status": 1
+        },
+        "method": "PATCH",
+        "path": "/leads/22222222-2222-4222-8222-222222222222"
+      }
+    ],
+    "instantly-017": [
+      {
+        "body": {
+          "body": {
+            "html": "<div>Hi Jane,</div><div><br /></div><div>Tuesday works.</div><div><br /></div><div>Mitch</div>",
+            "text": "Hi Jane,\n\nTuesday works.\n\nMitch"
+          },
+          "eaccount": "sender@example.com",
+          "reply_to_uuid": "22222222-2222-4222-8222-222222222222",
+          "subject": "Re: Hello"
+        },
+        "method": "POST",
+        "path": "/emails/reply"
+      }
+    ],
+    "instantly-018": [
+      {
+        "body": {
+          "eaccount": "sender@example.com",
+          "forward_uuid": "22222222-2222-4222-8222-222222222222",
+          "subject": "Fwd: Hello",
+          "to": "owner@example.com"
+        },
+        "method": "POST",
+        "path": "/emails/forward"
+      }
+    ],
+    "instantly-019": [
+      {
+        "method": "POST",
+        "path": "/emails/threads/33333333-3333-4333-8333-333333333333/mark-as-read"
+      }
+    ],
+    "instantly-023": [
+      {
+        "body": {
+          "account_ids": [
+            "22222222-2222-4222-8222-222222222222"
+          ]
+        },
+        "method": "POST",
+        "path": "/accounts/warmup/enable"
+      }
+    ],
+    "instantly-029": [],
+    "instantly-038": [
+      {
+        "body": {
+          "event_type": "reply_received",
+          "name": "Replies",
+          "target_hook_url": "https://example.com/hooks/replies"
+        },
+        "method": "POST",
+        "path": "/webhooks"
+      }
+    ]
+  },
+  "preparationErrors": {
+    "instantly-029": "At least one enrichment type must be enabled. Use --work-email, --full-profile, and/or --custom-flow <providers>."
+  }
+}

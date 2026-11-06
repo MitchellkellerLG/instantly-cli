@@ -1,0 +1,24 @@
+{
+  "id": "web_voice_available_numbers_list",
+  "args": {
+    "country": "US"
+  },
+  "body": [
+    {
+      "phoneNumber": "<string>",
+      "friendlyName": "<string>",
+      "region": "<string>",
+      "isoCountry": "<string>",
+      "locality": "<string>",
+      "price": "<string>"
+    },
+    {
+      "phoneNumber": "<string>",
+      "friendlyName": "<string>",
+      "region": "<string>",
+      "isoCountry": "<string>",
+      "locality": "<string>",
+      "price": "<string>"
+    }
+  ]
+}

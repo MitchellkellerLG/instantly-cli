@@ -6,7 +6,7 @@ export const salesFlowCreateCommand: CommandDefinition = {
   name: 'sales_flow_create',
   group: 'sales-flow',
   subcommand: 'create',
-  description: 'Create a new sales flow.',
+  description: '[Undocumented API] Create a new sales flow.',
   examples: ['instantly sales-flow create --name "My Sales Flow" --queries \'[{"actionType":"email-open","values":{"occurrence-days":1}}]\''],
 
   inputSchema: z.object({

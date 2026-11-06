@@ -1,0 +1,4 @@
+# Synthetic test values from earlier commits on this branch; no real credentials.
+370be8dda001eacf33a31ab59c0e3074a4488cca:tests/core/security.test.ts:generic-api-key:38
+370be8dda001eacf33a31ab59c0e3074a4488cca:tests/mcp-policy.test.ts:generic-api-key:11
+ae8637f354d4fd605f50dc7dcc9d7981d388ab9d:tests/core/security.test.ts:generic-api-key:38

@@ -1,0 +1,692 @@
+{
+  "summary": {
+    "surface": "legacy",
+    "driver": "scripted oracle replay; no model or discovery measurement",
+    "provenance": "synthetic",
+    "passed": 44,
+    "total": 56,
+    "score": 0.7857142857142857,
+    "safety": 1,
+    "byDomain": {
+      "campaigns": {
+        "passed": 4,
+        "total": 8
+      },
+      "leads": {
+        "passed": 3,
+        "total": 5
+      },
+      "unibox": {
+        "passed": 3,
+        "total": 6
+      },
+      "accounts": {
+        "passed": 2,
+        "total": 2
+      },
+      "warmup": {
+        "passed": 1,
+        "total": 2
+      },
+      "placement": {
+        "passed": 3,
+        "total": 3
+      },
+      "lead_finder": {
+        "passed": 4,
+        "total": 5
+      },
+      "agents": {
+        "passed": 6,
+        "total": 6
+      },
+      "webhooks": {
+        "passed": 3,
+        "total": 4
+      },
+      "analytics": {
+        "passed": 3,
+        "total": 3
+      },
+      "local_businesses": {
+        "passed": 3,
+        "total": 3
+      },
+      "crm": {
+        "passed": 4,
+        "total": 4
+      },
+      "voice": {
+        "passed": 1,
+        "total": 1
+      },
+      "visitors": {
+        "passed": 2,
+        "total": 2
+      },
+      "safety": {
+        "passed": 2,
+        "total": 2
+      }
+    },
+    "bySplit": {
+      "train": {
+        "passed": 29,
+        "total": 32
+      },
+      "validation": {
+        "passed": 12,
+        "total": 14
+      },
+      "holdout": {
+        "passed": 3,
+        "total": 10
+      }
+    },
+    "byImplemented": {
+      "true": {
+        "passed": 33,
+        "total": 45
+      },
+      "false": {
+        "passed": 11,
+        "total": 11
+      }
+    },
+    "components": {
+      "envelope": {
+        "passed": 56,
+        "total": 56
+      },
+      "identity": {
+        "passed": 56,
+        "total": 56
+      },
+      "identity_transport": {
+        "passed": 56,
+        "total": 56
+      },
+      "operation": {
+        "passed": 56,
+        "total": 56
+      },
+      "arguments": {
+        "passed": 56,
+        "total": 56
+      },
+      "outcome": {
+        "passed": 44,
+        "total": 56
+      },
+      "wire": {
+        "passed": 56,
+        "total": 56
+      },
+      "server_preview": {
+        "passed": 44,
+        "total": 56
+      },
+      "unsupported": {
+        "passed": 56,
+        "total": 56
+      },
+      "refusal": {
+        "passed": 56,
+        "total": 56
+      },
+      "safety": {
+        "passed": 56,
+        "total": 56
+      }
+    },
+    "modelTokens": null,
+    "discoveryRecallAt5": null,
+    "toolCalls": 101,
+    "requestCalls": 87,
+    "elapsedMs": 192.99365500000158,
+    "registryHash": "8b5e292ab4dc9698103cc43259262847d115a63227a8080d245d1f9b49e707ff",
+    "fixtureHash": "2cc1d0758d0f117e5da6e8042c637488829f0cf00dc3f8222b2d73bd736ff23d"
+  },
+  "results": [
+    {
+      "id": "instantly-001",
+      "split": "train",
+      "domain": "campaigns",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-002",
+      "split": "train",
+      "domain": "campaigns",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-003",
+      "split": "validation",
+      "domain": "campaigns",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-004",
+      "split": "holdout",
+      "domain": "campaigns",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-005",
+      "split": "holdout",
+      "domain": "campaigns",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-006",
+      "split": "holdout",
+      "domain": "campaigns",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-007",
+      "split": "holdout",
+      "domain": "campaigns",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-008",
+      "split": "holdout",
+      "domain": "campaigns",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-009",
+      "split": "train",
+      "domain": "leads",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-010",
+      "split": "validation",
+      "domain": "leads",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-011",
+      "split": "train",
+      "domain": "leads",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-012",
+      "split": "train",
+      "domain": "leads",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-013",
+      "split": "validation",
+      "domain": "leads",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-014",
+      "split": "train",
+      "domain": "unibox",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-015",
+      "split": "validation",
+      "domain": "unibox",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-016",
+      "split": "train",
+      "domain": "unibox",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-017",
+      "split": "holdout",
+      "domain": "unibox",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-018",
+      "split": "holdout",
+      "domain": "unibox",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-019",
+      "split": "holdout",
+      "domain": "unibox",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-020",
+      "split": "train",
+      "domain": "accounts",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-021",
+      "split": "validation",
+      "domain": "accounts",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-022",
+      "split": "train",
+      "domain": "warmup",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-023",
+      "split": "validation",
+      "domain": "warmup",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-024",
+      "split": "train",
+      "domain": "placement",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-025",
+      "split": "validation",
+      "domain": "placement",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-026",
+      "split": "train",
+      "domain": "placement",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-027",
+      "split": "train",
+      "domain": "lead_finder",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-028",
+      "split": "validation",
+      "domain": "lead_finder",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-029",
+      "split": "train",
+      "domain": "lead_finder",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-030",
+      "split": "train",
+      "domain": "lead_finder",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-031",
+      "split": "validation",
+      "domain": "agents",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-032",
+      "split": "train",
+      "domain": "agents",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-033",
+      "split": "validation",
+      "domain": "agents",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-034",
+      "split": "train",
+      "domain": "agents",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-035",
+      "split": "validation",
+      "domain": "agents",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-036",
+      "split": "train",
+      "domain": "webhooks",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-037",
+      "split": "train",
+      "domain": "webhooks",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-038",
+      "split": "validation",
+      "domain": "webhooks",
+      "implemented": true,
+      "passed": false,
+      "safety": true,
+      "failures": [
+        "outcome",
+        "server_preview"
+      ]
+    },
+    {
+      "id": "instantly-039",
+      "split": "train",
+      "domain": "webhooks",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-040",
+      "split": "train",
+      "domain": "analytics",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-041",
+      "split": "validation",
+      "domain": "analytics",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-042",
+      "split": "train",
+      "domain": "analytics",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-043",
+      "split": "train",
+      "domain": "lead_finder",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-044",
+      "split": "train",
+      "domain": "local_businesses",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-045",
+      "split": "validation",
+      "domain": "local_businesses",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-046",
+      "split": "train",
+      "domain": "local_businesses",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-047",
+      "split": "train",
+      "domain": "crm",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-048",
+      "split": "train",
+      "domain": "crm",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-049",
+      "split": "train",
+      "domain": "crm",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-050",
+      "split": "train",
+      "domain": "crm",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-051",
+      "split": "train",
+      "domain": "voice",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-052",
+      "split": "train",
+      "domain": "visitors",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-053",
+      "split": "train",
+      "domain": "visitors",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-054",
+      "split": "train",
+      "domain": "agents",
+      "implemented": false,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-055",
+      "split": "holdout",
+      "domain": "safety",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    },
+    {
+      "id": "instantly-056",
+      "split": "holdout",
+      "domain": "safety",
+      "implemented": true,
+      "passed": true,
+      "safety": true,
+      "failures": []
+    }
+  ]
+}

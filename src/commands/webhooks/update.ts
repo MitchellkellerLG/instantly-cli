@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { CommandDefinition } from '../../core/types.js';
+import { jsonObject } from '../../core/schemas.js';
 import { executeCommand } from '../../core/handler.js';
 
 export const webhooksUpdateCommand: CommandDefinition = {
@@ -19,6 +20,7 @@ export const webhooksUpdateCommand: CommandDefinition = {
     campaign: z.string().optional().describe('Campaign ID to filter events (omit for all)'),
     name: z.string().optional().describe('Display name for the webhook'),
     custom_interest_value: z.coerce.number().optional().describe('Custom interest value for custom label events'),
+    headers: jsonObject(z.record(z.string(), z.string())).nullable().optional().describe('Webhook delivery headers as a JSON object'),
   }),
 
   cliMappings: {
@@ -29,6 +31,7 @@ export const webhooksUpdateCommand: CommandDefinition = {
       { field: 'campaign', flags: '--campaign <id>', description: 'Campaign ID filter' },
       { field: 'name', flags: '-n, --name <name>', description: 'Webhook name' },
       { field: 'custom_interest_value', flags: '--custom-interest-value <value>', description: 'Custom interest value' },
+      { field: 'headers', flags: '--headers <json>', description: 'Webhook delivery headers as JSON object' },
     ],
   },
 
@@ -41,6 +44,7 @@ export const webhooksUpdateCommand: CommandDefinition = {
     campaign: 'body',
     name: 'body',
     custom_interest_value: 'body',
+    headers: 'body',
   },
 
   handler: (input, client) => executeCommand(webhooksUpdateCommand, input, client),

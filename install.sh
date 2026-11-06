@@ -2,9 +2,10 @@
 set -euo pipefail
 
 # Instantly CLI installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/bcharleson/instantly-cli/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/MitchellkellerLG/instantly-cli/main/install.sh | bash
+# Community-maintained copy: installs from this GitHub repository, not from npm.
 
-PACKAGE="instantly-cli"
+PACKAGE="github:MitchellkellerLG/instantly-cli"
 
 echo ""
 echo "  ⚡ Installing Instantly CLI..."

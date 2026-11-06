@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import type { CommandDefinition } from '../../core/types.js';
+import { jsonObject } from '../../core/schemas.js';
 import { executeCommand } from '../../core/handler.js';
 
 export const accountsCreateCommand: CommandDefinition = {
@@ -24,6 +25,15 @@ export const accountsCreateCommand: CommandDefinition = {
     imap_username: z.string().describe('IMAP username'),
     imap_password: z.string().describe('IMAP password'),
     daily_limit: z.coerce.number().optional().describe('Daily sending limit'),
+    reply_to: z.string().optional().describe('Reply-to email address'),
+    tracking_domain_name: z.string().optional().describe('Custom tracking domain'),
+    skip_cname_check: z.boolean().optional().describe('Skip CNAME validation'),
+    warmup: jsonObject(z.record(z.string(), z.unknown())).optional().describe('Warmup settings as JSON object'),
+    warmup_custom_ftag: z.string().optional().describe('Custom warmup tag'),
+    enable_slow_ramp: z.boolean().optional().describe('Enable slow ramp for sending'),
+    inbox_placement_test_limit: z.coerce.number().min(0).optional().describe('Inbox placement test limit'),
+    sending_gap: z.coerce.number().min(0).max(1440).optional().describe('Gap between sends in minutes'),
+    provider_code: z.coerce.number().pipe(z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4), z.literal(8), z.literal(11)])).optional().describe('Provider code: 1 custom, 2 Google, 3 Microsoft, 4 AWS, 8 AirMail, 11 Airmail Instant'),
   }),
 
   cliMappings: {
@@ -40,6 +50,15 @@ export const accountsCreateCommand: CommandDefinition = {
       { field: 'imap_username', flags: '--imap-username <user>', description: 'IMAP username' },
       { field: 'imap_password', flags: '--imap-password <pass>', description: 'IMAP password' },
       { field: 'daily_limit', flags: '--daily-limit <limit>', description: 'Daily sending limit' },
+      { field: 'reply_to', flags: '--reply-to <email>', description: 'Reply-to email address' },
+      { field: 'tracking_domain_name', flags: '--tracking-domain-name <domain>', description: 'Custom tracking domain' },
+      { field: 'skip_cname_check', flags: '--skip-cname-check', description: 'Skip CNAME validation' },
+      { field: 'warmup', flags: '--warmup <json>', description: 'Warmup settings as JSON object' },
+      { field: 'warmup_custom_ftag', flags: '--warmup-custom-ftag <tag>', description: 'Custom warmup tag' },
+      { field: 'enable_slow_ramp', flags: '--enable-slow-ramp', description: 'Enable slow ramp for sending' },
+      { field: 'inbox_placement_test_limit', flags: '--inbox-placement-test-limit <n>', description: 'Inbox placement test limit' },
+      { field: 'sending_gap', flags: '--sending-gap <minutes>', description: 'Gap between sends in minutes' },
+      { field: 'provider_code', flags: '--provider-code <code>', description: 'Provider code: 1 custom, 2 Google, 3 Microsoft, 4 AWS, 8 AirMail, 11 Airmail Instant' },
     ],
   },
 
@@ -58,6 +77,15 @@ export const accountsCreateCommand: CommandDefinition = {
     imap_username: 'body',
     imap_password: 'body',
     daily_limit: 'body',
+    reply_to: 'body',
+    tracking_domain_name: 'body',
+    skip_cname_check: 'body',
+    warmup: 'body',
+    warmup_custom_ftag: 'body',
+    enable_slow_ramp: 'body',
+    inbox_placement_test_limit: 'body',
+    sending_gap: 'body',
+    provider_code: 'body',
   },
 
   handler: (input, client) => executeCommand(accountsCreateCommand, input, client),

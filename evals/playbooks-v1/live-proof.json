@@ -1,0 +1,103 @@
+{
+  "workspace": "Keagans Space (a36a2911...)",
+  "ran_at": "2026-11-05",
+  "ceiling_credits": 50,
+  "credits_before_all": 49986,
+  "credits_after_all": 49986,
+  "credits_delta_all": 0,
+  "cleaned_up": {
+    "campaigns": 3,
+    "lists": 3,
+    "webhooks": 1
+  },
+  "cleanup_failures": [],
+  "failure": null,
+  "steps": [
+    {
+      "step": "read:offer-profile",
+      "ok": true,
+      "requests": 12,
+      "mutations": 0,
+      "refusals": [],
+      "steps_planned": 0
+    },
+    {
+      "step": "read:campaign-ideas",
+      "ok": true,
+      "requests": 12,
+      "mutations": 0,
+      "refusals": [],
+      "steps_planned": 0
+    },
+    {
+      "step": "read:segments-preview",
+      "ok": true,
+      "requests": 14,
+      "mutations": 0,
+      "refusals": [],
+      "steps_planned": 2
+    },
+    {
+      "step": "read:visitors-not-entitled",
+      "ok": true,
+      "requests": 10,
+      "mutations": 0,
+      "refusals": [
+        "NOT_ENTITLED"
+      ],
+      "steps_planned": 0
+    },
+    {
+      "step": "read:local-lookalike-preview",
+      "ok": true,
+      "requests": 7,
+      "mutations": 0,
+      "refusals": [],
+      "steps_planned": 1
+    },
+    {
+      "step": "write:campaign-ideas-draft",
+      "ok": true,
+      "run_status": "completed",
+      "receipts": [
+        "list",
+        "campaign"
+      ],
+      "draft_status": 0,
+      "draft_has_senders": false,
+      "never_activated": true
+    },
+    {
+      "step": "write:fills-smoke",
+      "ok": true,
+      "run_status": "completed",
+      "webhook_bound_to_created_campaign": true
+    },
+    {
+      "step": "write:segments-lists-idempotent",
+      "ok": true,
+      "run_status": "completed",
+      "first_run_steps": 2,
+      "rerun_steps": 0
+    },
+    {
+      "step": "write:local-lookalike-convert",
+      "ok": true,
+      "run_status": "completed",
+      "job_status": "done",
+      "campaign_id_valid": true,
+      "campaign_draft_verified": true,
+      "campaign_leads_verified": true,
+      "campaign_status": 0,
+      "campaign_lead_count": 2,
+      "requested": 2,
+      "created": 2,
+      "credits_reported_spent": 0,
+      "credits_before": 49986,
+      "credits_after": 49986,
+      "credits_delta": 0,
+      "ceiling": 50,
+      "idempotency_key_len": 43
+    }
+  ]
+}

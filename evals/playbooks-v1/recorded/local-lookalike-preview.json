@@ -1,0 +1,284 @@
+{
+  "id": "local-lookalike-preview",
+  "playbook": "local_lookalike",
+  "tier": "internal",
+  "input": {
+    "category": "dentist",
+    "place": "Austin, TX",
+    "count": 2
+  },
+  "scope": {
+    "profile": "default",
+    "workspace": "00000000-0000-4000-8000-ecffa89fb5d5"
+  },
+  "workspaceName": "Synthetic sandbox",
+  "allowedWrites": [
+    "campaigns_create",
+    "lead_lists_create",
+    "webhooks_create",
+    "local_business_search_convert_local_businesses"
+  ],
+  "exchanges": [
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/local-business-search/places",
+        "query": {
+          "q": "Austin, TX"
+        }
+      },
+      "response": {
+        "items": [
+          {
+            "label": "text-10",
+            "city": "text-6",
+            "state": "TX",
+            "country": "US",
+            "lat": 30.26715,
+            "long": -97.74306
+          },
+          {
+            "label": "text-17",
+            "city": "text-13",
+            "state": "TX",
+            "country": "US",
+            "lat": 29.88702,
+            "long": -96.27791
+          }
+        ]
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "body": {
+          "filters": {
+            "categories": [
+              "dentist"
+            ],
+            "location": {
+              "city": "text-6",
+              "country": "US",
+              "label": "text-10",
+              "state": "TX"
+            }
+          },
+          "page_size": 5
+        },
+        "method": "POST",
+        "path": "/local-business-search/search"
+      },
+      "response": {
+        "items": [
+          {
+            "id": "00000000-0000-4000-8000-7101880df997",
+            "name": "text-32",
+            "has_email": false,
+            "place_id": "text-27",
+            "category": "text-29",
+            "address": "text-12",
+            "city": "text-6",
+            "state": "text-5",
+            "country": "US",
+            "lat": 30.3535783,
+            "long": -97.7571737,
+            "website": "https://example.invalid/157c8c94",
+            "domain": "text-18",
+            "rating": 4.8,
+            "reviews": 100,
+            "locations": 1
+          },
+          {
+            "id": "00000000-0000-4000-8000-91bae7743d4a",
+            "name": "text-16",
+            "has_email": false,
+            "place_id": "text-27",
+            "category": "text-7",
+            "address": "text-21",
+            "city": "text-6",
+            "state": "text-5",
+            "country": "US",
+            "lat": 30.2304955,
+            "long": -97.7927478,
+            "website": null,
+            "domain": null,
+            "rating": 2,
+            "reviews": 4,
+            "locations": 1
+          },
+          {
+            "id": "00000000-0000-4000-8000-e9d4118fa8e7",
+            "name": "text-22",
+            "has_email": false,
+            "place_id": "text-27",
+            "category": "text-7",
+            "address": "text-16",
+            "city": "text-6",
+            "state": "text-5",
+            "country": "US",
+            "lat": 30.417690099999998,
+            "long": -97.6988203,
+            "website": "https://example.invalid/ff1707ad",
+            "domain": "text-18",
+            "rating": 4.9,
+            "reviews": 838,
+            "locations": 4
+          },
+          {
+            "id": "00000000-0000-4000-8000-83588ce3e2e3",
+            "name": "text-17",
+            "has_email": false,
+            "place_id": "text-27",
+            "category": "text-13",
+            "address": "text-26",
+            "city": "text-6",
+            "state": "text-5",
+            "country": "US",
+            "lat": 30.223709999999997,
+            "long": -97.8385589,
+            "website": "https://example.invalid/09a9cdc4",
+            "domain": "text-20",
+            "rating": 4.8,
+            "reviews": 144,
+            "locations": 1
+          },
+          {
+            "id": "00000000-0000-4000-8000-9f3fcb058eea",
+            "name": "text-13",
+            "has_email": false,
+            "place_id": "text-27",
+            "category": "text-7",
+            "address": "text-24",
+            "city": "text-6",
+            "state": "text-5",
+            "country": "US",
+            "lat": 30.230509599999998,
+            "long": -97.86528729999999,
+            "website": null,
+            "domain": "text-14",
+            "rating": 5,
+            "reviews": 1,
+            "locations": 1
+          }
+        ],
+        "next_cursor": [
+          2.31,
+          "00000000-0000-4000-8000-9f3fcb058eea"
+        ],
+        "total": 920,
+        "filters": {
+          "categories": [
+            "text-7"
+          ],
+          "location": {
+            "label": "text-10",
+            "country": "US",
+            "state": "TX",
+            "city": "text-6"
+          }
+        }
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/campaigns",
+        "query": {
+          "limit": 100,
+          "search": "[DRAFT] Local dentist - text-10"
+        }
+      },
+      "response": {
+        "items": []
+      }
+    },
+    {
+      "request": {
+        "method": "GET",
+        "path": "/workspaces/current"
+      },
+      "response": {
+        "id": "00000000-0000-4000-8000-ecffa89fb5d5",
+        "timestamp_created": "1992-11-29T08:00:00.007Z",
+        "timestamp_updated": "2025-09-08T12:28:47.478Z",
+        "owner": "00000000-0000-4000-8000-36e85c99de7d",
+        "name": "text-13",
+        "plan_id": "text-9",
+        "plan_id_leadfinder": "text-8"
+      }
+    }
+  ],
+  "expect": {
+    "plan_hash": "03527a3a3baba84847878d217eb2b7454b1e5d942d6c03002b9055f2f3cf1fd4",
+    "artifact_hash": "ade92355f23e55dc13547d988995cd79637f284951a4bd3f5598265a37d06f2a",
+    "refusals": [],
+    "steps": [
+      {
+        "command": "local_business_search_convert_local_businesses",
+        "arguments": {
+          "body": {
+            "campaign_name": "[DRAFT] Local dentist - text-10",
+            "count": 2,
+            "filters": {
+              "categories": [
+                "dentist"
+              ],
+              "location": {
+                "city": "text-6",
+                "country": "US",
+                "label": "text-10",
+                "state": "TX"
+              }
+            },
+            "idempotency_key": "pb-1ccfb89608452e95d3e09143c8047f2757f25bbe"
+          }
+        }
+      }
+    ],
+    "token_issued": true
+  }
+}

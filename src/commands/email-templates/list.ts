@@ -6,7 +6,7 @@ export const emailTemplatesListCommand: CommandDefinition = {
   name: 'email_templates_list',
   group: 'email-templates',
   subcommand: 'list',
-  description: 'List email templates.',
+  description: '[Undocumented API] List email templates.',
   examples: ['instantly email-templates list', 'instantly email-templates list --limit 20'],
 
   inputSchema: z.object({

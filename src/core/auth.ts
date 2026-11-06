@@ -85,6 +85,7 @@ export async function loadDotEnv(cwd: string = process.cwd()): Promise<Record<st
 
 function resolveProfileSlug(explicit?: string): string | undefined {
   const fromFlag = explicit?.trim();
+  if (fromFlag === 'default') return undefined;
   if (fromFlag) return fromFlag;
   const fromEnv = process.env.INSTANTLY_PROFILE?.trim();
   return fromEnv || undefined;

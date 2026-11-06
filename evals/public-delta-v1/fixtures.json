@@ -1,0 +1,537 @@
+{
+  "version": 1,
+  "source": "https://api.instantly.ai/openapi/api_v2.json",
+  "captured": "2026-11-04",
+  "provenance": "synthetic",
+  "fixtures": [
+    {
+      "context": {
+        "command": "custom_tags_search_custom_tags_by_resources",
+        "arguments": {
+          "body": {
+            "resource_ids": [
+              "synthetic@example.com"
+            ],
+            "limit": 2
+          }
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "POST",
+        "path": "/custom-tags/search",
+        "body": {
+          "resource_ids": [
+            "synthetic@example.com"
+          ],
+          "limit": 2
+        }
+      },
+      "response": {
+        "items": []
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "5df5d52a385dd50d1d743c711fbaa692e11cce6749b252c7c2b2a41e60b94ea9"
+    },
+    {
+      "context": {
+        "command": "creator_search_search_creators",
+        "arguments": {
+          "body": {
+            "platform": "instagram",
+            "kind": "structured",
+            "idempotency_key": "22222222-2222-4222-8222-222222222222",
+            "max_credits": 0
+          }
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "POST",
+        "path": "/creator-search/search",
+        "body": {
+          "platform": "instagram",
+          "kind": "structured",
+          "idempotency_key": "22222222-2222-4222-8222-222222222222",
+          "max_credits": 0
+        }
+      },
+      "response": {
+        "items": [],
+        "total": 0,
+        "page": 0,
+        "page_size": 20,
+        "has_more": false,
+        "terminal": true,
+        "credits_cost": 0
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "write",
+        "cost": "unknown",
+        "notifications": "unknown"
+      },
+      "responseHash": "725e6817b541b345db357a29349176e80cc7fad1286c8d7a146cb7a06e6ede9d"
+    },
+    {
+      "context": {
+        "command": "creator_search_get_creator_search_dictionaries",
+        "arguments": {
+          "platform": "instagram",
+          "query": "fitness"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/creator-search/dictionaries",
+        "query": {
+          "platform": "instagram",
+          "query": "fitness"
+        }
+      },
+      "response": {
+        "locations": [],
+        "languages": [],
+        "interests": [],
+        "brands": [],
+        "topics": [],
+        "hashtags": []
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "ebc40e091110588f03dd56be4b9d51ebbfe3ac83725f6632bdc22a163e89d872"
+    },
+    {
+      "context": {
+        "command": "creator_search_get_creator_search_locations",
+        "arguments": {
+          "platform": "instagram",
+          "query": "Austin"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/creator-search/locations",
+        "query": {
+          "platform": "instagram",
+          "query": "Austin"
+        }
+      },
+      "response": {
+        "items": []
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "5df5d52a385dd50d1d743c711fbaa692e11cce6749b252c7c2b2a41e60b94ea9"
+    },
+    {
+      "context": {
+        "command": "creator_search_get_creator_search_capabilities",
+        "arguments": {},
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/creator-search/capabilities"
+      },
+      "response": {
+        "email_credit_cost": 1,
+        "insights_credit_cost": 1,
+        "collaborations_credit_cost": 1
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "b3a6074dd08b6dff593d65898aebcbe92df289fbf44b1b21548dda5318b69d9b"
+    },
+    {
+      "context": {
+        "command": "creator_search_get_creator_search_allowance",
+        "arguments": {},
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/creator-search/search-allowance"
+      },
+      "response": {
+        "free_pages_remaining": 20,
+        "free_pages_per_day": 20,
+        "page_size": 20,
+        "structured_result_cost": 1,
+        "ai_result_cost": 1
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "404c9d8935e23f8235374191b22a17ef20a32fbc9d1981d4cd758742577a0824"
+    },
+    {
+      "context": {
+        "command": "creator_search_create_creator_outreach_batch",
+        "arguments": {
+          "body": {
+            "platform": "instagram",
+            "search_kind": "structured",
+            "list_name": "Synthetic creators",
+            "idempotency_key": "22222222-2222-4222-8222-222222222222",
+            "creator_refs": [
+              "synthetic-creator"
+            ]
+          }
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "POST",
+        "path": "/creator-search/outreach-batches",
+        "body": {
+          "platform": "instagram",
+          "search_kind": "structured",
+          "list_name": "Synthetic creators",
+          "idempotency_key": "22222222-2222-4222-8222-222222222222",
+          "creator_refs": [
+            "synthetic-creator"
+          ]
+        }
+      },
+      "response": {
+        "batch": {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "status": "queued",
+          "platform": "instagram",
+          "search_kind": "structured",
+          "filters": {},
+          "creators": [],
+          "lead_ids": []
+        },
+        "selected_count": 1,
+        "email_ready_count": 0,
+        "missing_email_count": 0,
+        "can_continue": true,
+        "credits_cost": 0
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "write",
+        "cost": "unknown",
+        "notifications": "unknown"
+      },
+      "responseHash": "64c69b226f0ea16ce0482b5d708f3752a86f1453bc35f348b216bd42bb98f8eb"
+    },
+    {
+      "context": {
+        "command": "creator_search_get_creator_outreach_batch",
+        "arguments": {
+          "id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/creator-search/outreach-batches/22222222-2222-4222-8222-222222222222"
+      },
+      "response": {
+        "id": "22222222-2222-4222-8222-222222222222",
+        "status": "queued",
+        "platform": "instagram",
+        "search_kind": "structured",
+        "filters": {},
+        "creators": [],
+        "lead_ids": []
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "8697436f5ac9db33c28ee482b1c88fe488290e2906adc2924ee3a602ad7a34cb"
+    },
+    {
+      "context": {
+        "command": "local_business_search_search_local_businesses",
+        "arguments": {
+          "body": {
+            "filters": {
+              "categories": [
+                "dentist"
+              ],
+              "location": {
+                "city": "Austin",
+                "state": "TX",
+                "country": "US"
+              }
+            },
+            "page_size": 5
+          }
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "POST",
+        "path": "/local-business-search/search",
+        "body": {
+          "filters": {
+            "categories": [
+              "dentist"
+            ],
+            "location": {
+              "city": "Austin",
+              "state": "TX",
+              "country": "US"
+            }
+          },
+          "page_size": 5
+        }
+      },
+      "response": {
+        "items": [],
+        "next_cursor": null,
+        "total": 0,
+        "filters": {
+          "categories": [
+            "dentist"
+          ],
+          "location": {
+            "city": "Austin",
+            "state": "TX",
+            "country": "US"
+          }
+        }
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "f5930a67629257d311e836900074af64f27ac65557aafdaf8f892fe3f784bc99"
+    },
+    {
+      "context": {
+        "command": "local_business_search_generate_local_business_filters",
+        "arguments": {
+          "body": {
+            "input": "dentists in Austin"
+          }
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "POST",
+        "path": "/local-business-search/ai-filters",
+        "body": {
+          "input": "dentists in Austin"
+        }
+      },
+      "response": {
+        "filters": {
+          "categories": [
+            "dentist"
+          ],
+          "location": {
+            "city": "Austin",
+            "state": "TX",
+            "country": "US"
+          }
+        },
+        "searchable": true
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "write",
+        "cost": "unknown",
+        "notifications": "unknown"
+      },
+      "responseHash": "70d9774f27b91f0e9c280bc5107ecd81a9059cb1fe64b9bcaa098d9f0388c7c1"
+    },
+    {
+      "context": {
+        "command": "local_business_search_suggest_local_business_places",
+        "arguments": {
+          "q": "Austin"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/local-business-search/places",
+        "query": {
+          "q": "Austin"
+        }
+      },
+      "response": {
+        "items": []
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "5df5d52a385dd50d1d743c711fbaa692e11cce6749b252c7c2b2a41e60b94ea9"
+    },
+    {
+      "context": {
+        "command": "local_business_search_convert_local_businesses",
+        "arguments": {
+          "body": {
+            "filters": {
+              "categories": [
+                "dentist"
+              ],
+              "location": {
+                "city": "Austin",
+                "state": "TX",
+                "country": "US"
+              }
+            },
+            "count": 2,
+            "idempotency_key": "synthetic-conversion-1",
+            "list_name": "Synthetic dentists"
+          }
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "POST",
+        "path": "/local-business-search/convert",
+        "body": {
+          "filters": {
+            "categories": [
+              "dentist"
+            ],
+            "location": {
+              "city": "Austin",
+              "state": "TX",
+              "country": "US"
+            }
+          },
+          "count": 2,
+          "idempotency_key": "synthetic-conversion-1",
+          "list_name": "Synthetic dentists"
+        }
+      },
+      "response": {
+        "job": {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "status": "running",
+          "requested": 2,
+          "scanned": 0,
+          "created": 0,
+          "lookup_pending": 0,
+          "verify_pending": 0,
+          "verifying_count": 0,
+          "credits_spent": 0,
+          "list_id": "22222222-2222-4222-8222-222222222222",
+          "campaign_id": null,
+          "updated_at": 1793750400000
+        }
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "write",
+        "cost": "unknown",
+        "notifications": "unknown"
+      },
+      "responseHash": "550a1a54e90be4f89d6d1023202fda07de3038db2fa8ea58cb2bdbe78e717ed5"
+    },
+    {
+      "context": {
+        "command": "local_business_search_get_local_business_convert_job",
+        "arguments": {
+          "id": "22222222-2222-4222-8222-222222222222"
+        },
+        "workspace": "11111111-1111-4111-8111-111111111111"
+      },
+      "position": 0,
+      "request": {
+        "method": "GET",
+        "path": "/local-business-search/convert/22222222-2222-4222-8222-222222222222"
+      },
+      "response": {
+        "job": {
+          "id": "22222222-2222-4222-8222-222222222222",
+          "status": "done",
+          "requested": 2,
+          "scanned": 2,
+          "created": 2,
+          "lookup_pending": 0,
+          "verify_pending": 0,
+          "verifying_count": 0,
+          "credits_spent": 4,
+          "list_id": "22222222-2222-4222-8222-222222222222",
+          "campaign_id": null,
+          "updated_at": 1793750400000
+        }
+      },
+      "provenance": "synthetic",
+      "captured": "2026-11-04",
+      "schemaVersion": 1,
+      "effect": {
+        "effect": "read",
+        "cost": "none",
+        "notifications": false
+      },
+      "responseHash": "33d0b6f898dae733b7ec298ad186a9a9448c506897e6bc63726023d466cdc72b"
+    }
+  ]
+}

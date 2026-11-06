@@ -7,8 +7,9 @@
 ## Quick Start
 
 ```bash
-# Install globally
-npm install -g instantly-cli
+# Install from source (this copy is not on npm)
+git clone https://github.com/MitchellkellerLG/instantly-cli.git && cd instantly-cli
+npm ci && npm run build && npm link
 
 # Authenticate (non-interactive — best for agents)
 export INSTANTLY_API_KEY="your-api-key-here"
@@ -63,7 +64,7 @@ instantly --profile client-a --workspace "$CLIENT_A_WORKSPACE_ID" \
 
 Reads and writes under `--profile` re-fetch the live workspace. If live `workspace.id` ≠ the bound id, the command aborts. Writes also require `--workspace` matching the bound id. When `--workspace` is passed on any path (default or profile), live id must match or the command aborts. Omitted on the default single-key path: no extra flag required. A leftover cwd `.env` `INSTANTLY_API_KEY` does not override `--profile` / `INSTANTLY_PROFILE`.
 
-MCP: start one server per profile (`INSTANTLY_PROFILE=client-a`). Every tool accepts `profile`. Mutating tools require `profile` + `workspace_id` matching the bound pair.
+For MCP profile binding and write requirements, see [README.md](README.md#configuration).
 
 ## Output Format
 
@@ -588,7 +589,7 @@ instantly campaigns list --limit 10 --starting-after "<last-id>"
 
 ## MCP Server (for Claude, Cursor, VS Code)
 
-The CLI also includes a built-in MCP server exposing all 156 commands as tools. One MCP server process per profile. Every tool description says pass `profile` for agency. Mutating tools require `profile` + `workspace_id` matching the bound pair. Call `status` first.
+The CLI also includes a built-in MCP server; see [README.md](README.md#mcp-server) for tool availability, profile binding, and write requirements. Call `status` first.
 
 ```bash
 # Start the MCP server
@@ -600,15 +601,15 @@ Default (one workspace):
 {
   "mcpServers": {
     "instantly": {
-      "command": "npx",
-      "args": ["instantly-cli", "mcp"],
+      "command": "node",
+      "args": ["/absolute/path/to/instantly-cli/dist/index.js", "mcp"],
       "env": { "INSTANTLY_API_KEY": "your-key" }
     }
   }
 }
 ```
 
-Agency: set `INSTANTLY_PROFILE=client-a` instead of a key. Mutating tools require `profile` + `workspace_id` matching the bound pair. There is no all-profiles MCP tool.
+Agency configuration and write policy: see [README.md](README.md#configuration).
 
 ## Email Body Formatting
 

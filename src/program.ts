@@ -1,5 +1,7 @@
 import { Command } from 'commander';
 import { registerAllCommands } from './commands/index.js';
+import { registerCompactCommands } from './compact/cli.js';
+import { extendMcpCommand, registerPlaybookCommands } from './playbooks/cli.js';
 
 // __CLI_VERSION__ is replaced by tsup at build time (see tsup.config.ts `define`).
 declare const __CLI_VERSION__: string;
@@ -32,5 +34,8 @@ export function createProgram(): Command {
     .option('--fields <fields>', 'Comma-separated list of fields to include in output');
 
   registerAllCommands(program);
+  registerCompactCommands(program);
+  registerPlaybookCommands(program);
+  extendMcpCommand(program);
   return program;
 }

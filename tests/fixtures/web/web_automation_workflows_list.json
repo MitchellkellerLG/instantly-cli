@@ -1,0 +1,39 @@
+{
+  "id": "web_automation_workflows_list",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "id": "<string>",
+        "name": "<string>",
+        "organization_id": "<string>",
+        "status": 2,
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "meta": {
+          "apps": [
+            "<string>",
+            "<string>"
+          ]
+        },
+        "pause_reason": null
+      },
+      {
+        "id": "<string>",
+        "name": "<string>",
+        "organization_id": "<string>",
+        "status": 0,
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "meta": {
+          "apps": [
+            "<string>",
+            "<string>"
+          ]
+        },
+        "pause_reason": null
+      }
+    ],
+    "next_starting_after": "<string>"
+  }
+}

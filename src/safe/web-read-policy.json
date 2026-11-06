@@ -1,0 +1,158 @@
+{
+  "web_agent_items_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/agent-items"
+  },
+  "web_agents_lead_finder_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/ai-agents/lead-finder"
+  },
+  "web_agents_pending_activities_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/ai-agents/pending-activities"
+  },
+  "web_agents_pending_groups_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/ai-agents/pending-activities/groups"
+  },
+  "web_agents_sales_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/ai-agents/sales"
+  },
+  "web_agents_used_tags_get": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/ai-agents/used-tags"
+  },
+  "web_analytics_email_marketing": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/email-marketing/metrics"
+  },
+  "web_analytics_inbox_manager": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/ai-inbox-manager-analytics/summary"
+  },
+  "web_analytics_inbox_manager_by_date": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/ai-inbox-manager-analytics/summary-by-date"
+  },
+  "web_analytics_sales_agent": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/ai-sales-agent/analytics"
+  },
+  "web_automation_approvals_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/automation/approvals"
+  },
+  "web_automation_apps_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/automation/apps"
+  },
+  "web_automation_connections_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/automation/app/connections"
+  },
+  "web_automation_templates_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/automation/workflow-templates"
+  },
+  "web_automation_workflows_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/automation/workflows"
+  },
+  "web_company_list_sources": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/supersearch-enrichment/company-lists/sources"
+  },
+  "web_company_lists_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/supersearch-enrichment/company-lists"
+  },
+  "web_copilot_artifacts_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/instantly-ai/artifacts/library"
+  },
+  "web_copilot_focus_get": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/instantly-ai/focus"
+  },
+  "web_copilot_sessions_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/instantly-ai/sessions"
+  },
+  "web_credits_get": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/workspaces/current/instantly-credits"
+  },
+  "web_crm_integration_get": {
+    "method": "GET",
+    "path": "/backend-alt/api/v1/crm/integration"
+  },
+  "web_crm_opportunities_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v1/opportunities"
+  },
+  "web_crm_opportunities_stats": {
+    "method": "GET",
+    "path": "/backend-alt/api/v1/opportunities/stats"
+  },
+  "web_crm_pending_actions_count": {
+    "method": "GET",
+    "path": "/backend-alt/api/v1/crm/pending-actions-count"
+  },
+  "web_crm_stats": {
+    "method": "GET",
+    "path": "/backend-alt/api/v1/crm/stats"
+  },
+  "web_crm_tasks_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v1/tasks"
+  },
+  "web_engage_items_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/engage-items"
+  },
+  "web_integrations_directory_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/integrations/directory"
+  },
+  "web_leadfinder_searches_list": {
+    "method": "GET",
+    "path": "/api-alt/leads-finder/searches"
+  },
+  "web_payment_status_get": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/workspace-billing/payment-status"
+  },
+  "web_plan_details_get": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/workspace-billing/plan-details"
+  },
+  "web_supersearch_proposals_list": {
+    "method": "GET",
+    "path": "/api-alt/supersearch/proposals"
+  },
+  "web_supersearch_recent_list": {
+    "method": "GET",
+    "path": "/api-alt/supersearch/recent-searches"
+  },
+  "web_visitors_count": {
+    "method": "GET",
+    "path": "/backend-alt/api/v1/website-visitor/count"
+  },
+  "web_visitors_integrations_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v1/website-visitor-integrations"
+  },
+  "web_voice_available_numbers_list": {
+    "method": "GET",
+    "path": "/api-alt/communication/list-phone-numbers"
+  },
+  "web_voice_phone_numbers_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/crm-actions/phone-numbers"
+  },
+  "web_voice_suppressions_list": {
+    "method": "GET",
+    "path": "/backend-alt/api/v2/ai-agents/voice-agent/suppressions"
+  }
+}

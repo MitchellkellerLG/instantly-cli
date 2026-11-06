@@ -5,8 +5,8 @@
   "contextFileName": "INSTANTLY.md",
   "mcpServers": {
     "instantly": {
-      "command": "npx",
-      "args": ["-y", "instantly-cli@latest", "mcp"],
+      "command": "node",
+      "args": ["${extensionPath}/dist/index.js", "mcp"],
       "env": {
         "INSTANTLY_API_KEY": "${INSTANTLY_API_KEY}"
       }

@@ -1,0 +1,7 @@
+{
+  "id": "web_visitors_count",
+  "args": {},
+  "body": {
+    "total": "<string>"
+  }
+}

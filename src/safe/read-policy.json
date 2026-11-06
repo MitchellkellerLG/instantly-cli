@@ -1,0 +1,522 @@
+{
+  "account_mappings_get": {
+    "method": "GET",
+    "path": "/account-campaign-mappings/{email}"
+  },
+  "accounts_ctd-status": {
+    "method": "GET",
+    "path": "/accounts/ctd/status"
+  },
+  "accounts_get": {
+    "method": "GET",
+    "path": "/accounts/{id}"
+  },
+  "accounts_list": {
+    "method": "GET",
+    "path": "/accounts"
+  },
+  "agent_items_list_agent_items": {
+    "method": "GET",
+    "path": "/agent-items"
+  },
+  "ai_agents_get_deliverability_agent": {
+    "method": "GET",
+    "path": "/ai-agents/deliverability"
+  },
+  "ai_agents_get_deliverability_agent_by_id": {
+    "method": "GET",
+    "path": "/ai-agents/deliverability/{id}"
+  },
+  "ai_agents_get_deliverability_agent_state": {
+    "method": "GET",
+    "path": "/ai-agents/deliverability/state"
+  },
+  "ai_agents_get_deliverability_agent_state_by_id": {
+    "method": "GET",
+    "path": "/ai-agents/deliverability/{id}/state"
+  },
+  "ai_agents_get_inbox_manager_agent": {
+    "method": "GET",
+    "path": "/ai-agents/inbox-manager/{id}"
+  },
+  "ai_agents_get_inbox_manager_analytics_summary": {
+    "method": "GET",
+    "path": "/ai-agents/inbox-manager/{id}/analytics/summary"
+  },
+  "ai_agents_get_inbox_manager_analytics_summary_by_date": {
+    "method": "GET",
+    "path": "/ai-agents/inbox-manager/{id}/analytics/summary-by-date"
+  },
+  "ai_agents_get_inbox_manager_guidance": {
+    "method": "GET",
+    "path": "/ai-agents/inbox-manager/{id}/guidances/{guidance_id}"
+  },
+  "ai_agents_get_inbox_manager_reply": {
+    "method": "GET",
+    "path": "/ai-agents/inbox-manager/{id}/replies/{reply_id}"
+  },
+  "ai_agents_get_lead_finder_agent_by_id": {
+    "method": "GET",
+    "path": "/ai-agents/lead-finder/{id}"
+  },
+  "ai_agents_get_lead_finder_agent_stats": {
+    "method": "GET",
+    "path": "/ai-agents/lead-finder/{id}/stats"
+  },
+  "ai_agents_get_sales_agent": {
+    "method": "GET",
+    "path": "/ai-agents/sales/{id}"
+  },
+  "ai_agents_get_sales_agent_analytics": {
+    "method": "GET",
+    "path": "/ai-agents/sales/{id}/analytics"
+  },
+  "ai_agents_get_sales_agent_lead_activity_summary": {
+    "method": "GET",
+    "path": "/ai-agents/sales/{id}/leads/activity/summary"
+  },
+  "ai_agents_get_sales_agent_lead_research": {
+    "method": "GET",
+    "path": "/ai-agents/sales/{id}/leads/{lead_id}/research"
+  },
+  "ai_agents_get_sales_agent_opportunity_summary": {
+    "method": "GET",
+    "path": "/ai-agents/sales/{id}/opportunities/summary"
+  },
+  "ai_agents_list_deliverability_agent_feed_items": {
+    "method": "GET",
+    "path": "/ai-agents/deliverability/{id}/feed-items"
+  },
+  "ai_agents_list_inbox_manager_activity": {
+    "method": "GET",
+    "path": "/ai-agents/inbox-manager/{id}/analytics/activity"
+  },
+  "ai_agents_list_inbox_manager_agents": {
+    "method": "GET",
+    "path": "/ai-agents/inbox-manager"
+  },
+  "ai_agents_list_inbox_manager_guidances": {
+    "method": "GET",
+    "path": "/ai-agents/inbox-manager/{id}/guidances"
+  },
+  "ai_agents_list_inbox_manager_replies": {
+    "method": "GET",
+    "path": "/ai-agents/inbox-manager/{id}/replies"
+  },
+  "ai_agents_list_lead_finder_agent_activities_by_id": {
+    "method": "GET",
+    "path": "/ai-agents/lead-finder/{id}/activities"
+  },
+  "ai_agents_list_lead_finder_agent_enrichment_workflows_v2": {
+    "method": "GET",
+    "path": "/ai-agents/lead-finder/enrichment-workflows"
+  },
+  "ai_agents_list_lead_finder_agents": {
+    "method": "GET",
+    "path": "/ai-agents/lead-finder"
+  },
+  "ai_agents_list_sales_agent_activities": {
+    "method": "GET",
+    "path": "/ai-agents/sales/{id}/activities"
+  },
+  "ai_agents_list_sales_agent_guidance_rules": {
+    "method": "GET",
+    "path": "/ai-agents/sales/{id}/guidance-rules"
+  },
+  "ai_agents_list_sales_agent_lead_activity": {
+    "method": "GET",
+    "path": "/ai-agents/sales/{id}/leads/activity"
+  },
+  "ai_agents_list_sales_agents": {
+    "method": "GET",
+    "path": "/ai-agents/sales"
+  },
+  "analytics_campaign": {
+    "method": "GET",
+    "path": "/campaigns/analytics"
+  },
+  "analytics_campaign_overview": {
+    "method": "GET",
+    "path": "/campaigns/analytics/overview"
+  },
+  "analytics_campaign_steps": {
+    "method": "GET",
+    "path": "/campaigns/analytics/steps"
+  },
+  "analytics_daily_account": {
+    "method": "GET",
+    "path": "/accounts/analytics/daily"
+  },
+  "analytics_daily_campaign": {
+    "method": "GET",
+    "path": "/campaigns/analytics/daily"
+  },
+  "analytics_warmup": {
+    "method": "POST",
+    "path": "/accounts/warmup-analytics"
+  },
+  "audit_logs_list": {
+    "method": "GET",
+    "path": "/audit-logs"
+  },
+  "background_jobs_get": {
+    "method": "GET",
+    "path": "/background-jobs/{id}"
+  },
+  "background_jobs_list": {
+    "method": "GET",
+    "path": "/background-jobs"
+  },
+  "blocklist_download_block_list_entry": {
+    "method": "GET",
+    "path": "/block-lists-entries/download"
+  },
+  "blocklist_get": {
+    "method": "GET",
+    "path": "/block-lists-entries/{id}"
+  },
+  "blocklist_list": {
+    "method": "GET",
+    "path": "/block-lists-entries"
+  },
+  "campaigns_count-launched": {
+    "method": "GET",
+    "path": "/campaigns/count-launched"
+  },
+  "campaigns_get": {
+    "method": "GET",
+    "path": "/campaigns/{id}"
+  },
+  "campaigns_list": {
+    "method": "GET",
+    "path": "/campaigns"
+  },
+  "campaigns_search-by-contact": {
+    "method": "GET",
+    "path": "/campaigns/search-by-contact"
+  },
+  "campaigns_sending-status": {
+    "method": "GET",
+    "path": "/campaigns/{id}/sending-status"
+  },
+  "company_lists_get_company_list": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/company-lists/{company_list_id}"
+  },
+  "company_lists_get_company_list_filter_options": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/company-lists/filter-options"
+  },
+  "company_lists_list_company_list_members": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/company-lists/{company_list_id}/companies"
+  },
+  "company_lists_list_company_list_recipes": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/company-lists/recipes"
+  },
+  "company_lists_list_company_list_sources": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/company-lists/sources"
+  },
+  "company_lists_list_company_lists": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/company-lists"
+  },
+  "creator_search_get_creator_outreach_batch": {
+    "method": "GET",
+    "path": "/creator-search/outreach-batches/{id}"
+  },
+  "creator_search_get_creator_search_allowance": {
+    "method": "GET",
+    "path": "/creator-search/search-allowance"
+  },
+  "creator_search_get_creator_search_capabilities": {
+    "method": "GET",
+    "path": "/creator-search/capabilities"
+  },
+  "creator_search_get_creator_search_dictionaries": {
+    "method": "GET",
+    "path": "/creator-search/dictionaries"
+  },
+  "creator_search_get_creator_search_locations": {
+    "method": "GET",
+    "path": "/creator-search/locations"
+  },
+  "crm_actions_list-phone-numbers": {
+    "method": "GET",
+    "path": "/crm-actions/phone-numbers"
+  },
+  "custom_prompt_templates_get": {
+    "method": "GET",
+    "path": "/custom-prompt-templates/{id}"
+  },
+  "custom_prompt_templates_list": {
+    "method": "GET",
+    "path": "/custom-prompt-templates"
+  },
+  "custom_tag_mappings_list": {
+    "method": "GET",
+    "path": "/custom-tag-mappings"
+  },
+  "custom_tags_get": {
+    "method": "GET",
+    "path": "/custom-tags/{id}"
+  },
+  "custom_tags_list": {
+    "method": "GET",
+    "path": "/custom-tags"
+  },
+  "custom_tags_search_custom_tags_by_resources": {
+    "method": "POST",
+    "path": "/custom-tags/search"
+  },
+  "dfy_orders_list": {
+    "method": "GET",
+    "path": "/dfy-email-account-orders"
+  },
+  "dfy_orders_list_accounts": {
+    "method": "GET",
+    "path": "/dfy-email-account-orders/accounts"
+  },
+  "domains_get_domain_forwarding": {
+    "method": "GET",
+    "path": "/domains/{domain}/forwarding"
+  },
+  "email_get": {
+    "method": "GET",
+    "path": "/emails/{id}"
+  },
+  "email_list": {
+    "method": "GET",
+    "path": "/emails"
+  },
+  "email_templates_get": {
+    "method": "GET",
+    "path": "/email-templates/{id}"
+  },
+  "email_templates_list": {
+    "method": "GET",
+    "path": "/email-templates"
+  },
+  "email_unread_count": {
+    "method": "GET",
+    "path": "/emails/unread/count"
+  },
+  "email_verification_status": {
+    "method": "GET",
+    "path": "/email-verification/{email}"
+  },
+  "enrichment_ai-progress": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/ai/{resource_id}/in-progress"
+  },
+  "enrichment_count": {
+    "method": "POST",
+    "path": "/supersearch-enrichment/count-leads-from-supersearch"
+  },
+  "enrichment_get": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/{resource_id}"
+  },
+  "enrichment_get_integration_providers": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/integrations/providers"
+  },
+  "enrichment_history": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/history/{resource_id}"
+  },
+  "enrichment_preview": {
+    "method": "POST",
+    "path": "/supersearch-enrichment/preview-leads-from-supersearch"
+  },
+  "inbox_placement_analytics_get": {
+    "method": "GET",
+    "path": "/inbox-placement-analytics/{id}"
+  },
+  "inbox_placement_analytics_insights": {
+    "method": "POST",
+    "path": "/inbox-placement-analytics/deliverability-insights"
+  },
+  "inbox_placement_analytics_list": {
+    "method": "GET",
+    "path": "/inbox-placement-analytics"
+  },
+  "inbox_placement_analytics_stats_by_date": {
+    "method": "POST",
+    "path": "/inbox-placement-analytics/stats-by-date"
+  },
+  "inbox_placement_analytics_stats_by_test": {
+    "method": "POST",
+    "path": "/inbox-placement-analytics/stats-by-test-id"
+  },
+  "inbox_placement_esp-options": {
+    "method": "GET",
+    "path": "/inbox-placement-tests/email-service-provider-options"
+  },
+  "inbox_placement_get": {
+    "method": "GET",
+    "path": "/inbox-placement-tests/{id}"
+  },
+  "inbox_placement_list": {
+    "method": "GET",
+    "path": "/inbox-placement-tests"
+  },
+  "inbox_placement_reports_get": {
+    "method": "GET",
+    "path": "/inbox-placement-reports/{id}"
+  },
+  "inbox_placement_reports_list": {
+    "method": "GET",
+    "path": "/inbox-placement-reports"
+  },
+  "lead_labels_get": {
+    "method": "GET",
+    "path": "/lead-labels/{id}"
+  },
+  "lead_labels_list": {
+    "method": "GET",
+    "path": "/lead-labels"
+  },
+  "lead_lists_get": {
+    "method": "GET",
+    "path": "/lead-lists/{id}"
+  },
+  "lead_lists_list": {
+    "method": "GET",
+    "path": "/lead-lists"
+  },
+  "lead_lists_verification_stats": {
+    "method": "GET",
+    "path": "/lead-lists/{id}/verification-stats"
+  },
+  "leads_get": {
+    "method": "GET",
+    "path": "/leads/{id}"
+  },
+  "leads_list": {
+    "method": "POST",
+    "path": "/leads/list"
+  },
+  "local_business_search_get_local_business_convert_job": {
+    "method": "GET",
+    "path": "/local-business-search/convert/{id}"
+  },
+  "local_business_search_search_local_businesses": {
+    "method": "POST",
+    "path": "/local-business-search/search"
+  },
+  "local_business_search_suggest_local_business_places": {
+    "method": "GET",
+    "path": "/local-business-search/places"
+  },
+  "oauth_get_oauth_session_status": {
+    "method": "GET",
+    "path": "/oauth/session/status/{sessionId}"
+  },
+  "sales_flow_get": {
+    "method": "GET",
+    "path": "/sales-flow/{id}"
+  },
+  "sales_flow_list": {
+    "method": "GET",
+    "path": "/sales-flow"
+  },
+  "saved_searches_get_saved_search": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/saved-searches/{id}"
+  },
+  "saved_searches_list_saved_searches": {
+    "method": "GET",
+    "path": "/supersearch-enrichment/saved-searches"
+  },
+  "subsequences_get_campaign_subsequence": {
+    "method": "GET",
+    "path": "/subsequences/{id}"
+  },
+  "subsequences_get_subsequence_analytics": {
+    "method": "GET",
+    "path": "/subsequences/analytics"
+  },
+  "subsequences_get_subsequence_steps_analytics": {
+    "method": "GET",
+    "path": "/subsequences/{id}/analytics/steps"
+  },
+  "subsequences_list": {
+    "method": "GET",
+    "path": "/subsequences"
+  },
+  "subsequences_sending_status": {
+    "method": "GET",
+    "path": "/subsequences/{id}/sending-status"
+  },
+  "webhook_events_get": {
+    "method": "GET",
+    "path": "/webhook-events/{id}"
+  },
+  "webhook_events_list": {
+    "method": "GET",
+    "path": "/webhook-events"
+  },
+  "webhook_events_summary": {
+    "method": "GET",
+    "path": "/webhook-events/summary"
+  },
+  "webhook_events_summary-by-date": {
+    "method": "GET",
+    "path": "/webhook-events/summary-by-date"
+  },
+  "webhooks_event_types": {
+    "method": "GET",
+    "path": "/webhooks/event-types"
+  },
+  "webhooks_get": {
+    "method": "GET",
+    "path": "/webhooks/{id}"
+  },
+  "webhooks_list": {
+    "method": "GET",
+    "path": "/webhooks"
+  },
+  "workspace_billing_plan-details": {
+    "method": "GET",
+    "path": "/workspace-billing/plan-details"
+  },
+  "workspace_billing_subscription-details": {
+    "method": "GET",
+    "path": "/workspace-billing/subscription-details"
+  },
+  "workspace_credits": {
+    "method": "GET",
+    "path": "/workspaces/current"
+  },
+  "workspace_get": {
+    "method": "GET",
+    "path": "/workspaces/current"
+  },
+  "workspace_group_members_get": {
+    "method": "GET",
+    "path": "/workspace-group-members/{id}"
+  },
+  "workspace_group_members_get-admin": {
+    "method": "GET",
+    "path": "/workspace-group-members/admin"
+  },
+  "workspace_group_members_list": {
+    "method": "GET",
+    "path": "/workspace-group-members"
+  },
+  "workspace_members_get": {
+    "method": "GET",
+    "path": "/workspace-members/{id}"
+  },
+  "workspace_members_list": {
+    "method": "GET",
+    "path": "/workspace-members"
+  },
+  "workspace_whitelabel-get": {
+    "method": "GET",
+    "path": "/workspaces/current/whitelabel-domain"
+  }
+}

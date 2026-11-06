@@ -1,0 +1,33 @@
+{
+  "id": "web_agent_items_list",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "resource_id": "<string>",
+        "type": "ai_agent",
+        "workspace_id": "<string>",
+        "name": "<string>",
+        "status": "<string>",
+        "metadata": {
+          "original_status": 1,
+          "ai_agent_type": 7
+        },
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>"
+      },
+      {
+        "resource_id": "<string>",
+        "type": "automation",
+        "workspace_id": "<string>",
+        "name": "<string>",
+        "status": "<string>",
+        "metadata": {
+          "original_status": 0
+        },
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>"
+      }
+    ]
+  }
+}

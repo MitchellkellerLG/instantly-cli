@@ -1,0 +1,43 @@
+{
+  "id": "web_supersearch_recent_list",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "id": "<string>",
+        "audience": "people",
+        "filters": {
+          "title": {
+            "include": [
+              "<string>",
+              "<string>"
+            ],
+            "exclude": []
+          },
+          "locations": {
+            "include": [
+              {
+                "place_id": "<string>",
+                "label": "<string>"
+              }
+            ],
+            "exclude": []
+          },
+          "department": [],
+          "level": [],
+          "revenue": [],
+          "news": [],
+          "fundingType": [],
+          "technologies": [],
+          "signals": [],
+          "locationMode": "contact"
+        },
+        "skip_owned_leads": false,
+        "show_one_lead_per_company": true,
+        "filter_hash": "<string>",
+        "result_count": 51,
+        "timestamp": "<string>"
+      }
+    ]
+  }
+}

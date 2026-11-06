@@ -3,25 +3,10 @@ import { InstantlyClient } from '../../core/client.js';
 import { createCommandContext } from '../../core/command-context.js';
 import { output, outputError } from '../../core/output.js';
 import type { GlobalOptions } from '../../core/types.js';
+import { openOAuthUrl } from '../../core/open-url.js';
 
 const POLL_INTERVAL_MS = 3000;
 const MAX_POLL_MS = 10 * 60 * 1000; // 10 minutes (session TTL)
-
-async function openUrl(url: string): Promise<void> {
-  const { exec } = await import('child_process');
-  const { promisify } = await import('util');
-  const execAsync = promisify(exec);
-
-  const platform = process.platform;
-  const cmd =
-    platform === 'darwin' ? 'open' :
-    platform === 'win32' ? 'start' :
-    'xdg-open';
-
-  await execAsync(`${cmd} "${url}"`).catch(() => {
-    // If open fails, user will copy the URL manually
-  });
-}
 
 async function pollStatus(
   client: InstantlyClient,
@@ -115,10 +100,13 @@ export function registerOAuthCommand(program: Command): void {
 
         // Open browser
         if (opts.open !== false) {
-          await openUrl(initResult.auth_url);
+          const opened = openOAuthUrl(initResult.auth_url);
+          if (!opened) {
+            console.error('Not opening the authorization URL automatically: it is not an https URL on a known OAuth provider host. Copy it manually only if you trust it.');
+          }
           if (isTTY) {
-            console.log('\nOpened browser for authorization.');
-            console.log('If it didn\'t open, visit this URL:\n');
+            console.log(opened ? '\nOpened browser for authorization.' : '\nBrowser not opened.');
+            console.log('Authorization URL:\n');
             console.log(`  ${initResult.auth_url}\n`);
           }
         } else if (isTTY) {

@@ -1,0 +1,32 @@
+{
+  "id": "003-verb-synonyms",
+  "kind": "add-synonym",
+  "hypothesis": "People say find, statistics, performance, start and stop where the registry says list, stats, analytics, enable and pause. One verb-and-noun synonym table, applied at half weight, bridges everyday words to registry words across every group without naming a command.",
+  "addresses": ["instantly-009", "instantly-026", "instantly-042"],
+  "set": {
+    "synonyms": {
+      "show": ["list", "get"],
+      "view": ["list", "get"],
+      "display": ["list", "get"],
+      "remove": ["delete"],
+      "change": ["update"],
+      "edit": ["update"],
+      "find": ["list", "search"],
+      "lookup": ["list", "search"],
+      "browse": ["list"],
+      "statistics": ["stats", "analytics"],
+      "metrics": ["analytics", "stats"],
+      "performance": ["analytics"],
+      "breakdown": ["analytics", "steps"],
+      "start": ["enable", "activate"],
+      "begin": ["enable", "activate"],
+      "stop": ["disable", "pause"],
+      "halt": ["pause"],
+      "modify": ["update"],
+      "rename": ["update"],
+      "make": ["create"],
+      "add": ["create"],
+      "erase": ["delete"]
+    }
+  }
+}

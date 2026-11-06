@@ -1,3 +1,5 @@
+import { redactText } from './redact.js';
+
 export class InstantlyError extends Error {
   constructor(
     message: string,
@@ -96,6 +98,11 @@ function applyRemediation(message: string): string {
 }
 
 export function formatError(error: unknown): { message: string; code: string } {
+  const f = formatErrorRaw(error);
+  return { ...f, message: redactText(f.message) };
+}
+
+function formatErrorRaw(error: unknown): { message: string; code: string } {
   if (error instanceof InstantlyError) {
     return { message: applyRemediation(error.message), code: error.code };
   }

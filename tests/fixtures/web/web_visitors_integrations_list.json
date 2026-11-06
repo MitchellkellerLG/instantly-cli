@@ -1,0 +1,22 @@
+{
+  "id": "web_visitors_integrations_list",
+  "args": {
+    "limit": 5
+  },
+  "body": {
+    "data": [
+      {
+        "domain": "<string>",
+        "timestamp_created": "<string>",
+        "organization_id": "<string>",
+        "tag_id": "<string>",
+        "tos_ip": "<string>",
+        "tos_ua": "<string>",
+        "test_successful": false,
+        "pixel_conflict": false
+      }
+    ],
+    "limit": 5,
+    "skip": 0
+  }
+}

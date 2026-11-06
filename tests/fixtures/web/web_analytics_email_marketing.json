@@ -1,0 +1,62 @@
+{
+  "id": "web_analytics_email_marketing",
+  "args": {
+    "time_range": "30d"
+  },
+  "body": {
+    "totals": {
+      "sent": 0,
+      "delivered": 0,
+      "bounced": 0,
+      "complained": 0,
+      "opened": 0,
+      "clicked": 0,
+      "rejected": 0,
+      "skipped": 0,
+      "unique_clicked": 0,
+      "opened_proxy": 0,
+      "delivery_rate": 0,
+      "open_rate": 0,
+      "click_rate": 0,
+      "bounce_rate": 0,
+      "complaint_rate": 0
+    },
+    "series": [
+      {
+        "label": "<string>",
+        "timestamp": 1791331200000,
+        "sent": 0,
+        "delivered": 0,
+        "bounced": 0,
+        "complained": 0,
+        "opened": 0,
+        "clicked": 0,
+        "rejected": 0,
+        "skipped": 0,
+        "unique_clicked": 0,
+        "opened_proxy": 0
+      },
+      {
+        "label": "<string>",
+        "timestamp": 1791417600000,
+        "sent": 0,
+        "delivered": 0,
+        "bounced": 0,
+        "complained": 0,
+        "opened": 0,
+        "clicked": 0,
+        "rejected": 0,
+        "skipped": 0,
+        "unique_clicked": 0,
+        "opened_proxy": 0
+      }
+    ],
+    "meta": {
+      "time_range": "<string>",
+      "granularity": "daily",
+      "start_date": "<string>",
+      "end_date": "<string>",
+      "tz_offset": 0
+    }
+  }
+}

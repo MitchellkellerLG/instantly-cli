@@ -1,0 +1,44 @@
+{
+  "id": "web_agents_pending_activities_list",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "id": "<string>",
+        "ai_sdr_id": "<string>",
+        "workspace_id": "<string>",
+        "action_type": "enrich_leads",
+        "action_status": "pending",
+        "action_payload": {
+          "campaign_id": "<string>",
+          "filters": null,
+          "note": null,
+          "enrichment_limit": 10,
+          "icp_multipliers": null
+        },
+        "ai_reasoning": "<string>",
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "agent_id": "<string>",
+        "agent_name": "<string>"
+      },
+      {
+        "id": "<string>",
+        "ai_sdr_id": "<string>",
+        "workspace_id": "<string>",
+        "action_type": "push_lead",
+        "action_status": "pending",
+        "action_payload": {
+          "lead_id": "<string>",
+          "lead_email": "<string>",
+          "to_campaign": "<string>"
+        },
+        "timestamp_created": "<string>",
+        "timestamp_updated": "<string>",
+        "agent_id": "<string>",
+        "agent_name": "<string>"
+      }
+    ],
+    "total": 11
+  }
+}

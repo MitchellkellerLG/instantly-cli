@@ -1,0 +1,14 @@
+{
+  "id": "005-account-aliases",
+  "kind": "add-alias",
+  "hypothesis": "Sending accounts are called senders and mailboxes, and their lifecycle is pause, resume, vitals and details. Naming the six account operations by those phrases fixes account requests that land on campaign or lead commands.",
+  "addresses": ["instantly-020"],
+  "set": {
+    "aliases.accounts_get": ["account details", "sender details", "mailbox details"],
+    "aliases.accounts_pause": ["pause account", "pause sender", "pause mailbox"],
+    "aliases.accounts_resume": ["resume account", "resume sender", "resume mailbox"],
+    "aliases.accounts_update": ["update account", "account daily limit", "change sender settings"],
+    "aliases.accounts_test_vitals": ["account vitals", "test account vitals", "check account connectivity"],
+    "aliases.accounts_mark-fixed": ["mark account fixed", "account fixed"]
+  }
+}

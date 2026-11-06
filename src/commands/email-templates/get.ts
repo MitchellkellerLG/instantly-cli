@@ -6,7 +6,7 @@ export const emailTemplatesGetCommand: CommandDefinition = {
   name: 'email_templates_get',
   group: 'email-templates',
   subcommand: 'get',
-  description: 'Get an email template by ID.',
+  description: '[Undocumented API] Get an email template by ID.',
   examples: ['instantly email-templates get <template-id>'],
 
   inputSchema: z.object({ id: z.string().describe('Email template ID') }),

@@ -1,0 +1,11 @@
+{
+  "id": "web_supersearch_proposals_list",
+  "args": {
+    "surface": "todays_focus"
+  },
+  "body": {
+    "profile_version": 14,
+    "has_proposals": false,
+    "cards": []
+  }
+}

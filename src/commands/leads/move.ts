@@ -1,6 +1,6 @@
 import { z } from 'zod';
+import { stringArray } from '../../core/schemas.js';
 import type { CommandDefinition } from '../../core/types.js';
-import { executeCommand } from '../../core/handler.js';
 
 export const leadsMoveCommand: CommandDefinition = {
   name: 'leads_move',
@@ -12,7 +12,7 @@ export const leadsMoveCommand: CommandDefinition = {
   ],
 
   inputSchema: z.object({
-    lead_ids: z.array(z.string()).describe('Array of lead IDs to move'),
+    lead_ids: stringArray.describe('Array of lead IDs to move'),
     from_campaign_id: z.string().optional().describe('Source campaign ID'),
     to_campaign_id: z.string().describe('Destination campaign ID'),
   }),
@@ -38,6 +38,8 @@ export const leadsMoveCommand: CommandDefinition = {
     if (typeof leadIds === 'string') {
       leadIds = leadIds.split(',').map((id: string) => id.trim());
     }
-    return executeCommand(leadsMoveCommand, { ...input, lead_ids: leadIds }, client);
+    return client.post('/leads/move', { ids: leadIds, to_campaign_id: input.to_campaign_id,
+      ...(input.from_campaign_id !== undefined ? { campaign: input.from_campaign_id } : {}),
+    });
   },
 };

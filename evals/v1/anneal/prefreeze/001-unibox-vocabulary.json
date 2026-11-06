@@ -1,0 +1,7 @@
+{
+  "id": "001-unibox-vocabulary",
+  "kind": "add-group-alias",
+  "hypothesis": "People call inbox messages replies, threads and inbound mail. Mapping that vocabulary to the email group lets reply-reading requests reach Unibox commands instead of AI-agent reply helpers.",
+  "addresses": ["instantly-014", "instantly-016"],
+  "set": { "groupAliases.email": ["unibox", "inbound", "unread", "thread", "message", "mail", "reply"] }
+}

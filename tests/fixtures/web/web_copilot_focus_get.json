@@ -1,0 +1,26 @@
+{
+  "id": "web_copilot_focus_get",
+  "args": {},
+  "body": {
+    "items": [
+      {
+        "id": "connect_account",
+        "done": false
+      },
+      {
+        "id": "ai_sdr_running",
+        "done": true
+      }
+    ],
+    "meta": {
+      "total": 2,
+      "completed": 1,
+      "completion_percentage": 50,
+      "generated_at": "<string>",
+      "ai_summary": null
+    },
+    "paused_agents": [],
+    "autopilot_agents": [],
+    "facts": null
+  }
+}

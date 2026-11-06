@@ -7,6 +7,7 @@ import {
   ServerError,
   InstantlyError,
 } from './errors.js';
+import { redactText } from './redact.js';
 
 const BASE_URL = 'https://api.instantly.ai/api/v2';
 const MAX_RETRIES = 3;
@@ -39,17 +40,21 @@ export class InstantlyClient implements IInstantlyClient {
   }
 
   async request<T>(options: {
-    method: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+    method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
     path: string;
-    query?: Record<string, string | number | boolean | undefined>;
+    query?: Record<string, string | number | boolean | (string | number | boolean)[] | undefined>;
     body?: unknown;
+    responseType?: 'text';
+    retry?: 'never';
   }): Promise<T> {
     const url = new URL(this.baseUrl + options.path);
 
     if (options.query) {
       for (const [key, value] of Object.entries(options.query)) {
         if (value !== undefined && value !== null && value !== '') {
-          url.searchParams.set(key, String(value));
+          if (Array.isArray(value)) {
+            for (const item of value) url.searchParams.append(key, String(item));
+          } else url.searchParams.set(key, String(value));
         }
       }
     }
@@ -64,10 +69,11 @@ export class InstantlyClient implements IInstantlyClient {
     }
 
     let lastError: Error | undefined;
+    const maxRetries = options.retry === 'never' ? 0 : this.maxRetries;
     const isWrite = options.method !== 'GET';
     const effectiveTimeout = isWrite ? Math.min(this.timeout, WRITE_TIMEOUT) : this.timeout;
 
-    for (let attempt = 0; attempt <= this.maxRetries; attempt++) {
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), effectiveTimeout);
@@ -84,7 +90,7 @@ export class InstantlyClient implements IInstantlyClient {
         if (response.ok) {
           const text = await response.text();
           if (!text) return undefined as T;
-          return JSON.parse(text) as T;
+          return (options.responseType === 'text' ? text : JSON.parse(text)) as T;
         }
 
         const errorBody = await response.text().catch(() => '');
@@ -95,6 +101,8 @@ export class InstantlyClient implements IInstantlyClient {
         } catch {
           errorMessage = errorBody || response.statusText;
         }
+        // Upstream text may reflect the credential; never carry it into errors, logs or MCP results.
+        errorMessage = redactText(typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage), [this.apiKey]);
 
         switch (response.status) {
           case 401:
@@ -107,7 +115,7 @@ export class InstantlyClient implements IInstantlyClient {
           case 429: {
             const retryAfter = parseInt(response.headers.get('retry-after') ?? '', 10);
             const err = new RateLimitError(errorMessage, isNaN(retryAfter) ? undefined : retryAfter);
-            if (attempt < this.maxRetries) {
+            if (attempt < maxRetries) {
               const delay = err.retryAfter
                 ? err.retryAfter * 1000
                 : Math.min(1000 * Math.pow(2, attempt), 10_000);
@@ -120,7 +128,8 @@ export class InstantlyClient implements IInstantlyClient {
           default:
             if (response.status >= 500) {
               const err = new ServerError(errorMessage, response.status);
-              if (attempt < this.maxRetries) {
+              // A 5xx after a write is ambiguous: the server may have committed it. Only reads are retried.
+              if (!isWrite && attempt < maxRetries) {
                 await sleep(Math.min(1000 * Math.pow(2, attempt), 10_000));
                 lastError = err;
                 continue;
@@ -143,7 +152,7 @@ export class InstantlyClient implements IInstantlyClient {
             'TIMEOUT',
           );
           // Don't retry write operations on timeout — could create duplicates
-          if (!isWrite && attempt < this.maxRetries) {
+          if (!isWrite && attempt < maxRetries) {
             await sleep(Math.min(1000 * Math.pow(2, attempt), 10_000));
             continue;
           }
@@ -152,7 +161,7 @@ export class InstantlyClient implements IInstantlyClient {
 
         // Network errors (DNS, connection refused, etc.)
         if (error instanceof TypeError && String(error.message).includes('fetch')) {
-          throw new InstantlyError(`Network error: ${error.message}`, 'NETWORK_ERROR');
+          throw new InstantlyError(`Network error: ${redactText(error.message, [this.apiKey])}`, 'NETWORK_ERROR');
         }
 
         throw error;

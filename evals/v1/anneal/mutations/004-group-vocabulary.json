@@ -1,0 +1,12 @@
+{
+  "id": "004-group-vocabulary",
+  "kind": "add-group-alias",
+  "hypothesis": "Several groups are named in product language that is not in the registry: prospects for leads, enrich for enrichment, mailbox for accounts, spam for deliverability. A few single-word group aliases route those requests to the right group without naming any command.",
+  "addresses": ["instantly-011", "instantly-029"],
+  "set": {
+    "groupAliases.leads": ["prospect"],
+    "groupAliases.enrichment": ["supersearch", "enrich"],
+    "groupAliases.accounts": ["sender", "mailbox"],
+    "groupAliases.inbox-placement": ["deliverability", "placement", "spam"]
+  }
+}

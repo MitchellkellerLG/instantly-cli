@@ -1,3 +1,4 @@
+import { generatedCommands } from './generated/index.js';
 import { Command } from 'commander';
 import type { CommandDefinition, GlobalOptions } from '../core/types.js';
 import { createCommandContext } from '../core/command-context.js';
@@ -244,11 +245,16 @@ import { emailTemplatesGetCommand } from './email-templates/get.js';
 import { emailTemplatesUpdateCommand } from './email-templates/update.js';
 import { emailTemplatesDeleteCommand } from './email-templates/delete.js';
 
+// Web app (private routes through the attended browser; direct CLI gets reads only; browser actions run only through preview and write)
+import { webReadCommands } from './web/index.js';
+import { WEB_BROWSER_ENV } from '../web/cdp.js';
+
 // MCP command
 import { registerMcpCommand } from './mcp/index.js';
 
 /** All command definitions — the single source of truth for CLI + MCP */
 export const allCommands: CommandDefinition[] = [
+  ...generatedCommands,
   // Campaigns
   campaignsListCommand,
   campaignsGetCommand,
@@ -467,13 +473,13 @@ export function registerAllCommands(program: Command): void {
 
   // Group commands by their `group` field
   const groups = new Map<string, CommandDefinition[]>();
-  for (const cmd of allCommands) {
+  for (const cmd of (process.env[WEB_BROWSER_ENV] ? [...allCommands, ...webReadCommands] : allCommands)) {
     if (!groups.has(cmd.group)) groups.set(cmd.group, []);
     groups.get(cmd.group)!.push(cmd);
   }
 
   for (const [groupName, commands] of groups) {
-    const groupCmd = program
+    const groupCmd = program.commands.find(c => c.name() === groupName) ?? program
       .command(groupName)
       .description(`Manage ${groupName}`);
 
@@ -531,6 +537,7 @@ function registerCommand(parent: Command, cmdDef: CommandDefinition): void {
         profile: globalOpts.profile,
         workspace: globalOpts.workspace,
         mutating: isMutatingCommand(cmdDef),
+        origin: cmdDef.origin,
       });
 
       // Build input from positional args + options

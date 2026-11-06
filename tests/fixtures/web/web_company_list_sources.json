@@ -1,0 +1,106 @@
+{
+  "id": "web_company_list_sources",
+  "args": {},
+  "body": [
+    {
+      "provider_id": "builtwith",
+      "provider_name": "<string>",
+      "logo_id": "builtwith",
+      "company_source_id": "search_companies",
+      "source_name": "<string>",
+      "credential_sources": [
+        "workspace_key"
+      ],
+      "credit_cost_per_saved_record": 0,
+      "max_records_per_build": 2500,
+      "supports_preview": false,
+      "filters": [
+        {
+          "key": "technology",
+          "label": "<string>",
+          "type": "multiselect",
+          "required": true,
+          "options": [
+            {
+              "label": "<string>",
+              "value": "<string>"
+            },
+            {
+              "label": "<string>",
+              "value": "<string>"
+            }
+          ],
+          "allow_custom": true
+        },
+        {
+          "key": "location",
+          "label": "<string>",
+          "type": "location",
+          "max_values": 1
+        }
+      ],
+      "recipes": [
+        {
+          "recipe_id": "<string>",
+          "title": "<string>",
+          "description": "<string>",
+          "visible_filter_keys": [
+            "technology",
+            "location"
+          ],
+          "prefilled": {}
+        }
+      ],
+      "connected": false
+    },
+    {
+      "provider_id": "diffbot",
+      "provider_name": "<string>",
+      "logo_id": "diffbot",
+      "company_source_id": "search_companies",
+      "source_name": "<string>",
+      "credential_sources": [
+        "workspace_key"
+      ],
+      "credit_cost_per_saved_record": 0,
+      "max_records_per_build": 2500,
+      "supports_preview": false,
+      "filters": [
+        {
+          "key": "company_name",
+          "label": "<string>",
+          "type": "text"
+        },
+        {
+          "key": "industry",
+          "label": "<string>",
+          "type": "multiselect",
+          "options": [
+            {
+              "label": "<string>",
+              "value": "<string>"
+            },
+            {
+              "label": "<string>",
+              "value": "<string>"
+            }
+          ],
+          "allow_custom": true
+        }
+      ],
+      "recipes": [
+        {
+          "recipe_id": "diffbot_company_search",
+          "title": "<string>",
+          "description": "<string>",
+          "visible_filter_keys": [
+            "company_name",
+            "industry"
+          ],
+          "prefilled": {}
+        }
+      ],
+      "connected": false
+    }
+  ]
+}
