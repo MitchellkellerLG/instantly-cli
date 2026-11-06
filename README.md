@@ -6,8 +6,6 @@
 
 > **Community-maintained copy.** This is an unofficial, community-maintained CLI and MCP server for Instantly.ai, not an Instantly.ai product. It is built from [Brandon Charleson's original CLI](https://github.com/bcharleson/instantly-cli); see [Credits and license](#credits-and-license). It is installed from this repository, not from npm.
 
-<!-- TODO(owner): add the Instantly VIP link here, as one line such as "New to Instantly? <link>". No VIP or partner URL exists anywhere in this repository, so none was invented. -->
-
 ```bash
 git clone https://github.com/MitchellkellerLG/instantly-cli.git
 cd instantly-cli
